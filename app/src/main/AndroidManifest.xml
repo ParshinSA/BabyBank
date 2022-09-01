@@ -2,7 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.babybank">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
+        android:name="com.example.babybank.presentation.AppApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -10,8 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BabyBank">
         <activity
-            android:name=".MainActivity"
-            android:exported="true">
+            android:name="com.example.babybank.presentation.AppActivity"
+            android:exported="true"
+            android:screenOrientation="fullSensor">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -19,5 +23,4 @@
             </intent-filter>
         </activity>
     </application>
-
 </manifest>

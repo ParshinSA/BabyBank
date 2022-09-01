@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ripple xmlns:android="http://schemas.android.com/apk/res/android"
+    android:color="@color/bgRippleDefault">
+
+    <item android:id="@android:id/background">
+        <shape android:shape="rectangle">
+            <size
+                android:width="30dp"
+                android:height="30dp" />
+            <corners android:radius="15dp" />
+            <solid android:color="@color/colorBackgroundItemRecyclerView" />
+        </shape>
+    </item>
+</ripple>

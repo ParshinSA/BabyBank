@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_onboarding">
+
+    <ImageView
+        android:id="@+id/imageViewCloud"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/ic_cloud_onbording_fragment"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="40dp"
+        android:src="@drawable/baby_bank"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageViewIcStuckAtHomeSittingOnFlop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:scaleType="fitCenter"
+        android:src="@drawable/stuck_at_home_sitting_on_floor"
+        app:layout_constraintBottom_toBottomOf="@+id/imageViewCloud"
+        app:layout_constraintEnd_toEndOf="@+id/imageViewCloud"
+        app:layout_constraintStart_toStartOf="@+id/imageViewCloud"
+        app:layout_constraintTop_toTopOf="@+id/imageViewCloud" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="40dp"
+        android:src="@drawable/moneyverse_credit_card"
+        app:layout_constraintEnd_toEndOf="@+id/imageViewIcStuckAtHomeSittingOnFlop"
+        app:layout_constraintTop_toTopOf="@+id/imageViewIcStuckAtHomeSittingOnFlop" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingActionButtonNext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="45dp"
+        android:backgroundTint="@color/white"
+        android:src="@drawable/ic_long_arrow_next"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

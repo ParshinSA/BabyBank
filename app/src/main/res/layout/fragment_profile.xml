@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F0F5FD"
+    android:orientation="vertical">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        app:title="MyProfile" />
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/shapeImageViewAvatarProfile"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="42dp"
+            android:layout_marginBottom="16dp"
+            android:padding="2dp"
+            android:scaleType="centerCrop"
+            app:shapeAppearanceOverlay="@style/MyStyleShapeAppearance"
+            app:strokeColor="@color/selectedNavigationColor"
+            app:strokeWidth="6dp" />
+
+        <ImageView
+            android:id="@+id/imageViewChangePhoto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/bg_and_ripple_ic_change_photo"
+            android:src="@drawable/ic_change_photo" />
+
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/textViewUsername"
+        style="@style/MyTextStyle22spBoldBlack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        tools:text="Leslie Cooper" />
+
+    <TextView
+        android:id="@+id/textViewUserPhoneNumber"
+        style="@style/MyTextStyle14spBoldGray"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textStyle="normal"
+        tools:text="+7(789)987-65-32" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/bg_info_bottom_recycler_view"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHeight_percent="0.6">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewProfileInfo"
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:padding="4dp"
+            tools:itemCount="5"
+            tools:listitem="@layout/item_item_menu_title_icon" />
+    </LinearLayout>
+
+</LinearLayout>

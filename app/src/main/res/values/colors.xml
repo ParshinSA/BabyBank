@@ -7,4 +7,37 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+
+    <!--    my palette-->
+    <color name="myBlack">@color/black</color>
+    <color name="myWhite">@color/white</color>
+    <color name="whiteGray">#F6F7FA</color>
+    <color name="gray">#ADADAD</color>
+    <color name="darkGray">#757575</color>
+    <color name="liteBlue">#58B7FF</color>
+
+    <!--    background color -->
+    <color name="bgOnboardingFrg">@color/liteBlue</color>
+    <color name="bgIconItemOperationMenuWalletFrg">@color/whiteGray</color>
+    <color name="colorBackgroundItemRecyclerView">@color/myWhite</color>
+    <color name="bgButtonDefault">@color/liteBlue</color>
+    <color name="bgRippleDefault">@color/gray</color>
+
+    <!--    bottomNavigation color-->
+    <color name="selectedNavigationColor">@color/liteBlue</color>
+    <color name="unselectedNavigationColor">@color/darkGray</color>
+
+    <!--    color text-->
+    <color name="blackText">@color/black</color>
+    <color name="grayText">@color/gray</color>
+    <color name="whiteText">@color/myWhite</color>
+
+    <!--    icon color-->
+    <color name="iconColor">@color/liteBlue</color>
+
+    <color name="dotsSelected">@color/myWhite</color>
+    <color name="dotsUnselected">#DBEEFC</color>
+
+
 </resources>
