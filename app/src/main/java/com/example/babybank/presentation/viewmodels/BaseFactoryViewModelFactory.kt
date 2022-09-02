@@ -59,9 +59,7 @@ class BaseFactoryViewModelFactory @Inject constructor(
                 ) as T
 
             modelClass.isAssignableFrom(ContainerFrgViewModel::class.java) ->
-                ContainerFrgViewModel(
-                    router = containerFragmentRouter
-                ) as T
+                ContainerFrgViewModel() as T
 
             else -> error("Incorrect view model factory $modelClass")
         }

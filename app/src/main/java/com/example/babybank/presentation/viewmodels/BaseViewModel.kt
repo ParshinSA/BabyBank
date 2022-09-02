@@ -1,5 +1,6 @@
 package com.example.babybank.presentation.viewmodels
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -23,6 +24,7 @@ abstract class BaseViewModel : ViewModel() {
 
     override fun onCleared() {
         compositeDisposable.clear()
+        Log.d("MyTAG", "onCleared: ${this.javaClass.name.takeLastWhile { it=='.' }} ")
         super.onCleared()
     }
 }

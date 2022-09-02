@@ -91,8 +91,27 @@ class HomeFrgViewModel @Inject constructor(
         }
     }
 
-    fun openDetailsFrg(balance: String, currencySymbol: String? = null) {
-        parentRouter.navigateTo(Screens.DetailsFrg(balance, currencySymbol))
+    fun openDetailsFrg(itemId: Int) {
+        val selectedButton =
+            dataAccountsCardsLiveData.value?.first { it.idItem == itemId } ?: return
+
+        try {
+            val screen = when (selectedButton) {
+                is AccountIconUi -> {
+                    Screens.DetailsFrg(
+                        selectedButton.balance,
+                        CurrencyTypeDomain.values()
+                            .first { it.icon == selectedButton.currencyTypeIcon }.symbol
+                    )
+                }
+                is CardUi -> Screens.DetailsFrg(selectedButton.balance)
+                else -> error("Unknown button $selectedButton")
+            }
+            parentRouter.navigateTo(screen)
+        } catch (t: Throwable) {
+            t.printStackTrace()
+        }
+
     }
 
 }

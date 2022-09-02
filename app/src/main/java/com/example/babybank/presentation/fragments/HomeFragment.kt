@@ -7,10 +7,12 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.babybank.databinding.FragmentHomeBinding
-import com.example.babybank.domain.models.CurrencyTypeDomain
 import com.example.babybank.presentation.AppApplication
 import com.example.babybank.presentation.adapters.*
-import com.example.babybank.presentation.models.*
+import com.example.babybank.presentation.models.DisplayableItem
+import com.example.babybank.presentation.models.LoaderUiRv
+import com.example.babybank.presentation.models.PersonalInfoHomeFrgUi
+import com.example.babybank.presentation.models.TotalMoneyUi
 import com.example.babybank.presentation.viewmodels.BaseFactoryViewModelFactory
 import com.example.babybank.presentation.viewmodels.HomeFrgViewModel
 import com.hannesdorfmann.adapterdelegates4.AdapterDelegatesManager
@@ -43,6 +45,7 @@ class HomeFragment : BaseFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+
         _binding = FragmentHomeBinding.inflate(layoutInflater, container, false)
         parentFrgBottomNavViewIsVisible(true)
         return binding.root
@@ -94,23 +97,9 @@ class HomeFragment : BaseFragment() {
     }
 
     override fun click(itemId: Int) {
-        val selectedButton =
-            viewModel.dataAccountsCardsLiveData.value?.first { it.idItem == itemId }
-
-        when (selectedButton) {
-
-            is AccountIconUi -> viewModel.openDetailsFrg(
-                selectedButton.balance,
-                CurrencyTypeDomain.values()
-                    .first { it.icon == selectedButton.currencyTypeIcon }.symbol
-            )
-
-            is CardUi -> viewModel.openDetailsFrg(selectedButton.balance)
-        }
-
+        viewModel.openDetailsFrg(itemId)
         parentFrgBottomNavViewIsVisible(false)
     }
-
 
     override fun onDestroy() {
         _binding = null

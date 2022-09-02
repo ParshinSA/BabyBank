@@ -29,7 +29,7 @@ object Screens {
         BalanceFragment.newInstance()
     }
 
-    fun DetailsFrg(balance: String, currencySymbol: String?) = FragmentScreen {
+    fun DetailsFrg(balance: String, currencySymbol: String? = null) = FragmentScreen {
         DetailsTransitionFragment.newInstance(balance, currencySymbol)
     }
 }
