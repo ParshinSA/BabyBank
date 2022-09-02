@@ -1,6 +1,5 @@
 package com.example.babybank.presentation
 
-import com.example.babybank.domain.models.CurrencyTypeDomain
 import com.example.babybank.presentation.fragments.*
 import com.github.terrakok.cicerone.androidx.FragmentScreen
 
@@ -30,7 +29,7 @@ object Screens {
         BalanceFragment.newInstance()
     }
 
-    fun DetailsFrg(balance: String, currencyType: CurrencyTypeDomain?) = FragmentScreen {
-        DetailsTransitionFragment.newInstance(balance, currencyType)
+    fun DetailsFrg(balance: String, currencySymbol: String?) = FragmentScreen {
+        DetailsTransitionFragment.newInstance(balance, currencySymbol)
     }
 }

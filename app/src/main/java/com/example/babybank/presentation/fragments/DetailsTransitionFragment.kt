@@ -8,7 +8,6 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.babybank.common.extentions.withArguments
 import com.example.babybank.databinding.FragmentDetailsTransersBinding
-import com.example.babybank.domain.models.CurrencyTypeDomain
 import com.example.babybank.presentation.AppApplication
 import com.example.babybank.presentation.adapters.LoaderUiDelegateAdapterRv
 import com.example.babybank.presentation.adapters.MenuItemTitleIconUiAdapterDelegateRv
@@ -99,7 +98,7 @@ class DetailsTransitionFragment : BaseFragment() {
 
     private fun doneClick() {
         binding.appCompatButtonDone.setOnClickListener {
-            (parentFragment as ContainerFragment).closeDetailsFragment()
+            viewModel.onBackPressed()
         }
     }
 
@@ -111,10 +110,10 @@ class DetailsTransitionFragment : BaseFragment() {
         private const val KEY_BALANCE = "KEY_BALANCE"
         private const val KEY_CURRENCY_TYPE = "KEY_CURRENCY_TYPE"
 
-        fun newInstance(balance: String, currencyType: CurrencyTypeDomain?) =
+        fun newInstance(balance: String, currencySymbol: String?) =
             DetailsTransitionFragment().withArguments {
                 putString(KEY_BALANCE, balance)
-                currencyType?.let { putString(KEY_CURRENCY_TYPE, currencyType.symbol) }
+                currencySymbol?.let { putString(KEY_CURRENCY_TYPE, currencySymbol) }
             }
     }
 }

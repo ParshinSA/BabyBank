@@ -1,29 +1,33 @@
 package com.example.babybank.presentation
 
 import androidx.activity.viewModels
+import androidx.annotation.IdRes
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.example.babybank.R
-import com.example.babybank.presentation.viewmodels.AppActivityViewModel
+import com.example.babybank.presentation.models.BackButtonListener
 import com.example.babybank.presentation.viewmodels.BaseFactoryViewModelFactory
+import com.example.babybank.presentation.viewmodels.ContainerActivityViewModel
 import com.github.terrakok.cicerone.Navigator
 import com.github.terrakok.cicerone.NavigatorHolder
 import com.github.terrakok.cicerone.androidx.AppNavigator
 import javax.inject.Inject
 
 
-class AppActivity : AppCompatActivity(R.layout.activity_app) {
+class ContainerActivity : AppCompatActivity(R.layout.activity_app) {
 
     @Inject
     lateinit var navigatorHolder: NavigatorHolder
 
-    private val navigator: Navigator = AppNavigator(this, R.id.appContainer)
+    @IdRes
+    private val idNavigationContainer = R.id.appContainer
+    private val navigator: Navigator = AppNavigator(this, idNavigationContainer)
 
     private var exitDialog: AlertDialog? = null
 
     @Inject
     lateinit var viewModelFactory: BaseFactoryViewModelFactory
-    private val viewModel: AppActivityViewModel by viewModels { viewModelFactory }
+    private val viewModel: ContainerActivityViewModel by viewModels { viewModelFactory }
 
     override fun onStart() {
         super.onStart()
@@ -42,12 +46,20 @@ class AppActivity : AppCompatActivity(R.layout.activity_app) {
     }
 
     private fun action() {
-        if (supportFragmentManager.findFragmentById(R.id.appContainer) == null)
+        if (supportFragmentManager.findFragmentById(idNavigationContainer) == null)
             viewModel.startOnboarding()
     }
 
     override fun onBackPressed() {
-        if (viewModel.isExitAppLiveData.value!!) viewModel.onBackPressed() else {
+        val fragment = supportFragmentManager.findFragmentById(idNavigationContainer)
+
+        if (fragment != null && fragment is BackButtonListener
+            && (fragment as BackButtonListener).onBackPressed()
+        ) return
+
+        if (
+            viewModel.isExitAppLiveData.value!!
+        ) viewModel.onBackPressed() else {
             showExitDialog()
             viewModel.firstClickExitApp()
             exitDialog?.show()

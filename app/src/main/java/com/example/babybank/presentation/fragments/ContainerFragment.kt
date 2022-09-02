@@ -6,16 +6,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.viewModels
 import com.example.babybank.R
 import com.example.babybank.databinding.FragmentContainerBinding
-import com.example.babybank.domain.models.CurrencyTypeDomain
 import com.example.babybank.presentation.AppApplication
-import com.example.babybank.presentation.Screens
+import com.example.babybank.presentation.viewmodels.BaseFactoryViewModelFactory
+import com.example.babybank.presentation.viewmodels.ContainerFrgViewModel
 import com.github.terrakok.cicerone.Navigator
 import com.github.terrakok.cicerone.NavigatorHolder
-import com.github.terrakok.cicerone.Replace
 import com.github.terrakok.cicerone.androidx.AppNavigator
-import com.github.terrakok.cicerone.androidx.FragmentScreen
 import javax.inject.Inject
 
 class ContainerFragment : BaseFragment() {
@@ -25,12 +26,17 @@ class ContainerFragment : BaseFragment() {
 
     @Inject
     lateinit var navigatorHolder: NavigatorHolder
+    private val fragmentManger: FragmentManager by lazy { childFragmentManager }
+
+    private val idContainer = R.id.frameLayoutContainer
+
     private val navigator: Navigator by lazy {
-        AppNavigator(requireActivity(), R.id.frameLayoutContainer, childFragmentManager)
+        AppNavigator(requireActivity(), idContainer, fragmentManger)
     }
 
-    private var lastClickMenuItemId: Int? = null
-    private var lastOpenFragment: FragmentScreen? = null
+    @Inject
+    lateinit var viewModelFactory: BaseFactoryViewModelFactory
+    private val viewModel: ContainerFrgViewModel by viewModels { viewModelFactory }
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -49,7 +55,6 @@ class ContainerFragment : BaseFragment() {
 
     override fun onResume() {
         navigatorHolder.setNavigator(navigator)
-        openDefaultFragment()
         super.onResume()
     }
 
@@ -63,56 +68,48 @@ class ContainerFragment : BaseFragment() {
         super.onDestroy()
     }
 
-    private fun openDefaultFragment() {
-        if (childFragmentManager.findFragmentById(R.id.frameLayoutContainer) == null)
-            openFrgByMenuItem(R.id.homeIdInBottomNavMenu)
+    private fun action() {
+        openStartFragment()
+        listenerBottomNavigation()
     }
 
-    private fun action() {
-        listenerBottomNavigation()
+    private fun openStartFragment() {
+        openFragment(R.id.homeIdInBottomNavMenu)
     }
 
     private fun listenerBottomNavigation() {
         binding.bottomNavigationViewContainerFrg.setOnItemSelectedListener { menuItem ->
-            openFrgByMenuItem(menuItem.itemId)
+            openFragment(menuItem.itemId)
+            true
         }
     }
 
-    private fun openFrgByMenuItem(menuItemId: Int): Boolean {
-        return when (menuItemId) {
-            R.id.homeIdInBottomNavMenu -> replaceFragment(Screens.HomeFrg(), menuItemId)
-            R.id.walletIdInBottomNavMenu -> replaceFragment(Screens.WalletFrg(), menuItemId)
-            R.id.balanceIdInBottomNavMenu -> replaceFragment(Screens.BalanceFrg(), menuItemId)
-            R.id.profileIdInBottomNavMenu -> replaceFragment(Screens.ProfileFrg(), menuItemId)
-            else -> {
-                true
-            }
+    private fun openFragment(itemId: Int) {
+        val newFragmentTag = itemId.toString()
+        val transaction = fragmentManger.beginTransaction()
+        val newFragment = fragmentManger.findFragmentByTag(newFragmentTag)
+        var currentFragment: Fragment? = null
+
+        for (fragment in fragmentManger.fragments) {
+            if (fragment.isVisible) currentFragment = fragment
         }
-    }
 
-    private fun replaceFragment(frg: FragmentScreen, menuItemId: Int? = null): Boolean {
-        if (menuItemId == null) {
-            navigator.applyCommands(arrayOf(Replace(frg)))
+        if (currentFragment != null && currentFragment === newFragment) return
+
+        if (newFragment == null) {
+            transaction.add(
+                idContainer,
+                viewModel.getFragment(itemId).createFragment(fragmentManger.fragmentFactory),
+                newFragmentTag
+            )
         }
-        if (lastClickMenuItemId != menuItemId) {
-            navigator.applyCommands(arrayOf(Replace(frg)))
-            lastClickMenuItemId = menuItemId
-            lastOpenFragment = frg
-        }
-        return true
+
+        currentFragment?.let { transaction.hide(it) }
+        newFragment?.let { transaction.show(it) }
+        transaction.commitNow()
     }
 
-    fun openDetailsFragment(balance: String, currencyType: CurrencyTypeDomain?) {
-        changeStateBottomNavView(false)
-        navigator.applyCommands(arrayOf(Replace(Screens.DetailsFrg(balance, currencyType))))
-    }
-
-    fun closeDetailsFragment() {
-        changeStateBottomNavView(true)
-        replaceFragment(checkNotNull(lastOpenFragment))
-    }
-
-    private fun changeStateBottomNavView(state: Boolean) {
+    fun bottomNavViewIsVisible(state: Boolean) {
         binding.bottomNavigationViewContainerFrg.isVisible = state
     }
 

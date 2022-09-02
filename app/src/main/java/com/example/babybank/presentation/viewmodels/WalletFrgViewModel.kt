@@ -1,5 +1,6 @@
 package com.example.babybank.presentation.viewmodels
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.babybank.R
@@ -23,6 +24,10 @@ class WalletFrgViewModel @Inject constructor(
 
     private val transfersMutLiveDta = MutableLiveData<List<DisplayableItem>>(emptyList())
     val transfersLiveDta: LiveData<List<DisplayableItem>> get() = transfersMutLiveDta
+
+    init {
+        Log.d("MyTAG", "wallet init ${operationsLiveDta.value}: ")
+    }
 
     private fun getMenu(request: RequestMenu) {
         interactor.getMenu(request)

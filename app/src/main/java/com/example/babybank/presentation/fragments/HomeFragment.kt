@@ -44,7 +44,12 @@ class HomeFragment : BaseFragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentHomeBinding.inflate(layoutInflater, container, false)
+        parentFrgBottomNavViewIsVisible(true)
         return binding.root
+    }
+
+    private fun parentFrgBottomNavViewIsVisible(state: Boolean) {
+        (parentFragment as ContainerFragment).bottomNavViewIsVisible(state)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -94,17 +99,18 @@ class HomeFragment : BaseFragment() {
 
         when (selectedButton) {
 
-            is AccountIconUi -> openDetailsFrg(
+            is AccountIconUi -> viewModel.openDetailsFrg(
                 selectedButton.balance,
-                CurrencyTypeDomain.values().first { it.icon == selectedButton.currencyTypeIcon })
+                CurrencyTypeDomain.values()
+                    .first { it.icon == selectedButton.currencyTypeIcon }.symbol
+            )
 
-            is CardUi -> openDetailsFrg(selectedButton.balance)
+            is CardUi -> viewModel.openDetailsFrg(selectedButton.balance)
         }
+
+        parentFrgBottomNavViewIsVisible(false)
     }
 
-    private fun openDetailsFrg(balance: String, currencyType: CurrencyTypeDomain? = null) {
-        (parentFragment as ContainerFragment).openDetailsFragment(balance, currencyType)
-    }
 
     override fun onDestroy() {
         _binding = null

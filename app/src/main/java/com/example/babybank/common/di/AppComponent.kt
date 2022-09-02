@@ -2,7 +2,7 @@ package com.example.babybank.common.di
 
 import android.content.Context
 import com.example.babybank.common.di.modules.*
-import com.example.babybank.presentation.AppActivity
+import com.example.babybank.presentation.ContainerActivity
 import com.example.babybank.presentation.fragments.*
 import dagger.BindsInstance
 import dagger.Component
@@ -20,7 +20,7 @@ import javax.inject.Singleton
 )
 interface AppComponent {
 
-    fun inject(appActivity: AppActivity)
+    fun inject(activity: ContainerActivity)
     fun inject(fragment: WalletFragment)
     fun inject(fragment: OnboardingFragment)
     fun inject(fragment: HomeFragment)

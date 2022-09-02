@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BabyBank">
         <activity
-            android:name="com.example.babybank.presentation.AppActivity"
+            android:name="com.example.babybank.presentation.ContainerActivity"
             android:exported="true"
             android:screenOrientation="fullSensor">
             <intent-filter>

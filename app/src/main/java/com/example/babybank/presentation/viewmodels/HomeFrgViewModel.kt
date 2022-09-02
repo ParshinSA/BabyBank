@@ -3,18 +3,24 @@ package com.example.babybank.presentation.viewmodels
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.babybank.R
+import com.example.babybank.common.constants.CONTAINER_FRAGMENT_ROUTER
 import com.example.babybank.common.extentions.toStringMoneyFormat
 import com.example.babybank.domain.interactors.HomeFrgInteractor
 import com.example.babybank.domain.models.AccountInfoDomain
 import com.example.babybank.domain.models.CurrencyTypeDomain
 import com.example.babybank.domain.models.RequestCurrencyRate
+import com.example.babybank.presentation.Screens
 import com.example.babybank.presentation.models.*
+import com.github.terrakok.cicerone.Router
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
+import javax.inject.Named
 
 class HomeFrgViewModel @Inject constructor(
-    private val interactor: HomeFrgInteractor
+    private val interactor: HomeFrgInteractor,
+    @Named(CONTAINER_FRAGMENT_ROUTER)
+    private val parentRouter: Router
 ) : BaseViewModel() {
 
     private val personalInfoMutLiveData = MutableLiveData<PersonalInfoHomeFrgUi>()
@@ -83,6 +89,10 @@ class HomeFrgViewModel @Inject constructor(
                     showErrorMessage()
                 }).autoClear()
         }
+    }
+
+    fun openDetailsFrg(balance: String, currencySymbol: String? = null) {
+        parentRouter.navigateTo(Screens.DetailsFrg(balance, currencySymbol))
     }
 
 }
