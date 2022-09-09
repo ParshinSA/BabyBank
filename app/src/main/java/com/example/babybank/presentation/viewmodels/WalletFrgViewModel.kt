@@ -1,22 +1,27 @@
 package com.example.babybank.presentation.viewmodels
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.babybank.R
+import com.example.babybank.common.constants.CONTAINER_FRAGMENT_ROUTER
 import com.example.babybank.domain.interactors.WalletFrgInteractor
 import com.example.babybank.domain.models.MenuTypeDomain.OPERATIONS_MENU
 import com.example.babybank.domain.models.MenuTypeDomain.TRANSFERS_MENU
 import com.example.babybank.domain.models.RequestMenu
-import com.example.babybank.presentation.models.DisplayableItem
+import com.example.babybank.presentation.Screens
+import com.example.babybank.presentation.common.DisplayableItem
 import com.example.babybank.presentation.models.MenuTitleUi
 import com.example.babybank.presentation.models.toMenuItemTitleIconUi
+import com.github.terrakok.cicerone.Router
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
+import javax.inject.Named
 
 class WalletFrgViewModel @Inject constructor(
     private val interactor: WalletFrgInteractor,
+    @Named(CONTAINER_FRAGMENT_ROUTER)
+    private val parentRouter: Router
 ) : BaseViewModel() {
 
     private val operationsMutLiveDta = MutableLiveData<List<DisplayableItem>>(emptyList())
@@ -24,10 +29,6 @@ class WalletFrgViewModel @Inject constructor(
 
     private val transfersMutLiveDta = MutableLiveData<List<DisplayableItem>>(emptyList())
     val transfersLiveDta: LiveData<List<DisplayableItem>> get() = transfersMutLiveDta
-
-    init {
-        Log.d("MyTAG", "wallet init ${operationsLiveDta.value}: ")
-    }
 
     private fun getMenu(request: RequestMenu) {
         interactor.getMenu(request)
@@ -48,6 +49,11 @@ class WalletFrgViewModel @Inject constructor(
                     error.printStackTrace()
                     showErrorMessage()
                 }).autoClear()
+    }
+
+    fun openDetailsFrg(itemId: Int) {
+
+        parentRouter.navigateTo(Screens.DetailsFrg(""))
     }
 
     init {

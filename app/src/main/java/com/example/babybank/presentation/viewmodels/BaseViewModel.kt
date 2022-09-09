@@ -24,7 +24,13 @@ abstract class BaseViewModel : ViewModel() {
 
     override fun onCleared() {
         compositeDisposable.clear()
-        Log.d("MyTAG", "onCleared: ${this.javaClass.name.takeLastWhile { it=='.' }} ")
+        Log.d(TAG, "onCleared:")
         super.onCleared()
     }
+
+    private val TAG: String = "TAG ${
+        this.javaClass.name.filterIndexed { index, _ ->
+            index > this.javaClass.name.lastIndexOf('.')
+        }
+    }"
 }

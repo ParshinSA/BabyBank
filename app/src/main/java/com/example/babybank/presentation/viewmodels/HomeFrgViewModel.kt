@@ -10,6 +10,7 @@ import com.example.babybank.domain.models.AccountInfoDomain
 import com.example.babybank.domain.models.CurrencyTypeDomain
 import com.example.babybank.domain.models.RequestCurrencyRate
 import com.example.babybank.presentation.Screens
+import com.example.babybank.presentation.common.DisplayableItem
 import com.example.babybank.presentation.models.*
 import com.github.terrakok.cicerone.Router
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -34,7 +35,12 @@ class HomeFrgViewModel @Inject constructor(
     val dataAccountsCardsLiveData: LiveData<List<DisplayableItem>>
         get() = dataAccountsCardsMutLiveData
 
-    init {
+    fun updateInfo(){
+        getAccountInfo()
+        getPersonalInfo()
+    }
+
+    private fun getPersonalInfo() {
         interactor.getPersonalInformation()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
@@ -44,7 +50,9 @@ class HomeFrgViewModel @Inject constructor(
                 error.printStackTrace()
                 showErrorMessage()
             }).autoClear()
+    }
 
+    private fun getAccountInfo() {
         interactor.getAccountsInfo()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())

@@ -1,5 +1,7 @@
 package com.example.babybank.presentation.models
 
+import com.example.babybank.presentation.common.DisplayableItem
+
 data class PersonalInfoProfileFrgUi(
     val name: String,
     val avatarLink: String,

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="8dp"
+    app:backgroundTint="@android:color/transparent"
+    app:shapeAppearance="?attr/bottomSheetStyle">
+
+    <View
+        android:id="@+id/view_bottom_sheet_handle"
+        android:layout_width="100dp"
+        android:layout_height="4dp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="40dp"
+        android:background="@drawable/bg_bottom_sheet_handle" />
+
+    <TextView
+        style="@style/MyTextStyle22spBoldBlack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/textSwiftTransfer" />
+
+    <TextView
+        style="@style/MyTextStyle14spNormalGray"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="@string/textToABankCard" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/txtInputLayoutContainerCardNumber"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/textEnterCardNumber"
+        android:maxWidth="488dp"
+        android:minWidth="56dp"
+        app:endIconMode="clear_text">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txtInputEditTextInputCardNumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:inputType="phone"
+            android:maxLines="1" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        style="@style/MyTextStyle14spNormalGray"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/textAmountMoney" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/txtInputLayoutContainerMoney"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/textEnterAmountMoney"
+        android:maxWidth="488dp"
+        android:minWidth="56dp"
+        app:endIconMode="clear_text">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txtInputEditTextInputMoney"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:inputType="phone"
+            android:maxLines="1" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/appCompatButtonTransfer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="16dp"
+        android:background="@drawable/bg_long_bottom_button"
+        android:text="@string/textTransfer"
+        android:textColor="@color/whiteText"
+        android:textSize="18sp" />
+
+</LinearLayout>

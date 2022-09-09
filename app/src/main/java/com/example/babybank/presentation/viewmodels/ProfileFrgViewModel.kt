@@ -6,6 +6,7 @@ import com.example.babybank.R
 import com.example.babybank.domain.interactors.ProfileFrgInteractor
 import com.example.babybank.domain.models.MenuTypeDomain
 import com.example.babybank.domain.models.RequestMenu
+import com.example.babybank.presentation.common.DisplayableItem
 import com.example.babybank.presentation.models.*
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers

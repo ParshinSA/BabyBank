@@ -7,7 +7,7 @@ import com.example.babybank.common.constants.CONTAINER_FRAGMENT_ROUTER
 import com.example.babybank.domain.interactors.DetailsTransitionFrgInteractor
 import com.example.babybank.domain.models.MenuTypeDomain
 import com.example.babybank.domain.models.RequestMenu
-import com.example.babybank.presentation.models.DisplayableItem
+import com.example.babybank.presentation.common.DisplayableItem
 import com.example.babybank.presentation.models.MenuTitleUi
 import com.example.babybank.presentation.models.toMenuItemTitleIconUi
 import com.github.terrakok.cicerone.Router

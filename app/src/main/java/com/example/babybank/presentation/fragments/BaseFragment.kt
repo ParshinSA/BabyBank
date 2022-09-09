@@ -6,7 +6,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import com.example.babybank.R
-import com.example.babybank.presentation.models.ItemClick
+import com.example.babybank.presentation.common.ItemClick
 
 abstract class BaseFragment : Fragment(), ItemClick {
 
@@ -37,7 +37,7 @@ abstract class BaseFragment : Fragment(), ItemClick {
     }
 
     override fun onDestroy() {
-        Log.d("MyTAG", "onDestroy: ${this.javaClass.name} ")
+        Log.d(TAG, "onDestroy:  ")
         errorDialog?.dismiss()
         errorDialog = null
         toast?.cancel()
@@ -45,4 +45,9 @@ abstract class BaseFragment : Fragment(), ItemClick {
         super.onDestroy()
     }
 
+    val TAG: String = "TAG ${
+        this.javaClass.name.filterIndexed { index, _ ->
+            index > this.javaClass.name.lastIndexOf('.')
+        }
+    }"
 }

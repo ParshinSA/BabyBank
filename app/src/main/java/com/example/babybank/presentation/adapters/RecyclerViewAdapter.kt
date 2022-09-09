@@ -1,7 +1,7 @@
 package com.example.babybank.presentation.adapters
 
 import androidx.recyclerview.widget.DiffUtil
-import com.example.babybank.presentation.models.DisplayableItem
+import com.example.babybank.presentation.common.DisplayableItem
 import com.hannesdorfmann.adapterdelegates4.AsyncListDifferDelegationAdapter
 
 class RecyclerViewAdapter :

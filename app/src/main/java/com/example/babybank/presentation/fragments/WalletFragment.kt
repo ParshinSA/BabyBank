@@ -1,16 +1,18 @@
 package com.example.babybank.presentation.fragments
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.babybank.R
 import com.example.babybank.databinding.FragmentWalletBinding
 import com.example.babybank.presentation.AppApplication
 import com.example.babybank.presentation.adapters.*
-import com.example.babybank.presentation.models.DisplayableItem
+import com.example.babybank.presentation.common.DisplayableItem
 import com.example.babybank.presentation.models.LoaderUiRv
 import com.example.babybank.presentation.viewmodels.BaseFactoryViewModelFactory
 import com.example.babybank.presentation.viewmodels.WalletFrgViewModel
@@ -53,12 +55,18 @@ class WalletFragment : BaseFragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentWalletBinding.inflate(layoutInflater, container, false)
+        parentFrgBottomNavViewIsVisible(true)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         action()
+    }
+
+    override fun onResume() {
+        Log.d("MyTAG", "onResume: init wallet")
+        super.onResume()
     }
 
     private fun action() {
@@ -98,6 +106,21 @@ class WalletFragment : BaseFragment() {
         operationMenuAdapterRv.items =
             if (menuItemList.isEmpty()) listOf(LoaderUiRv()) else menuItemList
     }
+
+    override fun click(itemId: Int) {
+        if (itemId == R.drawable.ic_swift_transfer) {
+            val modalBottomSheet = BtmSheetFragmentInWalletFrg.newInstance()
+            modalBottomSheet.show(childFragmentManager, BtmSheetFragmentInWalletFrg.TAG_BTM_SHEET)
+            return
+        }
+        viewModel.openDetailsFrg(itemId)
+        parentFrgBottomNavViewIsVisible(false)
+    }
+
+    private fun parentFrgBottomNavViewIsVisible(state: Boolean) {
+        (parentFragment as ContainerFragment).bottomNavViewIsVisible(state)
+    }
+
 
     override fun inject() {
         (requireContext().applicationContext as AppApplication).appComponent.inject(this)

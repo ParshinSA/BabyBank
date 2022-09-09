@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.babybank.R
 import com.example.babybank.common.extentions.inflate
 import com.example.babybank.databinding.ItemTitleRecyclerViewBinding
-import com.example.babybank.presentation.models.DisplayableItem
+import com.example.babybank.presentation.common.DisplayableItem
 import com.example.babybank.presentation.models.MenuTitleUi
 import com.hannesdorfmann.adapterdelegates4.AbsListItemAdapterDelegate
 

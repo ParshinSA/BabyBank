@@ -27,6 +27,7 @@ interface AppComponent {
     fun inject(fragment: ContainerFragment)
     fun inject(fragment: ProfileFragment)
     fun inject(fragment: DetailsTransitionFragment)
+    fun inject(fragment: BtmSheetFragmentInWalletFrg)
 
     @Component.Builder
     interface Builder {

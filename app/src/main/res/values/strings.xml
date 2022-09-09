@@ -46,5 +46,13 @@
     <string name="textExchange">Exchange</string>
     <string name="textExitDialogMessage">"Для выхода нажмите дважды кнопку \"назад\""</string>
     <string name="textTotalMoney">Total money</string>
+    <string name="textSwiftTransfer">SWIFT transfer</string>
+    <string name="textEnterCardNumber">Enter card number</string>
+    <string name="textToABankCard">To a bank card</string>
+    <string name="textAmountMoney">Amount money</string>
+    <string name="textEnterAmountMoney">Enter amount money</string>
+    <string name="textTransfer">transfer</string>
+    <string name="requiredToFill">Required to fill</string>
+    <string name="incorrectFormatCardNumber">Incorrect format card number</string>
 
 </resources>

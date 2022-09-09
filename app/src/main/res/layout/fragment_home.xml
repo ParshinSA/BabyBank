@@ -61,5 +61,7 @@
             android:padding="4dp"
             tools:itemCount="5"
             tools:listitem="@layout/item_card_recycler_view" />
+
     </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,7 +1,6 @@
 package com.example.babybank.presentation.fragments
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,7 +14,7 @@ import com.example.babybank.presentation.adapters.LoaderUiDelegateAdapterRv
 import com.example.babybank.presentation.adapters.MenuItemTitleIconUiAdapterDelegateRv
 import com.example.babybank.presentation.adapters.MenuTitleUiAdapterDelegateRv
 import com.example.babybank.presentation.adapters.RecyclerViewAdapter
-import com.example.babybank.presentation.models.DisplayableItem
+import com.example.babybank.presentation.common.DisplayableItem
 import com.example.babybank.presentation.models.LoaderUiRv
 import com.example.babybank.presentation.models.PersonalInfoProfileFrgUi
 import com.example.babybank.presentation.viewmodels.BaseFactoryViewModelFactory
@@ -64,7 +63,6 @@ class ProfileFragment : BaseFragment() {
         }
 
         viewModel.menuItemLiveDta.observe(viewLifecycleOwner) { menuItemList ->
-            Log.d("MyTAG", "observeData: $menuItemList")
             setupSettingsMenu(menuItemList)
         }
     }

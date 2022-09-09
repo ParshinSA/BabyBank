@@ -13,7 +13,7 @@ import com.example.babybank.presentation.adapters.LoaderUiDelegateAdapterRv
 import com.example.babybank.presentation.adapters.MenuItemTitleIconUiAdapterDelegateRv
 import com.example.babybank.presentation.adapters.MenuTitleUiAdapterDelegateRv
 import com.example.babybank.presentation.adapters.RecyclerViewAdapter
-import com.example.babybank.presentation.models.DisplayableItem
+import com.example.babybank.presentation.common.DisplayableItem
 import com.example.babybank.presentation.models.LoaderUiRv
 import com.example.babybank.presentation.viewmodels.BaseFactoryViewModelFactory
 import com.example.babybank.presentation.viewmodels.DetailsTransitionFrgViewModel

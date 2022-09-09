@@ -44,6 +44,7 @@ class BaseFactoryViewModelFactory @Inject constructor(
             modelClass.isAssignableFrom(WalletFrgViewModel::class.java) ->
                 WalletFrgViewModel(
                     interactor = walletFrgInteractor,
+                    parentRouter = containerFragmentRouter
                 ) as T
 
             modelClass.isAssignableFrom(HomeFrgViewModel::class.java) ->
@@ -60,6 +61,11 @@ class BaseFactoryViewModelFactory @Inject constructor(
 
             modelClass.isAssignableFrom(ContainerFrgViewModel::class.java) ->
                 ContainerFrgViewModel() as T
+
+            modelClass.isAssignableFrom(BtmSheetFragmentInWalletFrgViewModel::class.java) ->
+                BtmSheetFragmentInWalletFrgViewModel(
+                    parentRouter = containerFragmentRouter
+                ) as T
 
             else -> error("Incorrect view model factory $modelClass")
         }

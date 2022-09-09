@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.babybank.databinding.FragmentHomeBinding
 import com.example.babybank.presentation.AppApplication
 import com.example.babybank.presentation.adapters.*
-import com.example.babybank.presentation.models.DisplayableItem
+import com.example.babybank.presentation.common.DisplayableItem
 import com.example.babybank.presentation.models.LoaderUiRv
 import com.example.babybank.presentation.models.PersonalInfoHomeFrgUi
 import com.example.babybank.presentation.models.TotalMoneyUi
@@ -49,6 +49,11 @@ class HomeFragment : BaseFragment() {
         _binding = FragmentHomeBinding.inflate(layoutInflater, container, false)
         parentFrgBottomNavViewIsVisible(true)
         return binding.root
+    }
+
+    override fun onResume() {
+        viewModel.updateInfo()
+        super.onResume()
     }
 
     private fun parentFrgBottomNavViewIsVisible(state: Boolean) {
