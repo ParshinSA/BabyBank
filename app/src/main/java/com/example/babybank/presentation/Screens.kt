@@ -29,8 +29,8 @@ object Screens {
         BalanceFragment.newInstance()
     }
 
-    fun DetailsFrg(balance: String, currencySymbol: String? = null) = FragmentScreen {
-        DetailsTransitionFragment.newInstance(balance, currencySymbol)
+    fun DetailsTransferFrg(balanceAndSymbol: String, message: String? = null) = FragmentScreen {
+        DetailsTransitionFragment.newInstance(balanceAndSymbol, message)
     }
 
     fun BottomSheetFrgInWalletFrg() = FragmentScreen {

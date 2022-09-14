@@ -4,16 +4,13 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.babybank.common.constants.CANCEL_EXIT_BY_TIMER
-import com.example.babybank.common.constants.CONTAINER_ACTIVITY_ROUTER
 import com.example.babybank.presentation.Screens
 import com.github.terrakok.cicerone.Router
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import javax.inject.Inject
-import javax.inject.Named
 
 class ContainerActivityViewModel @Inject constructor(
-    @Named(CONTAINER_ACTIVITY_ROUTER)
     private val router: Router
 ) : BaseViewModel() {
 

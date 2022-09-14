@@ -7,27 +7,28 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.babybank.common.extentions.withArguments
-import com.example.babybank.databinding.FragmentDetailsTransersBinding
+import com.example.babybank.databinding.FragmentDetailsTransfersBinding
 import com.example.babybank.presentation.AppApplication
 import com.example.babybank.presentation.adapters.LoaderUiDelegateAdapterRv
 import com.example.babybank.presentation.adapters.MenuItemTitleIconUiAdapterDelegateRv
 import com.example.babybank.presentation.adapters.MenuTitleUiAdapterDelegateRv
 import com.example.babybank.presentation.adapters.RecyclerViewAdapter
+import com.example.babybank.presentation.common.BackButtonListener
 import com.example.babybank.presentation.common.DisplayableItem
 import com.example.babybank.presentation.models.LoaderUiRv
-import com.example.babybank.presentation.viewmodels.BaseFactoryViewModelFactory
 import com.example.babybank.presentation.viewmodels.DetailsTransitionFrgViewModel
+import com.example.babybank.presentation.viewmodels.ViewModelFactory
 import com.hannesdorfmann.adapterdelegates4.AdapterDelegatesManager
 import com.hannesdorfmann.adapterdelegates4.AsyncListDifferDelegationAdapter
 import javax.inject.Inject
 
-class DetailsTransitionFragment : BaseFragment() {
+class DetailsTransitionFragment : BaseFragment(), BackButtonListener {
 
-    private var _binding: FragmentDetailsTransersBinding? = null
+    private var _binding: FragmentDetailsTransfersBinding? = null
     private val binding get() = _binding!!
 
     @Inject
-    lateinit var viewModelFactory: BaseFactoryViewModelFactory
+    lateinit var viewModelFactory: ViewModelFactory
     private val viewModel: DetailsTransitionFrgViewModel by viewModels { viewModelFactory }
 
     private val actionRecyclerViewAdapter by lazy {
@@ -46,7 +47,7 @@ class DetailsTransitionFragment : BaseFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentDetailsTransersBinding.inflate(layoutInflater, container, false)
+        _binding = FragmentDetailsTransfersBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
 
@@ -68,8 +69,9 @@ class DetailsTransitionFragment : BaseFragment() {
 
     private fun getArgument() {
         val balance = requireArguments().getString(KEY_BALANCE, "")
-        val currencySymbol = requireArguments().getString(KEY_CURRENCY_TYPE, "")
-        viewModel.setBalanceMessage("$currencySymbol $balance")
+        val message = requireArguments().getString(KEY_MESSAGE, "")
+        viewModel.setBalanceMessage(balance)
+        viewModel.setMessage(message)
     }
 
     private fun observeData() {
@@ -81,8 +83,12 @@ class DetailsTransitionFragment : BaseFragment() {
             setupActionMenu(menuItemList)
         }
 
-        viewModel.balanceMessageLiveData.observe(viewLifecycleOwner) { balanceMessage ->
+        viewModel.balanceLiveData.observe(viewLifecycleOwner) { balanceMessage ->
             binding.textViewBalanceMessage.text = balanceMessage
+        }
+
+        viewModel.messageLiveData.observe(viewLifecycleOwner) { message ->
+            binding.textViewInfoMessage.text = message
         }
     }
 
@@ -108,12 +114,16 @@ class DetailsTransitionFragment : BaseFragment() {
 
     companion object {
         private const val KEY_BALANCE = "KEY_BALANCE"
-        private const val KEY_CURRENCY_TYPE = "KEY_CURRENCY_TYPE"
+        private const val KEY_MESSAGE = "KEY_MESSAGE"
 
-        fun newInstance(balance: String, currencySymbol: String?) =
+        fun newInstance(balanceAndSymbol: String, message: String?) =
             DetailsTransitionFragment().withArguments {
-                putString(KEY_BALANCE, balance)
-                currencySymbol?.let { putString(KEY_CURRENCY_TYPE, currencySymbol) }
+                putString(KEY_BALANCE, balanceAndSymbol)
+                message?.let { putString(KEY_MESSAGE, message) }
             }
+    }
+
+    override fun onBackPressed() {
+        viewModel.onBackPressed()
     }
 }

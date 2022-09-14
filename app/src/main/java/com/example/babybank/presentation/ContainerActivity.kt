@@ -6,8 +6,8 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.example.babybank.R
 import com.example.babybank.presentation.common.BackButtonListener
-import com.example.babybank.presentation.viewmodels.BaseFactoryViewModelFactory
 import com.example.babybank.presentation.viewmodels.ContainerActivityViewModel
+import com.example.babybank.presentation.viewmodels.ViewModelFactory
 import com.github.terrakok.cicerone.Navigator
 import com.github.terrakok.cicerone.NavigatorHolder
 import com.github.terrakok.cicerone.androidx.AppNavigator
@@ -16,9 +16,6 @@ import javax.inject.Inject
 
 class ContainerActivity : AppCompatActivity(R.layout.activity_app) {
 
-    @Inject
-    lateinit var navigatorHolder: NavigatorHolder
-
     @IdRes
     private val idNavigationContainer = R.id.appContainer
     private val navigator: Navigator = AppNavigator(this, idNavigationContainer)
@@ -26,8 +23,11 @@ class ContainerActivity : AppCompatActivity(R.layout.activity_app) {
     private var exitDialog: AlertDialog? = null
 
     @Inject
-    lateinit var viewModelFactory: BaseFactoryViewModelFactory
+    lateinit var viewModelFactory: ViewModelFactory
     private val viewModel: ContainerActivityViewModel by viewModels { viewModelFactory }
+
+    @Inject
+    lateinit var navigatorHolder: NavigatorHolder
 
     override fun onStart() {
         super.onStart()
@@ -53,9 +53,7 @@ class ContainerActivity : AppCompatActivity(R.layout.activity_app) {
     override fun onBackPressed() {
         val fragment = supportFragmentManager.findFragmentById(idNavigationContainer)
 
-        if (fragment != null && fragment is BackButtonListener
-            && (fragment as BackButtonListener).onBackPressed()
-        ) return
+        if (fragment != null && fragment is BackButtonListener) return
 
         if (
             viewModel.isExitAppLiveData.value!!

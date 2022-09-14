@@ -3,24 +3,23 @@ package com.example.babybank.presentation.viewmodels
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.babybank.R
-import com.example.babybank.common.constants.CONTAINER_FRAGMENT_ROUTER
-import com.example.babybank.common.extentions.toStringMoneyFormat
 import com.example.babybank.domain.interactors.HomeFrgInteractor
 import com.example.babybank.domain.models.AccountInfoDomain
 import com.example.babybank.domain.models.CurrencyTypeDomain
 import com.example.babybank.domain.models.RequestCurrencyRate
 import com.example.babybank.presentation.Screens
 import com.example.babybank.presentation.common.DisplayableItem
+import com.example.babybank.presentation.common.MoneyFormatter
 import com.example.babybank.presentation.models.*
 import com.github.terrakok.cicerone.Router
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
-import javax.inject.Named
 
 class HomeFrgViewModel @Inject constructor(
     private val interactor: HomeFrgInteractor,
-    @Named(CONTAINER_FRAGMENT_ROUTER)
+    private val converters: ConvertersDomainToUi,
+    private val moneyFormatter: MoneyFormatter,
     private val parentRouter: Router
 ) : BaseViewModel() {
 
@@ -35,7 +34,7 @@ class HomeFrgViewModel @Inject constructor(
     val dataAccountsCardsLiveData: LiveData<List<DisplayableItem>>
         get() = dataAccountsCardsMutLiveData
 
-    fun updateInfo(){
+    fun updateInfo() {
         getAccountInfo()
         getPersonalInfo()
     }
@@ -45,7 +44,7 @@ class HomeFrgViewModel @Inject constructor(
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({ personalInfo ->
-                personalInfoMutLiveData.value = personalInfo.toPersonalInfoHomeFrg()
+                personalInfoMutLiveData.value = converters.toPersonalInfoHomeFrg(personalInfo)
             }, { error ->
                 error.printStackTrace()
                 showErrorMessage()
@@ -66,12 +65,11 @@ class HomeFrgViewModel @Inject constructor(
     }
 
     private fun convertAndSetData(dataList: List<AccountInfoDomain>) {
-        /* Данные размещенны согласно порядку установки в recyclerView HomeFrg */
         dataAccountsCardsMutLiveData.value = (
-                listOf(MenuTitleUi(R.string.textAccounts))
-                        + dataList.toAccountIconUiList()
+                listOf(MenuTitleUi(R.string.textAccounts))/* Данные размещенны согласно порядку установки в recyclerView HomeFrg */
+                        + converters.toAccountIconUiList(dataList)
                         + listOf(MenuTitleUi(R.string.textCards))
-                        + dataList.toCardUiList()
+                        + converters.toCardUiList(dataList)
                 )
     }
 
@@ -90,7 +88,8 @@ class HomeFrgViewModel @Inject constructor(
                     }
                     totalMoneyMutLiveData.value =
                         TotalMoneyUi(
-                            "${CurrencyTypeDomain.RUB.name} " + resultTotal.toStringMoneyFormat()
+                            "${CurrencyTypeDomain.RUB.name} " +
+                                    moneyFormatter.toStringMoneyFormat(resultTotal)
                         )
                 }, { error ->
                     error.printStackTrace()
@@ -103,23 +102,27 @@ class HomeFrgViewModel @Inject constructor(
         val selectedButton =
             dataAccountsCardsLiveData.value?.first { it.idItem == itemId } ?: return
 
-        try {
-            val screen = when (selectedButton) {
+        parentRouter.navigateTo(Screens.DetailsTransferFrg(createBalanceString(selectedButton)))
+    }
+
+    private fun createBalanceString(item: DisplayableItem): String {
+        return try {
+            when (item) {
                 is AccountIconUi -> {
-                    Screens.DetailsFrg(
-                        selectedButton.balance,
-                        CurrencyTypeDomain.values()
-                            .first { it.icon == selectedButton.currencyTypeIcon }.symbol
-                    )
+                    val balance = item.balance
+
+                    val symbol = CurrencyTypeDomain.values()
+                        .first { it.icon == item.currencyTypeIcon }.symbol
+
+                    "$symbol $balance"
                 }
-                is CardUi -> Screens.DetailsFrg(selectedButton.balance)
-                else -> error("Unknown button $selectedButton")
+                is CardUi -> item.balance
+                else -> error("Unknown button $item")
             }
-            parentRouter.navigateTo(screen)
         } catch (t: Throwable) {
             t.printStackTrace()
+            ""
         }
-
     }
 
 }

@@ -2,17 +2,14 @@ package com.example.babybank.presentation.viewmodels
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.example.babybank.common.constants.CONTAINER_FRAGMENT_ROUTER
+import com.example.babybank.presentation.Screens
 import com.github.terrakok.cicerone.Router
+import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
-import io.reactivex.subjects.BehaviorSubject
-import java.util.concurrent.TimeUnit
 import javax.inject.Inject
-import javax.inject.Named
 
 class BtmSheetFragmentInWalletFrgViewModel @Inject constructor(
-    @Named(CONTAINER_FRAGMENT_ROUTER)
     private val parentRouter: Router
 ) : BaseViewModel() {
 
@@ -22,10 +19,9 @@ class BtmSheetFragmentInWalletFrgViewModel @Inject constructor(
     private val moneyMutLiveData = MutableLiveData("")
     val moneyLiveData: LiveData<String> get() = moneyMutLiveData
 
-    fun inputNumberCard(userInputCardNumber: BehaviorSubject<String>) {
-        userInputCardNumber
+    fun inputNumberCard(cardNumber: Observable<String>) {
+        cardNumber
             .distinctUntilChanged()
-            .debounce(350, TimeUnit.MILLISECONDS)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe { userInput ->
@@ -33,8 +29,8 @@ class BtmSheetFragmentInWalletFrgViewModel @Inject constructor(
             }.autoClear()
     }
 
-    fun inputMoney(userInputAmountMoney: BehaviorSubject<String>) {
-        userInputAmountMoney
+    fun inputMoney(money: Observable<String>) {
+        money
             .distinctUntilChanged()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
@@ -44,7 +40,10 @@ class BtmSheetFragmentInWalletFrgViewModel @Inject constructor(
     }
 
     fun openDetailsReport() {
-        TODO("Not yet implemented")
+        val balanceTransfer = checkNotNull(moneyLiveData.value)
+        val infoMessage = checkNotNull(cardNumberLiveData.value)
+
+        parentRouter.navigateTo(Screens.DetailsTransferFrg(balanceTransfer, infoMessage), false)
     }
 
 }

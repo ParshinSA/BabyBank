@@ -3,11 +3,13 @@ package com.example.babybank.presentation.common
 import android.text.Editable
 import android.text.TextWatcher
 import com.example.babybank.common.constants.*
-import com.example.babybank.common.extentions.toNumberFormat
-import com.example.babybank.common.extentions.toStringMoneyFormat
 import io.reactivex.subjects.BehaviorSubject
+import javax.inject.Inject
 
-class MoneyFormatWatcher : TextWatcher {
+class MoneyFormatWatcher @Inject constructor(
+    private val formatter: MoneyFormatter
+) : TextWatcher {
+
     private var validFormatMoney = "0"
     private val userInputAmountMoney = BehaviorSubject.create<String>()
 
@@ -37,14 +39,14 @@ class MoneyFormatWatcher : TextWatcher {
         if (countDots > 1) digitsDotsSpace = validFormatMoney
 
         // если последний символ SEPARATOR_COMMA,
-        // значит пользователь вводит дробную часть форматируем и добавляем запятую
+        // значит пользователь вводит дробную часть не форматируем
         validFormatMoney =
             if (digitsDotsSpace.isNotEmpty() && digitsDotsSpace.last() == SEPARATOR_COMMA) {
                 digitsDotsSpace
             } else {
-                var numberFormat = digitsDotsSpace.toNumberFormat() ?: 0
+                var numberFormat = formatter.toNumberMoneyFormat(digitsDotsSpace) ?: 0
                 if (numberFormat.toDouble() > MAX_TRANSFER_MONEY) numberFormat = MAX_TRANSFER_MONEY
-                if (numberFormat == 0) "" else numberFormat.toStringMoneyFormat()
+                if (numberFormat == 0) "" else formatter.toStringMoneyFormat(numberFormat)
             }
 
         // отправляем валидный вариант слушателям

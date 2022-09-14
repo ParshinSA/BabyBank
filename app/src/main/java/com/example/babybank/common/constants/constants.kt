@@ -10,5 +10,6 @@ const val URL_CBR_RU = "https://www.cbr-xml-daily.ru/"
 const val SEPARATOR_COMMA = ','
 const val SEPARATOR_DOT = '.'
 const val SEPARATOR_SPACE = ' '
-const val SEPARATOR_SYSTEM_SPACE = ' ' //   -> системный пробел, подставляемый при первой конвертации
+const val SEPARATOR_SYSTEM_SPACE =
+    ' ' //   -> системный пробел, подставляемый при первой конвертации
 const val MAX_TRANSFER_MONEY = 10_000_000.0

@@ -8,8 +8,8 @@ import com.example.babybank.domain.interactors.DetailsTransitionFrgInteractor
 import com.example.babybank.domain.models.MenuTypeDomain
 import com.example.babybank.domain.models.RequestMenu
 import com.example.babybank.presentation.common.DisplayableItem
+import com.example.babybank.presentation.models.ConvertersDomainToUi
 import com.example.babybank.presentation.models.MenuTitleUi
-import com.example.babybank.presentation.models.toMenuItemTitleIconUi
 import com.github.terrakok.cicerone.Router
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -19,21 +19,25 @@ import javax.inject.Named
 class DetailsTransitionFrgViewModel @Inject constructor(
     interactor: DetailsTransitionFrgInteractor,
     @Named(CONTAINER_FRAGMENT_ROUTER)
-    private val parentRouter: Router
+    private val parentRouter: Router,
+    private val converters: ConvertersDomainToUi
 ) : BaseViewModel() {
 
     private val menuItemMutLiveData = MutableLiveData<List<DisplayableItem>>(emptyList())
     val menuItemLiveDta: LiveData<List<DisplayableItem>> get() = menuItemMutLiveData
 
-    private val balanceMessageMutLiveData = MutableLiveData<String>()
-    val balanceMessageLiveData: LiveData<String> get() = balanceMessageMutLiveData
+    private val balanceMutLiveData = MutableLiveData<String>()
+    val balanceLiveData: LiveData<String> get() = balanceMutLiveData
+
+    private val messageMutLiveData = MutableLiveData<String>()
+    val messageLiveData: LiveData<String> get() = messageMutLiveData
 
     init {
         interactor.getMenu(RequestMenu(MenuTypeDomain.ACTIONS_MENU))
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .map { menuItemDomainList ->
-                menuItemDomainList.map { it.toMenuItemTitleIconUi() }
+                menuItemDomainList.map { item -> converters.toMenuItemTitleIconUi(item) }
             }
             .subscribe({ menuItemTitleIconUiList ->
                 menuItemMutLiveData.value =
@@ -45,10 +49,14 @@ class DetailsTransitionFrgViewModel @Inject constructor(
     }
 
     fun setBalanceMessage(balanceMessage: String) {
-        balanceMessageMutLiveData.value = balanceMessage
+        balanceMutLiveData.value = balanceMessage
     }
 
     fun onBackPressed() {
         parentRouter.exit()
+    }
+
+    fun setMessage(message: String) {
+        messageMutLiveData.value = message
     }
 }

@@ -10,8 +10,8 @@ import com.example.babybank.domain.models.MenuTypeDomain.TRANSFERS_MENU
 import com.example.babybank.domain.models.RequestMenu
 import com.example.babybank.presentation.Screens
 import com.example.babybank.presentation.common.DisplayableItem
+import com.example.babybank.presentation.models.ConvertersDomainToUi
 import com.example.babybank.presentation.models.MenuTitleUi
-import com.example.babybank.presentation.models.toMenuItemTitleIconUi
 import com.github.terrakok.cicerone.Router
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -21,7 +21,8 @@ import javax.inject.Named
 class WalletFrgViewModel @Inject constructor(
     private val interactor: WalletFrgInteractor,
     @Named(CONTAINER_FRAGMENT_ROUTER)
-    private val parentRouter: Router
+    private val parentRouter: Router,
+    private val converters: ConvertersDomainToUi
 ) : BaseViewModel() {
 
     private val operationsMutLiveDta = MutableLiveData<List<DisplayableItem>>(emptyList())
@@ -33,7 +34,7 @@ class WalletFrgViewModel @Inject constructor(
     private fun getMenu(request: RequestMenu) {
         interactor.getMenu(request)
             .map { menuItemDomainList ->
-                menuItemDomainList.map { it.toMenuItemTitleIconUi() }
+                menuItemDomainList.map { item -> converters.toMenuItemTitleIconUi(item) }
             }
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
@@ -53,7 +54,7 @@ class WalletFrgViewModel @Inject constructor(
 
     fun openDetailsFrg(itemId: Int) {
 
-        parentRouter.navigateTo(Screens.DetailsFrg(""))
+        parentRouter.navigateTo(Screens.DetailsTransferFrg(""))
     }
 
     init {

@@ -7,8 +7,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import com.example.babybank.databinding.FragmentOnboardingBinding
 import com.example.babybank.presentation.AppApplication
-import com.example.babybank.presentation.viewmodels.BaseFactoryViewModelFactory
 import com.example.babybank.presentation.viewmodels.OnboardingFrgViewModel
+import com.example.babybank.presentation.viewmodels.ViewModelFactory
 import javax.inject.Inject
 
 class OnboardingFragment : BaseFragment() {
@@ -17,7 +17,7 @@ class OnboardingFragment : BaseFragment() {
     private val binding get() = checkNotNull(_binding)
 
     @Inject
-    lateinit var viewModelFactory: BaseFactoryViewModelFactory
+    lateinit var viewModelFactory: ViewModelFactory
     private val viewModel: OnboardingFrgViewModel by viewModels { viewModelFactory }
 
     override fun onCreateView(

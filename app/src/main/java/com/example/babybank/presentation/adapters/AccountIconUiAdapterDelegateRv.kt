@@ -7,9 +7,9 @@ import com.example.babybank.R
 import com.example.babybank.common.extentions.inflate
 import com.example.babybank.databinding.ItemAccountIconRecyclerViewBinding
 import com.example.babybank.presentation.adapters.AccountIconUiAdapterDelegateRv.AccountIconUiHolder
-import com.example.babybank.presentation.models.AccountIconUi
 import com.example.babybank.presentation.common.DisplayableItem
 import com.example.babybank.presentation.common.ItemClick
+import com.example.babybank.presentation.models.AccountIconUi
 import com.hannesdorfmann.adapterdelegates4.AbsListItemAdapterDelegate
 
 class AccountIconUiAdapterDelegateRv(

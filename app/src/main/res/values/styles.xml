@@ -1,15 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="HomeFrgButtonStyle" parent="MyTextStyle16spBoldWhite">
-        <item name="textAllCaps">false</item>
-        <item name="android:textStyle">normal</item>
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginBottom">16dp</item>
-        <item name="android:background">@drawable/bg_and_ripple_button_in_home_fragment</item>
-    </style>
-
     <style name="StyleTitleAccountsAndCardsListHomeFrg" parent="MyTextStyle22spBoldBlack">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
@@ -35,21 +26,9 @@
         <item name="android:textColor">@color/blackText</item>
     </style>
 
-    <style name="MyTextStyle14spBoldBlack">
-        <item name="android:textStyle">bold</item>
-        <item name="android:textSize">14sp</item>
-        <item name="android:textColor">@color/blackText</item>
-    </style>
-
     <style name="MyTextStyle22spBoldWhite">
         <item name="android:textStyle">bold</item>
         <item name="android:textSize">22sp</item>
-        <item name="android:textColor">@color/whiteText</item>
-    </style>
-
-    <style name="MyTextStyle16spBoldWhite">
-        <item name="android:textStyle">bold</item>
-        <item name="android:textSize">16sp</item>
         <item name="android:textColor">@color/whiteText</item>
     </style>
 

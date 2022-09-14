@@ -17,8 +17,8 @@ import com.example.babybank.presentation.adapters.RecyclerViewAdapter
 import com.example.babybank.presentation.common.DisplayableItem
 import com.example.babybank.presentation.models.LoaderUiRv
 import com.example.babybank.presentation.models.PersonalInfoProfileFrgUi
-import com.example.babybank.presentation.viewmodels.BaseFactoryViewModelFactory
 import com.example.babybank.presentation.viewmodels.ProfileFrgViewModel
+import com.example.babybank.presentation.viewmodels.ViewModelFactory
 import com.hannesdorfmann.adapterdelegates4.AdapterDelegatesManager
 import com.hannesdorfmann.adapterdelegates4.AsyncListDifferDelegationAdapter
 import javax.inject.Inject
@@ -29,7 +29,7 @@ class ProfileFragment : BaseFragment() {
     private val binding get() = checkNotNull(_binding)
 
     @Inject
-    lateinit var viewModelFactory: BaseFactoryViewModelFactory
+    lateinit var viewModelFactory: ViewModelFactory
     private val viewModel: ProfileFrgViewModel by viewModels { viewModelFactory }
 
     private val settingsMenuAdapterRv by lazy {

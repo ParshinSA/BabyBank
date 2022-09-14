@@ -1,18 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<vector xmlns:android="http://schemas.android.com/apk/res/android"
-    android:width="328dp"
-    android:height="52dp"
-    android:viewportWidth="328"
-    android:viewportHeight="52">
 
-    <group>
+<ripple xmlns:android="http://schemas.android.com/apk/res/android"
+    android:color="@color/unselectedNavigationColor">
+    <item android:id="@android:id/mask">
+        <shape android:shape="rectangle">
+            <size
+                android:width="328dp"
+                android:height="52dp" />
 
-        <clip-path android:pathData="M15 0H313C321.284 0 328 6.71573 328 15V37C328 45.2843 321.284 52 313 52H15C6.71573 52 0 45.2843 0 37V15C0 6.71573 6.71573 0 15 0Z" />
+            <solid android:color="@color/bgRippleDefault" />
+            <corners android:radius="15dp" />
+        </shape>
+    </item>
 
-        <path
-            android:pathData="M0 0V52H328V0"
-            android:fillColor="#58B7FF" />
+    <item android:id="@android:id/background">
+        <shape android:shape="rectangle">
+            <size
+                android:width="328dp"
+                android:height="52dp" />
 
-    </group>
-
-</vector>
+            <solid android:color="@color/bgButtonDefault" />
+            <corners android:radius="15dp" />
+        </shape>
+    </item>
+</ripple>

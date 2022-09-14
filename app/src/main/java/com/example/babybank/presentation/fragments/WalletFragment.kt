@@ -14,7 +14,7 @@ import com.example.babybank.presentation.AppApplication
 import com.example.babybank.presentation.adapters.*
 import com.example.babybank.presentation.common.DisplayableItem
 import com.example.babybank.presentation.models.LoaderUiRv
-import com.example.babybank.presentation.viewmodels.BaseFactoryViewModelFactory
+import com.example.babybank.presentation.viewmodels.ViewModelFactory
 import com.example.babybank.presentation.viewmodels.WalletFrgViewModel
 import com.hannesdorfmann.adapterdelegates4.AdapterDelegatesManager
 import com.hannesdorfmann.adapterdelegates4.AsyncListDifferDelegationAdapter
@@ -26,7 +26,7 @@ class WalletFragment : BaseFragment() {
     private val binding get() = _binding!!
 
     @Inject
-    lateinit var viewModelFactory: BaseFactoryViewModelFactory
+    lateinit var viewModelFactory: ViewModelFactory
     private val viewModel: WalletFrgViewModel by viewModels { viewModelFactory }
 
     private val transferMenuAdapterRv by lazy {

@@ -2,7 +2,6 @@ package com.example.babybank.presentation.fragments
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,12 +10,13 @@ import com.example.babybank.R
 import com.example.babybank.databinding.FragmentBtmSheetInWalletFragmentBinding
 import com.example.babybank.presentation.AppApplication
 import com.example.babybank.presentation.common.FourDigitCardFormatWatcher
+import com.example.babybank.presentation.common.FourDigitCardFormatWatcher.Companion.MAX_NUMBER_DIGITS
 import com.example.babybank.presentation.common.MoneyFormatWatcher
-import com.example.babybank.presentation.viewmodels.BaseFactoryViewModelFactory
+import com.example.babybank.presentation.common.MoneyFormatter
 import com.example.babybank.presentation.viewmodels.BtmSheetFragmentInWalletFrgViewModel
+import com.example.babybank.presentation.viewmodels.ViewModelFactory
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import javax.inject.Inject
-
 
 class BtmSheetFragmentInWalletFrg : BottomSheetDialogFragment() {
 
@@ -24,11 +24,17 @@ class BtmSheetFragmentInWalletFrg : BottomSheetDialogFragment() {
     private val binding get() = checkNotNull(_binding)
 
     @Inject
-    lateinit var viewModelFactory: BaseFactoryViewModelFactory
+    lateinit var viewModelFactory: ViewModelFactory
     private val viewModel: BtmSheetFragmentInWalletFrgViewModel by viewModels { viewModelFactory }
 
-    private val numberCardFormat: FourDigitCardFormatWatcher by lazy { FourDigitCardFormatWatcher() }
-    private val moneyFormat: MoneyFormatWatcher by lazy { MoneyFormatWatcher() }
+    @Inject
+    lateinit var formatter: MoneyFormatter
+
+    @Inject
+    lateinit var numberCardFormat: FourDigitCardFormatWatcher
+
+    @Inject
+    lateinit var moneyFormat: MoneyFormatWatcher
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -71,20 +77,22 @@ class BtmSheetFragmentInWalletFrg : BottomSheetDialogFragment() {
             val cardNumber = checkNotNull(viewModel.cardNumberLiveData.value)
             val money = checkNotNull(viewModel.moneyLiveData.value)
 
-            if (validateCardNumber(cardNumber) && validateMoney(money)) {
-                Log.d("TAG", "transferBtnClick: validate true")
+            val isValidateCard = validateCardNumber(cardNumber)
+            val isValidateMoney = validateMoney(money)
+
+            if (isValidateCard && isValidateMoney) {
+                this.dismiss()
                 viewModel.openDetailsReport()
-            } else {
-                Log.d("TAG", "transferBtnClick: validate false")
             }
         }
     }
 
     private fun validateMoney(money: String): Boolean {
         val validate: Boolean
+        val moneyNumberFormat = formatter.toNumberMoneyFormat(money)?.toDouble() ?: 0.0
 
         binding.txtInputLayoutContainerMoney.error =
-            if (money.isNotEmpty() && money.isNotBlank() && money.toDouble() > 0.0) {
+            if (money.isNotEmpty() && money.isNotBlank() && moneyNumberFormat > 0.0) {
                 validate = true
                 null
             } else {
@@ -96,16 +104,17 @@ class BtmSheetFragmentInWalletFrg : BottomSheetDialogFragment() {
     }
 
     private fun validateCardNumber(cardNumber: String): Boolean {
+        val cardNumberTotalDigits = cardNumber.filter { char: Char -> Character.isDigit(char) }
         val validate: Boolean
 
         binding.txtInputLayoutContainerCardNumber.error =
             when {
-                cardNumber.isEmpty() -> {
+                cardNumberTotalDigits.isEmpty() -> {
                     validate = false
                     resources.getString(R.string.requiredToFill)
                 }
 
-                cardNumber.length < 16 -> {
+                cardNumberTotalDigits.length < MAX_NUMBER_DIGITS -> {
                     validate = false
                     resources.getString(R.string.incorrectFormatCardNumber)
                 }

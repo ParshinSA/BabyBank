@@ -13,8 +13,8 @@ import androidx.fragment.app.viewModels
 import com.example.babybank.R
 import com.example.babybank.databinding.FragmentContainerBinding
 import com.example.babybank.presentation.AppApplication
-import com.example.babybank.presentation.viewmodels.BaseFactoryViewModelFactory
 import com.example.babybank.presentation.viewmodels.ContainerFrgViewModel
+import com.example.babybank.presentation.viewmodels.ViewModelFactory
 import com.github.terrakok.cicerone.Navigator
 import com.github.terrakok.cicerone.NavigatorHolder
 import com.github.terrakok.cicerone.androidx.AppNavigator
@@ -28,15 +28,13 @@ class ContainerFragment : BaseFragment() {
     @Inject
     lateinit var navigatorHolder: NavigatorHolder
     private val fragmentManger: FragmentManager by lazy { childFragmentManager }
-
     private val idContainer = R.id.frameLayoutContainer
-
     private val navigator: Navigator by lazy {
         AppNavigator(requireActivity(), idContainer, fragmentManger)
     }
 
     @Inject
-    lateinit var viewModelFactory: BaseFactoryViewModelFactory
+    lateinit var viewModelFactory: ViewModelFactory
     private val viewModel: ContainerFrgViewModel by viewModels { viewModelFactory }
 
     override fun onAttach(context: Context) {

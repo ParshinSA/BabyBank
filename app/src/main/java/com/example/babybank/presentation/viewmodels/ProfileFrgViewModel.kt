@@ -7,12 +7,15 @@ import com.example.babybank.domain.interactors.ProfileFrgInteractor
 import com.example.babybank.domain.models.MenuTypeDomain
 import com.example.babybank.domain.models.RequestMenu
 import com.example.babybank.presentation.common.DisplayableItem
-import com.example.babybank.presentation.models.*
+import com.example.babybank.presentation.models.ConvertersDomainToUi
+import com.example.babybank.presentation.models.MenuTitleUi
+import com.example.babybank.presentation.models.PersonalInfoProfileFrgUi
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
 class ProfileFrgViewModel(
     interactor: ProfileFrgInteractor,
+    private val converters: ConvertersDomainToUi,
 ) : BaseViewModel() {
 
     private val personalInfoMutLiveData = MutableLiveData<PersonalInfoProfileFrgUi>()
@@ -27,7 +30,8 @@ class ProfileFrgViewModel(
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({ personalInfoDomain ->
-                personalInfoMutLiveData.value = personalInfoDomain.toPersonalInfoProfileFrgUi()
+                personalInfoMutLiveData.value =
+                    converters.toPersonalInfoProfileFrgUi(personalInfoDomain)
             }, { error ->
                 error.printStackTrace()
                 showErrorMessage()
@@ -35,7 +39,7 @@ class ProfileFrgViewModel(
 
         interactor.getMenu(RequestMenu(MenuTypeDomain.SETTINGS_MENU))
             .map { menuItemDomainList ->
-                menuItemDomainList.map { it.toMenuItemTitleIconUi() }
+                menuItemDomainList.map { item -> converters.toMenuItemTitleIconUi(item) }
             }
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())

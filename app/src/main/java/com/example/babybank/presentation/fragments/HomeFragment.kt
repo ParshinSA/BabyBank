@@ -13,8 +13,8 @@ import com.example.babybank.presentation.common.DisplayableItem
 import com.example.babybank.presentation.models.LoaderUiRv
 import com.example.babybank.presentation.models.PersonalInfoHomeFrgUi
 import com.example.babybank.presentation.models.TotalMoneyUi
-import com.example.babybank.presentation.viewmodels.BaseFactoryViewModelFactory
 import com.example.babybank.presentation.viewmodels.HomeFrgViewModel
+import com.example.babybank.presentation.viewmodels.ViewModelFactory
 import com.hannesdorfmann.adapterdelegates4.AdapterDelegatesManager
 import com.hannesdorfmann.adapterdelegates4.AsyncListDifferDelegationAdapter
 import javax.inject.Inject
@@ -25,7 +25,7 @@ class HomeFragment : BaseFragment() {
     private val binding get() = _binding!!
 
     @Inject
-    lateinit var viewModelFactory: BaseFactoryViewModelFactory
+    lateinit var viewModelFactory: ViewModelFactory
     private val viewModel: HomeFrgViewModel by viewModels { viewModelFactory }
 
     private val accountAndCardMenuAdapterRv by lazy {
