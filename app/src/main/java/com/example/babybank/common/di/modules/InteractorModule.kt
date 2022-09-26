@@ -1,10 +1,7 @@
 package com.example.babybank.common.di.modules
 
 import com.example.babybank.domain.interactors.*
-import com.example.babybank.domain.repositories_intf.AccountsInfoRepository
-import com.example.babybank.domain.repositories_intf.CurrencyRateRepository
-import com.example.babybank.domain.repositories_intf.MenuItemRepository
-import com.example.babybank.domain.repositories_intf.PersonalInfoRepository
+import com.example.babybank.domain.repositories_intf.*
 import dagger.Module
 import dagger.Provides
 
@@ -47,5 +44,12 @@ class InteractorModule {
         menuItemRepository: MenuItemRepository
     ): DetailsTransitionFrgInteractor {
         return DetailsTransitionFrgInteractorImpl(menuItemRepository = menuItemRepository)
+    }
+
+    @Provides
+    fun provideBankListFrgInteractorImplToInterface(
+        bankListRepository: BankListRepository
+    ): BankListFrgInteractor {
+        return BankListFrgInteractorImpl(bankListRepository = bankListRepository)
     }
 }

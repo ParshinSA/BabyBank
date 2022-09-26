@@ -32,8 +32,12 @@ object Screens {
     fun DetailsTransferFrg(balanceAndSymbol: String, message: String? = null) = FragmentScreen {
         DetailsTransitionFragment.newInstance(balanceAndSymbol, message)
     }
+//
+//    fun BottomSheetFrgInWalletFrg() = FragmentScreen {
+//        BtmSheetFragmentInWalletFrg()
+//    }
 
-    fun BottomSheetFrgInWalletFrg() = FragmentScreen {
-        BtmSheetFragmentInWalletFrg()
+    fun BankListFrg() = FragmentScreen {
+        BankListFragment.newInstance()
     }
 }

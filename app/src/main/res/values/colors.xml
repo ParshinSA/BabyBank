@@ -39,5 +39,6 @@
     <color name="dotsSelected">@color/myWhite</color>
     <color name="dotsUnselected">#DBEEFC</color>
 
+    <color name="progressLoading">#7458B7FF</color>
 
 </resources>

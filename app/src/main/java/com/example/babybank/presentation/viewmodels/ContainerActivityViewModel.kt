@@ -3,7 +3,6 @@ package com.example.babybank.presentation.viewmodels
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.example.babybank.common.constants.CANCEL_EXIT_BY_TIMER
 import com.example.babybank.presentation.Screens
 import com.github.terrakok.cicerone.Router
 import kotlinx.coroutines.delay
@@ -35,5 +34,9 @@ class ContainerActivityViewModel @Inject constructor(
             delay(CANCEL_EXIT_BY_TIMER)
             isExitAppMutLiveData.postValue(false)
         }
+    }
+
+    companion object {
+        private const val CANCEL_EXIT_BY_TIMER = 2000L
     }
 }

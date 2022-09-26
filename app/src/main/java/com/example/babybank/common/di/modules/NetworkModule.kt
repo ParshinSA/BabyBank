@@ -1,9 +1,8 @@
 package com.example.babybank.common.di.modules
 
-import com.example.babybank.common.constants.URL_CBR_RU
-import com.example.babybank.common.constants.URL_FIREBASE_DB
 import com.example.babybank.data.networking.api.CurrencyRateApi
 import com.example.babybank.data.networking.api.FirebaseApi
+import com.example.babybank.data.networking.api.GoogleComApi
 import dagger.Module
 import dagger.Provides
 import retrofit2.Retrofit
@@ -14,6 +13,17 @@ import javax.inject.Singleton
 
 @Module
 class NetworkModule {
+
+
+    @Provides
+    @Singleton
+    fun provideGoogleComApi(retrofit: Retrofit): GoogleComApi {
+        return retrofit
+            .newBuilder()
+            .baseUrl(URL_GOOGLE_COM)
+            .build()
+            .create()
+    }
 
     @Provides
     @Singleton
@@ -45,4 +55,11 @@ class NetworkModule {
             .build()
     }
 
+    companion object {
+        private const val URL_FIREBASE_DB =
+            "https://babybank-14bb0-default-rtdb.europe-west1.firebasedatabase.app/"
+
+        private const val URL_CBR_RU = "https://www.cbr-xml-daily.ru/"
+        private const val URL_GOOGLE_COM = "https://google.com"
+    }
 }

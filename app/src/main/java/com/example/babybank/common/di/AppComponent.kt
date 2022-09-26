@@ -15,19 +15,22 @@ import javax.inject.Singleton
         RepositoryModule::class,
         DataSourceModule::class,
         NavigationModule::class,
-        NetworkModule::class
+        NetworkModule::class,
+        AppModule::class,
     ]
 )
 interface AppComponent {
 
     fun inject(activity: ContainerActivity)
-    fun inject(fragment: WalletFragment)
-    fun inject(fragment: OnboardingFragment)
-    fun inject(fragment: HomeFragment)
-    fun inject(fragment: ContainerFragment)
-    fun inject(fragment: ProfileFragment)
-    fun inject(fragment: DetailsTransitionFragment)
+
     fun inject(fragment: BtmSheetFragmentInWalletFrg)
+    fun inject(fragment: DetailsTransitionFragment)
+    fun inject(fragment: OnboardingFragment)
+    fun inject(fragment: ContainerFragment)
+    fun inject(fragment: BankListFragment)
+    fun inject(fragment: ProfileFragment)
+    fun inject(fragment: WalletFragment)
+    fun inject(fragment: HomeFragment)
 
     @Component.Builder
     interface Builder {

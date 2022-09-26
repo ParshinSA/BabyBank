@@ -3,7 +3,7 @@ package com.example.babybank.presentation.viewmodels
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.babybank.R
-import com.example.babybank.common.constants.CONTAINER_FRAGMENT_ROUTER
+import com.example.babybank.common.di.modules.NavigationModule.Companion.FRAGMENT_ROUTER
 import com.example.babybank.domain.interactors.DetailsTransitionFrgInteractor
 import com.example.babybank.domain.models.MenuTypeDomain
 import com.example.babybank.domain.models.RequestMenu
@@ -17,10 +17,10 @@ import javax.inject.Inject
 import javax.inject.Named
 
 class DetailsTransitionFrgViewModel @Inject constructor(
+    private val converters: ConvertersDomainToUi,
     interactor: DetailsTransitionFrgInteractor,
-    @Named(CONTAINER_FRAGMENT_ROUTER)
+    @Named(FRAGMENT_ROUTER)
     private val parentRouter: Router,
-    private val converters: ConvertersDomainToUi
 ) : BaseViewModel() {
 
     private val menuItemMutLiveData = MutableLiveData<List<DisplayableItem>>(emptyList())

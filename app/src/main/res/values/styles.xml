@@ -44,6 +44,12 @@
         <item name="android:textColor">@color/grayText</item>
     </style>
 
+    <style name="MyTextStyle14spBoldBack">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/blackText</item>
+    </style>
+
     <style name="MyTextStyle14spNormalGray">
         <item name="android:textStyle">normal</item>
         <item name="android:textSize">14sp</item>

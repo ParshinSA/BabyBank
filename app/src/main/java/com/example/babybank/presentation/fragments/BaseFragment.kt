@@ -45,7 +45,7 @@ abstract class BaseFragment : Fragment(), ItemClick {
         super.onDestroy()
     }
 
-    val TAG: String = "TAG ${
+    val TAG: String = "MyTAG ${
         this.javaClass.name.filterIndexed { index, _ ->
             index > this.javaClass.name.lastIndexOf('.')
         }

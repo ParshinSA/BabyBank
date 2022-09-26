@@ -2,6 +2,7 @@ package com.example.babybank.data.networking.api
 
 import com.example.babybank.data.models.AccountInfoDto
 import com.example.babybank.data.models.MenuItemDto
+import com.example.babybank.data.models.PdfLinkDto
 import com.example.babybank.data.models.PersonalInfoDto
 import io.reactivex.Single
 import retrofit2.http.GET
@@ -19,4 +20,7 @@ interface FirebaseApi {
 
     @GET("profiles.json")
     fun getPersonalInformation(): Single<PersonalInfoDto>
+
+    @GET("pdfLink.json")
+    fun getPdfLink(): Single<PdfLinkDto>
 }

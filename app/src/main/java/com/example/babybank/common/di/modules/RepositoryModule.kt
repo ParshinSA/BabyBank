@@ -1,15 +1,11 @@
 package com.example.babybank.common.di.modules
 
-import com.example.babybank.data.data_source.RemoteCurrencyRateDataSource
-import com.example.babybank.data.data_source.RemoteMockDataSource
-import com.example.babybank.data.repositories_impl.AccountsInfoRepositoryImpl
-import com.example.babybank.data.repositories_impl.CurrencyRateRepositoryImpl
-import com.example.babybank.data.repositories_impl.MenuItemRepositoryImpl
-import com.example.babybank.data.repositories_impl.PersonalInfoRepositoryImpl
-import com.example.babybank.domain.repositories_intf.AccountsInfoRepository
-import com.example.babybank.domain.repositories_intf.CurrencyRateRepository
-import com.example.babybank.domain.repositories_intf.MenuItemRepository
-import com.example.babybank.domain.repositories_intf.PersonalInfoRepository
+import com.example.babybank.data.data_source.interf.CurrencyRateDataSource
+import com.example.babybank.data.data_source.interf.MockDataSource
+import com.example.babybank.data.data_source.remote.DownloadManagerDownloadDataSourceImpl
+import com.example.babybank.data.data_source.remote.GetResponseDownloadDataSourceImpl
+import com.example.babybank.data.repositories_impl.*
+import com.example.babybank.domain.repositories_intf.*
 import dagger.Module
 import dagger.Provides
 
@@ -18,29 +14,42 @@ class RepositoryModule {
 
     @Provides
     fun provideAccountsInfoRepositoryImplToInterface(
-        dataSource: RemoteMockDataSource
+        mockDataSource: MockDataSource
     ): AccountsInfoRepository {
-        return AccountsInfoRepositoryImpl(dataSource)
+        return AccountsInfoRepositoryImpl(mockDataSource = mockDataSource)
     }
 
     @Provides
     fun provideCurrencyRateRepositoryImplToInterface(
-        dataSource: RemoteCurrencyRateDataSource
+        currencyRateDataSource: CurrencyRateDataSource
     ): CurrencyRateRepository {
-        return CurrencyRateRepositoryImpl(dataSource)
+        return CurrencyRateRepositoryImpl(currencyRateDataSource = currencyRateDataSource)
     }
 
     @Provides
     fun provideMenuItemRepositoryImplToInterface(
-        dataSource: RemoteMockDataSource
+        mockDataSource: MockDataSource
     ): MenuItemRepository {
-        return MenuItemRepositoryImpl(dataSource)
+        return MenuItemRepositoryImpl(mockDataSource = mockDataSource)
     }
 
     @Provides
     fun providePersonalInfoRepositoryImplToInterface(
-        dataSource: RemoteMockDataSource
+        mockDataSource: MockDataSource
     ): PersonalInfoRepository {
-        return PersonalInfoRepositoryImpl(dataSource)
+        return PersonalInfoRepositoryImpl(mockDataSource = mockDataSource)
+    }
+
+    @Provides
+    fun provideBankListRepositoryImplToInterface(
+        downloadManagerDownloadDataSourceImpl: DownloadManagerDownloadDataSourceImpl,
+        getResponseDownloadDataSourceImpl: GetResponseDownloadDataSourceImpl,
+        mockDataSource: MockDataSource,
+    ): BankListRepository {
+        return BankListRepositoryImpl(
+            downloadManagerDownloadDataSourceImpl = downloadManagerDownloadDataSourceImpl,
+            getResponseDownloadDataSourceImpl = getResponseDownloadDataSourceImpl,
+            mockDataSource = mockDataSource,
+        )
     }
 }

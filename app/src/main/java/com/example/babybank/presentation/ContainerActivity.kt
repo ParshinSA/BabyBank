@@ -53,7 +53,7 @@ class ContainerActivity : AppCompatActivity(R.layout.activity_app) {
     override fun onBackPressed() {
         val fragment = supportFragmentManager.findFragmentById(idNavigationContainer)
 
-        if (fragment != null && fragment is BackButtonListener) return
+        if (fragment != null && fragment is BackButtonListener && fragment.onBackPressed()) return
 
         if (
             viewModel.isExitAppLiveData.value!!

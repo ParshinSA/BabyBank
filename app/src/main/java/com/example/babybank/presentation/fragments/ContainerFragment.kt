@@ -13,6 +13,7 @@ import androidx.fragment.app.viewModels
 import com.example.babybank.R
 import com.example.babybank.databinding.FragmentContainerBinding
 import com.example.babybank.presentation.AppApplication
+import com.example.babybank.presentation.common.BackButtonListener
 import com.example.babybank.presentation.viewmodels.ContainerFrgViewModel
 import com.example.babybank.presentation.viewmodels.ViewModelFactory
 import com.github.terrakok.cicerone.Navigator
@@ -20,7 +21,7 @@ import com.github.terrakok.cicerone.NavigatorHolder
 import com.github.terrakok.cicerone.androidx.AppNavigator
 import javax.inject.Inject
 
-class ContainerFragment : BaseFragment() {
+class ContainerFragment : BaseFragment(), BackButtonListener {
 
     private var _binding: FragmentContainerBinding? = null
     private val binding get() = checkNotNull(_binding)
@@ -119,5 +120,14 @@ class ContainerFragment : BaseFragment() {
 
     companion object {
         fun newInstance() = ContainerFragment()
+    }
+
+    override fun onBackPressed(): Boolean {
+        val fragment = childFragmentManager.findFragmentById(idContainer)
+        return if (fragment != null && fragment is BackButtonListener) {
+            fragment.onBackPressed()
+        } else {
+            false
+        }
     }
 }

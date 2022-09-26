@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="4dp"
+    android:weightSum="4">
+
+    <TextView
+        android:id="@+id/textViewNameFile"
+        style="@style/MyTextStyle14spBoldGray"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="3"
+        android:gravity="start|center"
+        android:text="@string/textNameFile" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/appCompatButtonOpenFile"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:layout_weight="1"
+        android:background="@drawable/bg_ripple_btn_open_file"
+        android:text="@string/textOpen" />
+
+</LinearLayout>

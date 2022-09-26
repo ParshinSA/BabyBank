@@ -12,23 +12,23 @@ import com.hannesdorfmann.adapterdelegates4.AbsListItemAdapterDelegate
 
 class MenuTitleUiAdapterDelegateRv :
     AbsListItemAdapterDelegate<MenuTitleUi, DisplayableItem,
-            MenuTitleUiAdapterDelegateRv.MenuTitleHolder>() {
+            MenuTitleUiAdapterDelegateRv.MenuTitleUiHolder>() {
 
     override fun isForViewType(
         item: DisplayableItem, items: MutableList<DisplayableItem>, position: Int
     ) = item is MenuTitleUi
 
-    override fun onCreateViewHolder(parent: ViewGroup) = MenuTitleHolder(
+    override fun onCreateViewHolder(parent: ViewGroup) = MenuTitleUiHolder(
         parent.inflate(R.layout.item_title_recycler_view)
     )
 
     override fun onBindViewHolder(
-        item: MenuTitleUi, holder: MenuTitleHolder, payloads: MutableList<Any>
+        item: MenuTitleUi, holder: MenuTitleUiHolder, payloads: MutableList<Any>
     ) {
         holder.bind(item)
     }
 
-    class MenuTitleHolder(private val view: View) : RecyclerView.ViewHolder(view) {
+    class MenuTitleUiHolder(private val view: View) : RecyclerView.ViewHolder(view) {
 
         private val binding = ItemTitleRecyclerViewBinding.bind(view)
 

@@ -1,7 +1,5 @@
 package com.example.babybank.common.di.modules
 
-import com.example.babybank.common.constants.CONTAINER_ACTIVITY_ROUTER
-import com.example.babybank.common.constants.CONTAINER_FRAGMENT_ROUTER
 import com.github.terrakok.cicerone.Cicerone
 import com.github.terrakok.cicerone.Cicerone.Companion.create
 import com.github.terrakok.cicerone.NavigatorHolder
@@ -17,14 +15,14 @@ class NavigationModule {
 
     @Provides
     @Singleton
-    @Named(CONTAINER_ACTIVITY_ROUTER)
+    @Named(ACTIVITY_CONTAINER_ROUTER)
     fun provideRouterAppActivity(): Router {
         return cicerone.router
     }
 
     @Provides
     @Singleton
-    @Named(CONTAINER_FRAGMENT_ROUTER)
+    @Named(FRAGMENT_ROUTER)
     fun provideRouterContainerFrg(): Router {
         return cicerone.router
     }
@@ -33,5 +31,10 @@ class NavigationModule {
     @Singleton
     fun provideNavigatorHolder(): NavigatorHolder {
         return cicerone.getNavigatorHolder()
+    }
+
+    companion object {
+        const val ACTIVITY_CONTAINER_ROUTER = "ROUTER_APP_ACTIVITY"
+        const val FRAGMENT_ROUTER = "ROUTER_CONTAINER_FRG"
     }
 }

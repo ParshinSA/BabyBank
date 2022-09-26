@@ -13,4 +13,22 @@ class AppApplication : Application() {
             .build()
     }
 
+    override fun onCreate() {
+        super.onCreate()
+        threadPolicy()
+    }
+
+    private fun threadPolicy() {
+//        if (BuildConfig.DEBUG) {
+//            StrictMode.setThreadPolicy(
+//                StrictMode.ThreadPolicy.Builder()
+//                    .detectDiskReads()
+//                    .detectDiskWrites()
+//                    .detectNetwork()
+//                    .penaltyDeath()
+//                    .build()
+//            )
+//        }
+    }
+
 }

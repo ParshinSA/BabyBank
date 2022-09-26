@@ -123,7 +123,8 @@ class DetailsTransitionFragment : BaseFragment(), BackButtonListener {
             }
     }
 
-    override fun onBackPressed() {
+    override fun onBackPressed(): Boolean {
         viewModel.onBackPressed()
+        return true
     }
 }

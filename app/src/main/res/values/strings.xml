@@ -17,6 +17,10 @@
     <!--    dialog strings -->
     <string name="errorMessage">Something went wrong, please try again later</string>
 
+    <!--    bottom sheet fragment -->
+    <string name="requiredToFill">Required to fill</string>
+    <string name="incorrectFormatCardNumber">Incorrect format card number</string>
+
     <!--    title transfers -->
     <string name="titleErrorDialog">Sorry :(</string>
     <string name="titleToACard">To a card</string>
@@ -52,7 +56,10 @@
     <string name="textAmountMoney">Amount money</string>
     <string name="textEnterAmountMoney">Enter amount money</string>
     <string name="textTransfer">transfer</string>
-    <string name="requiredToFill">Required to fill</string>
-    <string name="incorrectFormatCardNumber">Incorrect format card number</string>
+    <string name="textToACard">To a card</string>
+    <string name="textDownload">Download</string>
+    <string name="textGetResponse">GET/Response</string>
+    <string name="textNameFile">Name file</string>
+    <string name="textOpen">open</string>
 
 </resources>

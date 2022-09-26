@@ -1,11 +1,14 @@
 package com.example.babybank.common.di.modules
 
-import com.example.babybank.data.data_source.RemoteCurrencyRateDataSource
-import com.example.babybank.data.data_source.RemoteCurrencyRateDataSourceImpl
-import com.example.babybank.data.data_source.RemoteMockDataSource
-import com.example.babybank.data.data_source.RemoteMockDataSourceImpl
+import com.example.babybank.data.data_source.interf.CurrencyRateDataSource
+import com.example.babybank.data.data_source.interf.GoogleComDataSource
+import com.example.babybank.data.data_source.interf.MockDataSource
+import com.example.babybank.data.data_source.remote.CurrencyRateDataSourceImpl
+import com.example.babybank.data.data_source.remote.GoogleComDataSourceImpl
+import com.example.babybank.data.data_source.remote.MockDataSourceImpl
 import com.example.babybank.data.networking.api.CurrencyRateApi
 import com.example.babybank.data.networking.api.FirebaseApi
+import com.example.babybank.data.networking.api.GoogleComApi
 import dagger.Module
 import dagger.Provides
 
@@ -15,15 +18,22 @@ class DataSourceModule {
     @Provides
     fun provideRemoteMockDataSourceImplToInterface(
         firebaseApi: FirebaseApi
-    ): RemoteMockDataSource {
-        return RemoteMockDataSourceImpl(firebaseApi)
+    ): MockDataSource {
+        return MockDataSourceImpl(firebaseApi)
     }
 
     @Provides
     fun provideRemoteCurrencyRateDataSourceImplToInterface(
         currencyRateApi: CurrencyRateApi
-    ): RemoteCurrencyRateDataSource {
-        return RemoteCurrencyRateDataSourceImpl(currencyRateApi = currencyRateApi)
+    ): CurrencyRateDataSource {
+        return CurrencyRateDataSourceImpl(currencyRateApi = currencyRateApi)
+    }
+
+    @Provides
+    fun provideRemoteGoogleComDataSourceImplToInterface(
+        googleComApi: GoogleComApi
+    ): GoogleComDataSource {
+        return GoogleComDataSourceImpl(googleComApi = googleComApi)
     }
 
 }

@@ -2,7 +2,10 @@ package com.example.babybank.presentation.common
 
 import android.text.Editable
 import android.text.TextWatcher
-import com.example.babybank.common.constants.*
+import com.example.babybank.common.constants.SEPARATOR_COMMA
+import com.example.babybank.common.constants.SEPARATOR_DOT
+import com.example.babybank.common.constants.SEPARATOR_SPACE
+import com.example.babybank.common.constants.SEPARATOR_SYSTEM_SPACE
 import io.reactivex.subjects.BehaviorSubject
 import javax.inject.Inject
 
@@ -59,4 +62,8 @@ class MoneyFormatWatcher @Inject constructor(
     }
 
     fun getUserInputAmountMoney() = userInputAmountMoney
+
+    companion object {
+        private const val MAX_TRANSFER_MONEY = 10_000_000.0
+    }
 }

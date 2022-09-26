@@ -20,19 +20,13 @@
         style="@style/MyTextStyle22spBoldBlack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/textSwiftTransfer" />
-
-    <TextView
-        style="@style/MyTextStyle14spNormalGray"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="@string/textToABankCard" />
+        android:text="@string/textToACard" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/txtInputLayoutContainerCardNumber"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
         android:hint="@string/textEnterCardNumber"
         android:maxWidth="488dp"
         android:minWidth="56dp"
@@ -48,17 +42,11 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
-    <TextView
-        style="@style/MyTextStyle14spNormalGray"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="@string/textAmountMoney" />
-
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/txtInputLayoutContainerMoney"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
         android:hint="@string/textEnterAmountMoney"
         android:maxWidth="488dp"
         android:minWidth="56dp"

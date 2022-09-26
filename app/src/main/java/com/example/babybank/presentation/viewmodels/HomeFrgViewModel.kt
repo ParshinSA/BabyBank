@@ -17,9 +17,9 @@ import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 class HomeFrgViewModel @Inject constructor(
-    private val interactor: HomeFrgInteractor,
     private val converters: ConvertersDomainToUi,
     private val moneyFormatter: MoneyFormatter,
+    private val interactor: HomeFrgInteractor,
     private val parentRouter: Router
 ) : BaseViewModel() {
 

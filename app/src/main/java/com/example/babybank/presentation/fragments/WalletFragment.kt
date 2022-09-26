@@ -107,14 +107,32 @@ class WalletFragment : BaseFragment() {
             if (menuItemList.isEmpty()) listOf(LoaderUiRv()) else menuItemList
     }
 
+    // в зависимости от ситуации скрываем bottom nav view
     override fun click(itemId: Int) {
-        if (itemId == R.drawable.ic_swift_transfer) {
-            val modalBottomSheet = BtmSheetFragmentInWalletFrg.newInstance()
-            modalBottomSheet.show(childFragmentManager, BtmSheetFragmentInWalletFrg.TAG_BTM_SHEET)
-            return
+        when (itemId) {
+            R.drawable.ic_to_a_card -> openBottomSheet()
+            R.drawable.ic_swift_transfer -> openBankListFragment()
+            else -> openDefaultFrg(itemId)
         }
+    }
+
+    private fun openDefaultFrg(itemId: Int) {
         viewModel.openDetailsFrg(itemId)
+        hideBottomNavMenu()
+    }
+
+    private fun hideBottomNavMenu() {
         parentFrgBottomNavViewIsVisible(false)
+    }
+
+    private fun openBankListFragment() {
+        viewModel.openBankListFragment()
+        hideBottomNavMenu()
+    }
+
+    private fun openBottomSheet() {
+        val modalBottomSheet = BtmSheetFragmentInWalletFrg.newInstance()
+        modalBottomSheet.show(childFragmentManager, BtmSheetFragmentInWalletFrg.TAG_BTM_SHEET)
     }
 
     private fun parentFrgBottomNavViewIsVisible(state: Boolean) {

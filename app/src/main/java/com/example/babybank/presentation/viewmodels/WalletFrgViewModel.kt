@@ -3,7 +3,7 @@ package com.example.babybank.presentation.viewmodels
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.babybank.R
-import com.example.babybank.common.constants.CONTAINER_FRAGMENT_ROUTER
+import com.example.babybank.common.di.modules.NavigationModule.Companion.FRAGMENT_ROUTER
 import com.example.babybank.domain.interactors.WalletFrgInteractor
 import com.example.babybank.domain.models.MenuTypeDomain.OPERATIONS_MENU
 import com.example.babybank.domain.models.MenuTypeDomain.TRANSFERS_MENU
@@ -20,7 +20,7 @@ import javax.inject.Named
 
 class WalletFrgViewModel @Inject constructor(
     private val interactor: WalletFrgInteractor,
-    @Named(CONTAINER_FRAGMENT_ROUTER)
+    @Named(FRAGMENT_ROUTER)
     private val parentRouter: Router,
     private val converters: ConvertersDomainToUi
 ) : BaseViewModel() {
@@ -53,8 +53,11 @@ class WalletFrgViewModel @Inject constructor(
     }
 
     fun openDetailsFrg(itemId: Int) {
+        parentRouter.navigateTo(Screens.DetailsTransferFrg("$itemId", "test"))
+    }
 
-        parentRouter.navigateTo(Screens.DetailsTransferFrg(""))
+    fun openBankListFragment() {
+        parentRouter.navigateTo(Screens.BankListFrg())
     }
 
     init {
