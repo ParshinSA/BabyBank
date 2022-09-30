@@ -1,8 +1,6 @@
 package com.example.babybank.presentation.fragments
 
 import android.content.ActivityNotFoundException
-import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -15,7 +13,10 @@ import com.example.babybank.presentation.AppApplication
 import com.example.babybank.presentation.adapters.RecyclerViewAdapter
 import com.example.babybank.presentation.adapters.UploadedFileUiAdapterRv
 import com.example.babybank.presentation.common.BackButtonListener
-import com.example.babybank.presentation.models.DownloadVia
+import com.example.babybank.presentation.models.DownloadVia.DOWNLOAD_MANAGER
+import com.example.babybank.presentation.models.DownloadVia.GET_RESPONSE
+import com.example.babybank.presentation.models.OpenVia.CURRENT_APPLICATION
+import com.example.babybank.presentation.models.OpenVia.THIRD_PARTY_APPLICATION
 import com.example.babybank.presentation.models.UploadedFileUi
 import com.example.babybank.presentation.viewmodels.BankListFrgViewModel
 import com.example.babybank.presentation.viewmodels.ViewModelFactory
@@ -35,13 +36,8 @@ class BankListFragment : BaseFragment(), BackButtonListener {
     private val uploadedFilesRecyclerViewAdapter by lazy {
         AsyncListDifferDelegationAdapter(
             RecyclerViewAdapter.DiffUtilItemCallback(),
-            AdapterDelegatesManager(UploadedFileUiAdapterRv(this::open))
+            AdapterDelegatesManager(UploadedFileUiAdapterRv(this::openFile))
         )
-    }
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        inject()
     }
 
     override fun onCreateView(
@@ -50,7 +46,6 @@ class BankListFragment : BaseFragment(), BackButtonListener {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentBankListBinding.inflate(inflater, container, false)
-
         return binding.root
     }
 
@@ -62,7 +57,8 @@ class BankListFragment : BaseFragment(), BackButtonListener {
     private fun action() {
         initFileListRecyclerView()
         downloadBankList()
-        downloadVia()
+        loadFileViaListener()
+        openFileViaListener()
         observeData()
     }
 
@@ -74,19 +70,46 @@ class BankListFragment : BaseFragment(), BackButtonListener {
         }
     }
 
-    private fun downloadVia() {
+    private fun loadFileViaListener() {
         val switchDownloadManager = binding.switchDownloadManager
         val switchGetResponse = binding.switchGetResponse
 
         switchDownloadManager.setOnClickListener {
             switchGetResponse.isChecked = !switchDownloadManager.isChecked
-            viewModel.changeDownloadVia(DownloadVia.DOWNLOAD_MANAGER)
+            changeDownloadFileVia()
         }
 
         switchGetResponse.setOnClickListener {
             switchDownloadManager.isChecked = !switchGetResponse.isChecked
-            viewModel.changeDownloadVia(DownloadVia.GET_RESPONSE)
+            changeDownloadFileVia()
         }
+    }
+
+    private fun openFileViaListener() {
+        val switchCurrentApplication = binding.switchCurrentApplication
+        val switchThirdPartyApplication = binding.switchThirdPartyApplication
+
+        switchCurrentApplication.setOnClickListener {
+            switchThirdPartyApplication.isChecked = !switchCurrentApplication.isChecked
+            changeOpenFileVia()
+        }
+
+        switchThirdPartyApplication.setOnClickListener {
+            switchCurrentApplication.isChecked = !switchThirdPartyApplication.isChecked
+            changeOpenFileVia()
+        }
+    }
+
+    private fun changeDownloadFileVia() {
+        viewModel.changeDownloadFileVia(
+            if (binding.switchDownloadManager.isChecked) DOWNLOAD_MANAGER else GET_RESPONSE
+        )
+    }
+
+    private fun changeOpenFileVia() {
+        viewModel.changeOpenFileVia(
+            if (binding.switchThirdPartyApplication.isChecked) THIRD_PARTY_APPLICATION else CURRENT_APPLICATION
+        )
     }
 
     private fun observeData() {
@@ -113,17 +136,16 @@ class BankListFragment : BaseFragment(), BackButtonListener {
         }
     }
 
-    private fun open(fileName: String) {
-
-        val file = viewModel.getFile(fileName)
-
-        if (file == null) {
-            viewModel.showErrorMessage()
-            return
+    private fun openFile(fileName: String) {
+        when (checkNotNull(viewModel.openVia )) {
+            THIRD_PARTY_APPLICATION -> openFileThirdPartyApplication(fileName)
+            CURRENT_APPLICATION -> openViaCurrentApplication(fileName)
         }
+    }
 
-        val target = viewModel.createTarget(file)
-        val intent = Intent.createChooser(target, "Open File")
+    private fun openFileThirdPartyApplication(fileName: String) {
+        val file = viewModel.getFile(fileName) ?: return
+        val intent = viewModel.getIntentActionView(file)
 
         try {
             startActivity(intent)
@@ -131,6 +153,10 @@ class BankListFragment : BaseFragment(), BackButtonListener {
             Log.d(TAG, "open: fail")
             viewModel.showErrorMessage()
         }
+    }
+
+    private fun openViaCurrentApplication(fileName: String) {
+        viewModel.openPdfViewerFrg(fileName)
     }
 
     override fun inject() {

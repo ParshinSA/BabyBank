@@ -5,12 +5,10 @@ import android.content.Context
 import android.net.Uri
 import com.example.babybank.R
 import com.example.babybank.data.common.utils.AppDownloadManager
+import com.example.babybank.data.common.utils.ExternalDownloadFolder
 import com.example.babybank.data.common.utils.FileNameHandler
 import com.example.babybank.data.data_source.interf.DownloadDataSource
-import com.example.babybank.presentation.models.ExternalDownloadFolder
 import io.reactivex.Completable
-import io.reactivex.observables.ConnectableObservable
-import org.reactivestreams.Publisher
 import java.io.IOException
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -23,10 +21,10 @@ class DownloadManagerDownloadDataSourceImpl @Inject constructor(
     private val context: Context,
 ) : DownloadDataSource {
 
-    private val downloadFolder get() = externalDownloadFolder.getExternalFolder()
     private val manager = downloadManager.manager()
 
-    override fun download(url: String): Completable {
+    override fun download(url: String, directory: String): Completable {
+        val downloadFolder = externalDownloadFolder.getExternalFolder(directory)
         return Completable.create { subscription ->
 
             if (!externalDownloadFolder.checkStateExternalStorage())

@@ -29,15 +29,21 @@ object Screens {
         BalanceFragment.newInstance()
     }
 
-    fun DetailsTransferFrg(balanceAndSymbol: String, message: String? = null) = FragmentScreen {
-        DetailsTransitionFragment.newInstance(balanceAndSymbol, message)
+    fun DetailsTransferFrg(
+        balanceAndSymbol: String,
+        message: String? = null
+    ) = FragmentScreen {
+        DetailsTransitionFragment.newInstance(
+            balanceAndSymbol = balanceAndSymbol,
+            message = message
+        )
     }
-//
-//    fun BottomSheetFrgInWalletFrg() = FragmentScreen {
-//        BtmSheetFragmentInWalletFrg()
-//    }
 
     fun BankListFrg() = FragmentScreen {
         BankListFragment.newInstance()
+    }
+
+    fun PDFViewerFrg(fileName: String, directory: String) = FragmentScreen {
+        FragmentPdfViewer.newInstance(fileName = fileName, directory = directory)
     }
 }

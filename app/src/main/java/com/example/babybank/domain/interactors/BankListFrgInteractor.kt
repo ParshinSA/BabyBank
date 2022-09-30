@@ -5,5 +5,5 @@ import io.reactivex.Completable
 
 interface BankListFrgInteractor {
 
-    fun downloadFileVia(via: DownloadVia): Completable
+    fun downloadFileVia(via: DownloadVia, directory: String): Completable
 }

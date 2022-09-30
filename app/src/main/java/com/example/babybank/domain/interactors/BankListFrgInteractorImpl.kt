@@ -9,7 +9,7 @@ class BankListFrgInteractorImpl @Inject constructor(
     private val bankListRepository: BankListRepository
 ) : BankListFrgInteractor {
 
-    override fun downloadFileVia(via: DownloadVia): Completable {
-        return bankListRepository.downloadFileVia(via)
+    override fun downloadFileVia(via: DownloadVia, directory: String): Completable {
+        return bankListRepository.downloadFileVia(via, directory)
     }
 }
