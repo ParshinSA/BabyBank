@@ -61,5 +61,12 @@
     <string name="textGetResponse">GET/Response</string>
     <string name="textNameFile">Name file</string>
     <string name="textOpen">open</string>
+    <string name="textDownloadVia">Download via:</string>
+    <string name="textDownloadManager">Download manager</string>
+    <string name="textDownloadBankList">Download bank list</string>
+    <string name="textLoad">load</string>
+    <string name="textOpenFileVia">Open file via:</string>
+    <string name="textCurrentApplication">Current application</string>
+    <string name="textThirdPartyApplication">Third party application</string>
 
 </resources>

@@ -4,122 +4,189 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     android:clickable="true"
-    android:orientation="vertical"
-    android:padding="8dp">
+    android:focusable="true"
+    android:orientation="vertical">
 
     <androidx.appcompat.widget.Toolbar
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/liteBlue"
         app:title="@string/textSwiftTransfer" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Download via:"
-            android:textColor="@color/blackText" />
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="8dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:orientation="horizontal"
-            android:weightSum="4">
+            android:orientation="vertical">
 
             <TextView
-                android:layout_width="0dp"
+                style="@style/MyTextStyle14spBoldBack"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="3"
-                android:text="Download manager"
+                android:text="@string/textDownloadVia"
                 android:textColor="@color/blackText" />
-
-            <androidx.appcompat.widget.SwitchCompat
-                android:id="@+id/switchDownloadManager"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:checked="true" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:orientation="horizontal"
-            android:weightSum="4">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="3"
-                android:text="@string/textGetResponse"
-                android:textColor="@color/blackText" />
-
-            <androidx.appcompat.widget.SwitchCompat
-                android:id="@+id/switchGetResponse"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
-        </LinearLayout>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:orientation="horizontal"
-        android:weightSum="3">
-
-        <FrameLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="2.5">
 
             <LinearLayout
-                android:id="@+id/linearLayoutContainerLoader"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:orientation="horizontal"
+                android:weightSum="4">
 
-                <ImageView
-                    android:id="@+id/imageViewLoader"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@color/progressLoading"
-                    android:visibility="invisible" />
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:text="@string/textDownloadManager"
+                    android:textColor="@color/blackText" />
 
+                <androidx.appcompat.widget.SwitchCompat
+                    android:id="@+id/switchDownloadManager"
+                    android:layout_width="0dp"
+                    android:layout_height="30dp"
+                    android:layout_weight="1"
+                    android:checked="true" />
             </LinearLayout>
 
-            <TextView
-                style="@style/MyTextStyle16spBoldBlack"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:text="Download bank list" />
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:orientation="horizontal"
+                android:weightSum="4">
 
-        </FrameLayout>
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:text="@string/textGetResponse"
+                    android:textColor="@color/blackText" />
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/appCompatButtonLoadFile"
-            android:layout_width="wrap_content"
+                <androidx.appcompat.widget.SwitchCompat
+                    android:id="@+id/switchGetResponse"
+                    android:layout_width="0dp"
+                    android:layout_height="30dp"
+                    android:layout_weight="1" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="end"
-            android:layout_weight="0.5"
-            android:background="@drawable/bg_ripple_btn_load_bank_list_fragment"
-            android:text="load" />
+            android:layout_marginTop="16dp"
+            android:orientation="vertical">
 
+            <TextView
+                style="@style/MyTextStyle14spBoldBack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/textOpenFileVia"
+                android:textColor="@color/blackText" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:orientation="horizontal"
+                android:weightSum="4">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:text="@string/textCurrentApplication"
+                    android:textColor="@color/blackText" />
+
+                <androidx.appcompat.widget.SwitchCompat
+                    android:id="@+id/switchCurrentApplication"
+                    android:layout_width="0dp"
+                    android:layout_height="30dp"
+                    android:layout_weight="1"
+                    android:checked="true" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:orientation="horizontal"
+                android:weightSum="4">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:text="@string/textThirdPartyApplication"
+                    android:textColor="@color/blackText" />
+
+                <androidx.appcompat.widget.SwitchCompat
+                    android:id="@+id/switchThirdPartyApplication"
+                    android:layout_width="0dp"
+                    android:layout_height="30dp"
+                    android:layout_weight="1" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal"
+            android:weightSum="3">
+
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2.5">
+
+                <LinearLayout
+                    android:id="@+id/linearLayoutContainerLoader"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/imageViewLoader"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/progressLoading"
+                        android:visibility="invisible" />
+
+                </LinearLayout>
+
+                <TextView
+                    style="@style/MyTextStyle16spBoldBlack"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="@string/textDownloadBankList" />
+
+            </FrameLayout>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/appCompatButtonLoadFile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_weight="0.5"
+                android:background="@drawable/bg_ripple_btn_load_bank_list_fragment"
+                android:text="@string/textLoad" />
+
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewFileList"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="32dp"
+            tools:listitem="@layout/item_file_rv" />
     </LinearLayout>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerViewFileList"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="32dp"
-        tools:listitem="@layout/item_file_rv" />
-
 </LinearLayout>

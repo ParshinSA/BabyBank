@@ -1,7 +1,8 @@
-package com.example.babybank.presentation.models
+package com.example.babybank.data.common.utils
 
 import android.content.Context
 import android.os.Environment
+import com.example.babybank.R
 import java.io.File
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -11,19 +12,18 @@ class ExternalDownloadFolder @Inject constructor(
     private val context: Context
 ) {
 
-    private val externalDownloadFolder =
-        context.getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS)
-
-    fun getExternalFolder(): File? {
+    fun getExternalFolder(directory: String): File? {
         if (!checkStateExternalStorage()) return null
-        return externalDownloadFolder
+        return context.getExternalFilesDir(directory)
     }
 
     fun checkStateExternalStorage() =
         Environment.getExternalStorageState() == Environment.MEDIA_MOUNTED
 
-    fun getFileExternalFolder(): Array<out File>? {
-        return getExternalFolder()?.absoluteFile?.listFiles()
+    fun getFileExternalFolder(directory: String): Array<out File>? {
+        return getExternalFolder(directory)?.listFiles()
     }
-
+companion object{
+    const val FOLDER_BANK_LIST = "Bank list"
+}
 }

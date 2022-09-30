@@ -27,6 +27,7 @@ interface AppComponent {
     fun inject(fragment: DetailsTransitionFragment)
     fun inject(fragment: OnboardingFragment)
     fun inject(fragment: ContainerFragment)
+    fun inject(fragment: FragmentPdfViewer)
     fun inject(fragment: BankListFragment)
     fun inject(fragment: ProfileFragment)
     fun inject(fragment: WalletFragment)

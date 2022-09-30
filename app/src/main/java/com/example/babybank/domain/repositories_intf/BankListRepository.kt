@@ -4,5 +4,5 @@ import com.example.babybank.presentation.models.DownloadVia
 import io.reactivex.Completable
 
 interface BankListRepository {
-    fun downloadFileVia(via: DownloadVia): Completable
+    fun downloadFileVia(via: DownloadVia, directory: String): Completable
 }

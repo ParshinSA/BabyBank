@@ -20,7 +20,6 @@ class MenuItemRepositoryImpl @Inject constructor(
 
         return if (allMenus.containsKey(keyMenu))
             Single.just(allMenus.getValue(keyMenu))
-
         else mockDataSource.getMenu(request)
             .map { operationMenuItemList ->
                 val menuItemDomainList = operationMenuItemList.map { menuItemDto ->

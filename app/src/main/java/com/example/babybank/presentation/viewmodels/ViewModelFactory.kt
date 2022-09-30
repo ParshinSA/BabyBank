@@ -7,19 +7,21 @@ import com.example.babybank.common.di.modules.NavigationModule.Companion.FRAGMEN
 import com.example.babybank.domain.interactors.*
 import com.example.babybank.presentation.common.MoneyFormatter
 import com.example.babybank.presentation.models.ConvertersDomainToUi
-import com.example.babybank.presentation.models.ExternalDownloadFolder
+import com.example.babybank.data.common.utils.ExternalDownloadFolder
+import com.example.babybank.presentation.common.FileUriProvider
 import com.github.terrakok.cicerone.Router
 import javax.inject.Inject
 import javax.inject.Named
 
 class ViewModelFactory @Inject constructor(
     private val detailsTransitionFrgInteractor: DetailsTransitionFrgInteractor,
+    private val externalDownloadFolder: ExternalDownloadFolder,
     private val bankListFrgInteractor: BankListFrgInteractor,
     private val profileFrgInteractor: ProfileFrgInteractor,
     private val walletFrgInteractor: WalletFrgInteractor,
     private val homeFrgInteractor: HomeFrgInteractor,
     private val converters: ConvertersDomainToUi,
-    private val externalDownloadFolder: ExternalDownloadFolder,
+    private val fileUriProvider: FileUriProvider,
     private val moneyFormatter: MoneyFormatter,
     @Named(ACTIVITY_CONTAINER_ROUTER)
     private val activityRouter: Router,
@@ -80,6 +82,13 @@ class ViewModelFactory @Inject constructor(
                 BankListFrgViewModel(
                     externalDownloadFolder = externalDownloadFolder,
                     interactor = bankListFrgInteractor,
+                    fileUriProvider = fileUriProvider,
+                    parentRouter = fragmentRouter,
+                ) as T
+
+            modelClass.isAssignableFrom(PdfViewerFrgViewModel::class.java) ->
+                PdfViewerFrgViewModel(
+                    externalDownloadFolder = externalDownloadFolder,
                     parentRouter = fragmentRouter,
                 ) as T
 

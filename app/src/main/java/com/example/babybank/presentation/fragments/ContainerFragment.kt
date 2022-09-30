@@ -38,19 +38,18 @@ class ContainerFragment : BaseFragment(), BackButtonListener {
     lateinit var viewModelFactory: ViewModelFactory
     private val viewModel: ContainerFrgViewModel by viewModels { viewModelFactory }
 
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        inject()
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentContainerBinding.inflate(layoutInflater, container, false)
-        action()
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        action()
     }
 
     override fun onResume() {
