@@ -15,6 +15,8 @@
         <entry key="..\:/Users/PARSHIN/Desktop/Repositories/BabyBank/app/src/main/res/drawable/bg_ripple_btn_load_bank_list_fragment.xml" value="0.2890625" />
         <entry key="..\:/Users/PARSHIN/Desktop/Repositories/BabyBank/app/src/main/res/drawable/bg_ripple_btn_open_file.xml" value="0.2890625" />
         <entry key="..\:/Users/PARSHIN/Desktop/Repositories/BabyBank/app/src/main/res/drawable/decoration_item_recycler_view.xml" value="0.2890625" />
+        <entry key="..\:/Users/PARSHIN/Desktop/Repositories/BabyBank/app/src/main/res/drawable/ic_face.xml" value="0.16197916666666667" />
+        <entry key="..\:/Users/PARSHIN/Desktop/Repositories/BabyBank/app/src/main/res/drawable/ic_load_image.xml" value="0.16197916666666667" />
         <entry key="..\:/Users/PARSHIN/Desktop/Repositories/BabyBank/app/src/main/res/layout/bottom_sheet.xml" value="0.27291666666666664" />
         <entry key="..\:/Users/PARSHIN/Desktop/Repositories/BabyBank/app/src/main/res/layout/fragment_balance.xml" value="0.19722222222222222" />
         <entry key="..\:/Users/PARSHIN/Desktop/Repositories/BabyBank/app/src/main/res/layout/fragment_bank_list.xml" value="0.33" />
@@ -26,6 +28,7 @@
         <entry key="..\:/Users/PARSHIN/Desktop/Repositories/BabyBank/app/src/main/res/layout/fragment_details_transfers.xml" value="0.27291666666666664" />
         <entry key="..\:/Users/PARSHIN/Desktop/Repositories/BabyBank/app/src/main/res/layout/fragment_home.xml" value="0.27291666666666664" />
         <entry key="..\:/Users/PARSHIN/Desktop/Repositories/BabyBank/app/src/main/res/layout/fragment_pdf_viewer.xml" value="0.27291666666666664" />
+        <entry key="..\:/Users/PARSHIN/Desktop/Repositories/BabyBank/app/src/main/res/layout/fragment_profile.xml" value="0.27291666666666664" />
         <entry key="..\:/Users/PARSHIN/Desktop/Repositories/BabyBank/app/src/main/res/layout/fragment_wallet.xml" value="0.27291666666666664" />
         <entry key="..\:/Users/PARSHIN/Desktop/Repositories/BabyBank/app/src/main/res/layout/item_file_rv.xml" value="0.27291666666666664" />
         <entry key="..\:/Users/PARSHIN/Desktop/Repositories/BabyBank/app/src/main/res/xml/files_path.xml" value="0.27291666666666664" />

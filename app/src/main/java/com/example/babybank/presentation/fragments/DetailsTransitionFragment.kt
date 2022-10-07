@@ -9,17 +9,16 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.babybank.common.extentions.withArguments
 import com.example.babybank.databinding.FragmentDetailsTransfersBinding
 import com.example.babybank.presentation.AppApplication
+import com.example.babybank.presentation.adapters.FactoryDelegationAdapterDisplayableItem
 import com.example.babybank.presentation.adapters.LoaderUiDelegateAdapterRv
 import com.example.babybank.presentation.adapters.MenuItemTitleIconUiAdapterDelegateRv
 import com.example.babybank.presentation.adapters.MenuTitleUiAdapterDelegateRv
-import com.example.babybank.presentation.adapters.RecyclerViewAdapter
 import com.example.babybank.presentation.common.BackButtonListener
 import com.example.babybank.presentation.common.DisplayableItem
 import com.example.babybank.presentation.models.LoaderUiRv
 import com.example.babybank.presentation.viewmodels.DetailsTransitionFrgViewModel
 import com.example.babybank.presentation.viewmodels.ViewModelFactory
 import com.hannesdorfmann.adapterdelegates4.AdapterDelegatesManager
-import com.hannesdorfmann.adapterdelegates4.AsyncListDifferDelegationAdapter
 import javax.inject.Inject
 
 class DetailsTransitionFragment : BaseFragment(), BackButtonListener {
@@ -31,16 +30,9 @@ class DetailsTransitionFragment : BaseFragment(), BackButtonListener {
     lateinit var viewModelFactory: ViewModelFactory
     private val viewModel: DetailsTransitionFrgViewModel by viewModels { viewModelFactory }
 
-    private val actionRecyclerViewAdapter by lazy {
-        AsyncListDifferDelegationAdapter(
-            RecyclerViewAdapter.DiffUtilItemCallback(),
-            AdapterDelegatesManager(
-                MenuItemTitleIconUiAdapterDelegateRv(this::click),
-                MenuTitleUiAdapterDelegateRv(),
-                LoaderUiDelegateAdapterRv()
-            )
-        )
-    }
+    @Inject
+    lateinit var factoryAdapter: FactoryDelegationAdapterDisplayableItem
+    private val adapterRv by lazy { factoryAdapter.createAdapter(createDelegatesManager()) }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -92,14 +84,21 @@ class DetailsTransitionFragment : BaseFragment(), BackButtonListener {
         }
     }
 
+    private fun createDelegatesManager(): AdapterDelegatesManager<List<DisplayableItem>> {
+        return AdapterDelegatesManager(
+            MenuItemTitleIconUiAdapterDelegateRv(this::click),
+            MenuTitleUiAdapterDelegateRv(),
+            LoaderUiDelegateAdapterRv()
+        )
+    }
+
     private fun setupActionMenu(menuItemList: List<DisplayableItem>) {
         with(binding.recyclerViewActions) {
-            adapter = actionRecyclerViewAdapter
+            adapter = adapterRv
             layoutManager = LinearLayoutManager(requireContext())
             setHasFixedSize(true)
         }
-        actionRecyclerViewAdapter.items =
-            if (menuItemList.isEmpty()) listOf(LoaderUiRv()) else menuItemList
+        adapterRv.items = if (menuItemList.isEmpty()) listOf(LoaderUiRv()) else menuItemList
     }
 
     private fun doneClick() {

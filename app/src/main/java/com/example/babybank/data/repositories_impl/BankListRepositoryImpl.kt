@@ -19,15 +19,13 @@ class BankListRepositoryImpl @Inject constructor(
     override fun downloadFileVia(via: DownloadVia, directory: String): Completable {
         return mockDataSource.getPdfLink()
             .flatMapCompletable { pdfLinkDto ->
-
                 val url = pdfLinkDto.url
 
                 when (via) {
-                    DOWNLOAD_MANAGER -> downloadManagerDownloadDataSourceImpl.download(
-                        url,
-                        directory
-                    )
-                    GET_RESPONSE -> getResponseDownloadDataSourceImpl.download(url, directory)
+                    DOWNLOAD_MANAGER ->
+                        downloadManagerDownloadDataSourceImpl.download(url, directory)
+                    GET_RESPONSE ->
+                        getResponseDownloadDataSourceImpl.download(url, directory)
                 }
             }
     }

@@ -17,7 +17,6 @@ class ConvertersDomainToUi @Inject constructor(
         return with(model) {
             PersonalInfoProfileFrgUi(
                 name = "$lastName $name",
-                avatarLink = avatarLink,
                 phoneNumber = phoneNumber
             )
         }

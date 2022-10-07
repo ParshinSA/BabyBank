@@ -8,11 +8,9 @@ data class PersonalInfoDto(
     @SerializedName("name")
     val name: String?,
     @SerializedName("middlename")
-    val middlename: String?,
+    val middleName: String?,
     @SerializedName("lastname")
     val lastName: String?,
-    @SerializedName("avatar_link")
-    val avatarLink: String?,
     @SerializedName("phone_number")
     val phoneNumber: String?
 )

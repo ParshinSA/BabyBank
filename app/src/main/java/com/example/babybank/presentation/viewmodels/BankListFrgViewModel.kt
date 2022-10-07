@@ -1,6 +1,7 @@
 package com.example.babybank.presentation.viewmodels
 
 import android.content.Intent
+import android.util.Log
 import android.webkit.MimeTypeMap
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -30,7 +31,7 @@ class BankListFrgViewModel @Inject constructor(
     private var loadVia = DownloadVia.DOWNLOAD_MANAGER
 
     var openVia = OpenVia.CURRENT_APPLICATION
-    private set
+        private set
 
     private val isLoadingMutLiveData = MutableLiveData(false)
     val isLoadingLiveData: LiveData<Boolean> get() = isLoadingMutLiveData

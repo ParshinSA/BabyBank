@@ -63,8 +63,6 @@ class FragmentPdfViewer : BaseFragment(), BackButtonListener {
     }
 
     private fun openPdf(file: File) {
-        val t =binding.PDFView.display.mode
-
         binding.PDFView.fromFile(file)
             .load()
     }

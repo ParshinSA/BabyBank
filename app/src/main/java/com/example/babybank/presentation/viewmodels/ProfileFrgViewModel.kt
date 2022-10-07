@@ -1,5 +1,6 @@
 package com.example.babybank.presentation.viewmodels
 
+import android.net.Uri
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.babybank.R
@@ -14,9 +15,12 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
 class ProfileFrgViewModel(
-    interactor: ProfileFrgInteractor,
+    private val interactor: ProfileFrgInteractor,
     private val converters: ConvertersDomainToUi,
 ) : BaseViewModel() {
+
+    private val customAvatarLinkMutLiveData = MutableLiveData<String?>()
+    val customAvatarLinkLiveData: LiveData<String?> get() = customAvatarLinkMutLiveData
 
     private val personalInfoMutLiveData = MutableLiveData<PersonalInfoProfileFrgUi>()
     val personalInfoLiveData: LiveData<PersonalInfoProfileFrgUi>
@@ -50,6 +54,21 @@ class ProfileFrgViewModel(
                 error.printStackTrace()
                 showErrorMessage()
             }).autoClear()
+
+        interactor.checkCustomAvatarLink()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({
+                customAvatarLinkMutLiveData.value = it
+            }, {
+                customAvatarLinkMutLiveData.value = null
+                it.printStackTrace()
+            }).autoClear()
     }
 
+    fun saveCustomAvatarLink(uri: Uri) {
+        interactor.saveCustomAvatarLink(uri)
+            .subscribeOn(Schedulers.io())
+            .subscribe().autoClear()
+    }
 }

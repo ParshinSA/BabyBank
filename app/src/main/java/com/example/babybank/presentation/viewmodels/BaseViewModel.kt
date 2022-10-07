@@ -1,6 +1,5 @@
 package com.example.babybank.presentation.viewmodels
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -24,13 +23,6 @@ abstract class BaseViewModel : ViewModel() {
 
     override fun onCleared() {
         compositeDisposable.clear()
-        Log.d(TAG, "onCleared:")
         super.onCleared()
     }
-
-    private val TAG: String = "TAG ${
-        this.javaClass.name.filterIndexed { index, _ ->
-            index > this.javaClass.name.lastIndexOf('.')
-        }
-    }"
 }

@@ -20,6 +20,7 @@ class GetResponseDownloadDataSourceImpl @Inject constructor(
     override fun download(url: String, directory: String): Completable {
         val downloadFolder = externalDownloadFolder.getExternalFolder(directory)
         return Completable.create { subscription ->
+            if (subscription.isDisposed) return@create
 
             var nameFile = fileNameHandler.urlToName(url)
             nameFile = fileNameHandler.checkNameFile(nameFile, downloadFolder)
@@ -36,6 +37,7 @@ class GetResponseDownloadDataSourceImpl @Inject constructor(
 
                 subscription.onComplete()
             } catch (t: Throwable) {
+                file.delete()
                 subscription.onError(t)
             }
         }

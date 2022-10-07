@@ -10,9 +10,10 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.babybank.databinding.FragmentBankListBinding
 import com.example.babybank.presentation.AppApplication
-import com.example.babybank.presentation.adapters.RecyclerViewAdapter
+import com.example.babybank.presentation.adapters.FactoryDelegationAdapterDisplayableItem
 import com.example.babybank.presentation.adapters.UploadedFileUiAdapterRv
 import com.example.babybank.presentation.common.BackButtonListener
+import com.example.babybank.presentation.common.DisplayableItem
 import com.example.babybank.presentation.models.DownloadVia.DOWNLOAD_MANAGER
 import com.example.babybank.presentation.models.DownloadVia.GET_RESPONSE
 import com.example.babybank.presentation.models.OpenVia.CURRENT_APPLICATION
@@ -21,7 +22,6 @@ import com.example.babybank.presentation.models.UploadedFileUi
 import com.example.babybank.presentation.viewmodels.BankListFrgViewModel
 import com.example.babybank.presentation.viewmodels.ViewModelFactory
 import com.hannesdorfmann.adapterdelegates4.AdapterDelegatesManager
-import com.hannesdorfmann.adapterdelegates4.AsyncListDifferDelegationAdapter
 import javax.inject.Inject
 
 class BankListFragment : BaseFragment(), BackButtonListener {
@@ -33,12 +33,9 @@ class BankListFragment : BaseFragment(), BackButtonListener {
     lateinit var viewModelFactory: ViewModelFactory
     private val viewModel: BankListFrgViewModel by viewModels { viewModelFactory }
 
-    private val uploadedFilesRecyclerViewAdapter by lazy {
-        AsyncListDifferDelegationAdapter(
-            RecyclerViewAdapter.DiffUtilItemCallback(),
-            AdapterDelegatesManager(UploadedFileUiAdapterRv(this::openFile))
-        )
-    }
+    @Inject
+    lateinit var factoryAdapter: FactoryDelegationAdapterDisplayableItem
+    private val adapterRv by lazy { factoryAdapter.createAdapter(createDelegatesManager()) }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -64,7 +61,7 @@ class BankListFragment : BaseFragment(), BackButtonListener {
 
     private fun initFileListRecyclerView() {
         with(binding.recyclerViewFileList) {
-            adapter = uploadedFilesRecyclerViewAdapter
+            adapter = adapterRv
             layoutManager = LinearLayoutManager(requireContext())
             setHasFixedSize(true)
         }
@@ -100,6 +97,10 @@ class BankListFragment : BaseFragment(), BackButtonListener {
         }
     }
 
+    private fun createDelegatesManager(): AdapterDelegatesManager<List<DisplayableItem>> {
+        return AdapterDelegatesManager(UploadedFileUiAdapterRv(this::openFile))
+    }
+
     private fun changeDownloadFileVia() {
         viewModel.changeDownloadFileVia(
             if (binding.switchDownloadManager.isChecked) DOWNLOAD_MANAGER else GET_RESPONSE
@@ -123,7 +124,7 @@ class BankListFragment : BaseFragment(), BackButtonListener {
     }
 
     private fun updateRv(uploadedFiles: List<UploadedFileUi>) {
-        uploadedFilesRecyclerViewAdapter.items = uploadedFiles
+        adapterRv.items = uploadedFiles
     }
 
     private fun changeStateBtnDownload(state: Boolean) {
@@ -137,7 +138,7 @@ class BankListFragment : BaseFragment(), BackButtonListener {
     }
 
     private fun openFile(fileName: String) {
-        when (checkNotNull(viewModel.openVia )) {
+        when (checkNotNull(viewModel.openVia)) {
             THIRD_PARTY_APPLICATION -> openFileThirdPartyApplication(fileName)
             CURRENT_APPLICATION -> openViaCurrentApplication(fileName)
         }
@@ -150,7 +151,6 @@ class BankListFragment : BaseFragment(), BackButtonListener {
         try {
             startActivity(intent)
         } catch (e: ActivityNotFoundException) {
-            Log.d(TAG, "open: fail")
             viewModel.showErrorMessage()
         }
     }

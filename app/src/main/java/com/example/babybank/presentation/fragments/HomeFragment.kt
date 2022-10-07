@@ -28,17 +28,9 @@ class HomeFragment : BaseFragment() {
     lateinit var viewModelFactory: ViewModelFactory
     private val viewModel: HomeFrgViewModel by viewModels { viewModelFactory }
 
-    private val accountAndCardMenuAdapterRv by lazy {
-        AsyncListDifferDelegationAdapter(
-            RecyclerViewAdapter.DiffUtilItemCallback(),
-            AdapterDelegatesManager(
-                AccountIconUiAdapterDelegateRv(this::click),
-                CardUiAdapterDelegateRv(this::click),
-                MenuTitleUiAdapterDelegateRv(),
-                LoaderUiDelegateAdapterRv(),
-            )
-        )
-    }
+    @Inject
+    lateinit var factoryAdapter: FactoryDelegationAdapterDisplayableItem
+    private val adapterRv by lazy { factoryAdapter.createAdapter(createDelegatesManager()) }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -83,6 +75,15 @@ class HomeFragment : BaseFragment() {
         }
     }
 
+    private fun createDelegatesManager(): AdapterDelegatesManager<List<DisplayableItem>> {
+        return AdapterDelegatesManager(
+            AccountIconUiAdapterDelegateRv(this::click),
+            CardUiAdapterDelegateRv(this::click),
+            MenuTitleUiAdapterDelegateRv(),
+            LoaderUiDelegateAdapterRv(),
+        )
+    }
+
     private fun setTotalMoney(totalMoney: TotalMoneyUi) {
         binding.textViewTotalMoney.text = totalMoney.money
     }
@@ -93,12 +94,11 @@ class HomeFragment : BaseFragment() {
 
     private fun setDataAccountsCardsInRecyclerView(dataList: List<DisplayableItem>) {
         with(binding.recyclerViewAccountsCards) {
-            adapter = accountAndCardMenuAdapterRv
+            adapter = adapterRv
             layoutManager = LinearLayoutManager(requireContext())
             setHasFixedSize(true)
         }
-        accountAndCardMenuAdapterRv.items =
-            if (dataList.isEmpty()) listOf(LoaderUiRv()) else dataList
+        adapterRv.items = if (dataList.isEmpty()) listOf(LoaderUiRv()) else dataList
     }
 
     override fun click(itemId: Int) {

@@ -17,7 +17,6 @@ import com.example.babybank.presentation.models.LoaderUiRv
 import com.example.babybank.presentation.viewmodels.ViewModelFactory
 import com.example.babybank.presentation.viewmodels.WalletFrgViewModel
 import com.hannesdorfmann.adapterdelegates4.AdapterDelegatesManager
-import com.hannesdorfmann.adapterdelegates4.AsyncListDifferDelegationAdapter
 import javax.inject.Inject
 
 class WalletFragment : BaseFragment() {
@@ -29,24 +28,15 @@ class WalletFragment : BaseFragment() {
     lateinit var viewModelFactory: ViewModelFactory
     private val viewModel: WalletFrgViewModel by viewModels { viewModelFactory }
 
+    @Inject
+    lateinit var factoryAdapter: FactoryDelegationAdapterDisplayableItem
+
     private val transferMenuAdapterRv by lazy {
-        AsyncListDifferDelegationAdapter(
-            RecyclerViewAdapter.DiffUtilItemCallback(),
-            AdapterDelegatesManager(
-                TransferUiAdapterDelegateRv(this::click)
-            )
-        )
+        factoryAdapter.createAdapter(createDelegatesManagerTransferMenu())
     }
 
     private val operationMenuAdapterRv by lazy {
-        AsyncListDifferDelegationAdapter(
-            RecyclerViewAdapter.DiffUtilItemCallback(),
-            AdapterDelegatesManager(
-                MenuItemTitleIconUiAdapterDelegateRv { idItem -> click(idItem) },
-                MenuTitleUiAdapterDelegateRv(),
-                LoaderUiDelegateAdapterRv()
-            )
-        )
+        factoryAdapter.createAdapter(createDelegatesManagerOperationMenu())
     }
 
     override fun onCreateView(
@@ -62,11 +52,6 @@ class WalletFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         action()
-    }
-
-    override fun onResume() {
-        Log.d("MyTAG", "onResume: init wallet")
-        super.onResume()
     }
 
     private fun action() {
@@ -85,6 +70,18 @@ class WalletFragment : BaseFragment() {
         viewModel.transfersLiveDta.observe(viewLifecycleOwner) { menuItemList ->
             setDataTransferRv(menuItemList)
         }
+    }
+
+    private fun createDelegatesManagerTransferMenu(): AdapterDelegatesManager<List<DisplayableItem>> {
+        return AdapterDelegatesManager(TransferUiAdapterDelegateRv(this::click))
+    }
+
+    private fun createDelegatesManagerOperationMenu(): AdapterDelegatesManager<List<DisplayableItem>> {
+        return AdapterDelegatesManager(
+            MenuItemTitleIconUiAdapterDelegateRv { idItem -> click(idItem) },
+            MenuTitleUiAdapterDelegateRv(),
+            LoaderUiDelegateAdapterRv()
+        )
     }
 
     private fun setDataTransferRv(menuItemList: List<DisplayableItem>) {

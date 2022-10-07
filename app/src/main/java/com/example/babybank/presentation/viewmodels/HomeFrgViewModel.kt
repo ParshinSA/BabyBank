@@ -6,14 +6,12 @@ import com.example.babybank.R
 import com.example.babybank.domain.interactors.HomeFrgInteractor
 import com.example.babybank.domain.models.AccountInfoDomain
 import com.example.babybank.domain.models.CurrencyTypeDomain
-import com.example.babybank.domain.models.PersonalInfoDomain
 import com.example.babybank.domain.models.RequestCurrencyRate
 import com.example.babybank.presentation.Screens
 import com.example.babybank.presentation.common.DisplayableItem
 import com.example.babybank.presentation.common.MoneyFormatter
 import com.example.babybank.presentation.models.*
 import com.github.terrakok.cicerone.Router
-import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject

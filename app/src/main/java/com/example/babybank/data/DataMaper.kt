@@ -29,9 +29,8 @@ fun PersonalInfoDto.toPersonalInfoDomain(): PersonalInfoDomain {
     return PersonalInfoDomain(
         id = id ?: 0,
         name = name ?: "",
-        middlename = middlename ?: "",
+        middleName = middleName ?: "",
         lastName = lastName ?: "",
-        avatarLink = avatarLink ?: "",
         phoneNumber = phoneNumber ?: ""
     )
 }

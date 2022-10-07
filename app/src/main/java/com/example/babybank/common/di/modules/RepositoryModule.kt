@@ -2,6 +2,7 @@ package com.example.babybank.common.di.modules
 
 import com.example.babybank.data.data_source.interf.CurrencyRateDataSource
 import com.example.babybank.data.data_source.interf.MockDataSource
+import com.example.babybank.data.data_source.interf.UserInfoSharedPrefsDataSource
 import com.example.babybank.data.data_source.remote.DownloadManagerDownloadDataSourceImpl
 import com.example.babybank.data.data_source.remote.GetResponseDownloadDataSourceImpl
 import com.example.babybank.data.repositories_impl.*
@@ -35,9 +36,13 @@ class RepositoryModule {
 
     @Provides
     fun providePersonalInfoRepositoryImplToInterface(
-        mockDataSource: MockDataSource
+        mockDataSource: MockDataSource,
+        userInfoSharedPrefsDataSource: UserInfoSharedPrefsDataSource
     ): PersonalInfoRepository {
-        return PersonalInfoRepositoryImpl(mockDataSource = mockDataSource)
+        return PersonalInfoRepositoryImpl(
+            mockDataSource = mockDataSource,
+            userInfoSharedPrefsDataSource = userInfoSharedPrefsDataSource
+        )
     }
 
     @Provides

@@ -3,12 +3,14 @@ package com.example.babybank.data.data_source.remote
 import android.app.DownloadManager
 import android.content.Context
 import android.net.Uri
+import android.util.Log
 import com.example.babybank.R
 import com.example.babybank.data.common.utils.AppDownloadManager
 import com.example.babybank.data.common.utils.ExternalDownloadFolder
 import com.example.babybank.data.common.utils.FileNameHandler
 import com.example.babybank.data.data_source.interf.DownloadDataSource
 import io.reactivex.Completable
+import java.io.File
 import java.io.IOException
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -26,9 +28,7 @@ class DownloadManagerDownloadDataSourceImpl @Inject constructor(
     override fun download(url: String, directory: String): Completable {
         val downloadFolder = externalDownloadFolder.getExternalFolder(directory)
         return Completable.create { subscription ->
-
-            if (!externalDownloadFolder.checkStateExternalStorage())
-                subscription.onError(IOException("Storage not available"))
+            if (subscription.isDisposed) return@create
 
             var nameFile = fileNameHandler.urlToName(url)
             nameFile = fileNameHandler.checkNameFile(nameFile, downloadFolder)
@@ -42,7 +42,10 @@ class DownloadManagerDownloadDataSourceImpl @Inject constructor(
             val loadId = manager.enqueue(request)
             when (loadProcess(loadId)) {
                 DownloadManager.STATUS_SUCCESSFUL -> subscription.onComplete()
-                else -> subscription.onError(IOException("Failed loading $url"))
+                else -> {
+                    File(downloadFolder, nameFile).delete()
+                    subscription.onError(IOException("Failed loading $url"))
+                }
             }
         }
     }
