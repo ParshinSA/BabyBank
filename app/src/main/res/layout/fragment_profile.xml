@@ -3,17 +3,20 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/liteBlue">
 
     <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:id="@+id/collapsingToolbarLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:contentScrim="@color/liteBlue"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed|snap"
             app:toolbarId="@id/toolbar">
 
             <LinearLayout
@@ -35,9 +38,10 @@
                         android:layout_marginTop="42dp"
                         android:layout_marginBottom="16dp"
                         android:padding="2dp"
+                        app:layout_behavior=""
                         android:scaleType="centerCrop"
                         app:shapeAppearanceOverlay="@style/MyStyleShapeAppearance"
-                        app:strokeColor="@color/liteBlue"
+                        app:strokeColor="@color/gray"
                         app:strokeWidth="6dp" />
 
                     <ImageView
@@ -82,7 +86,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/bg_recycler_view_white_corners_top_50dp"
         android:orientation="vertical"
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
@@ -90,6 +93,7 @@
             android:id="@+id/recyclerViewProfileInfo"
             android:layout_width="match_parent"
             android:layout_height="fill_parent"
+            android:background="@drawable/bg_recycler_view_white_corners_top_50dp"
             android:padding="4dp"
             tools:itemCount="5"
             tools:listitem="@layout/item_item_menu_title_icon" />

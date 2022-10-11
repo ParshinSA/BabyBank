@@ -16,7 +16,6 @@ import com.example.babybank.presentation.models.TotalMoneyUi
 import com.example.babybank.presentation.viewmodels.HomeFrgViewModel
 import com.example.babybank.presentation.viewmodels.ViewModelFactory
 import com.hannesdorfmann.adapterdelegates4.AdapterDelegatesManager
-import com.hannesdorfmann.adapterdelegates4.AsyncListDifferDelegationAdapter
 import javax.inject.Inject
 
 class HomeFragment : BaseFragment() {
@@ -93,11 +92,11 @@ class HomeFragment : BaseFragment() {
     }
 
     private fun setDataAccountsCardsInRecyclerView(dataList: List<DisplayableItem>) {
-        with(binding.recyclerViewAccountsCards) {
-            adapter = adapterRv
-            layoutManager = LinearLayoutManager(requireContext())
-            setHasFixedSize(true)
-        }
+        val recyclerView = binding.recyclerViewAccountsCards
+        recyclerView.adapter = adapterRv
+        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        recyclerView.setHasFixedSize(true)
+
         adapterRv.items = if (dataList.isEmpty()) listOf(LoaderUiRv()) else dataList
     }
 

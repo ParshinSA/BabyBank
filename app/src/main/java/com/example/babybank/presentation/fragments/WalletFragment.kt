@@ -1,7 +1,6 @@
 package com.example.babybank.presentation.fragments
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -85,21 +84,21 @@ class WalletFragment : BaseFragment() {
     }
 
     private fun setDataTransferRv(menuItemList: List<DisplayableItem>) {
-        with(binding.recyclerViewTransfers) {
-            adapter = transferMenuAdapterRv
-            layoutManager =
-                GridLayoutManager(requireContext(), 2, GridLayoutManager.VERTICAL, false)
-            setHasFixedSize(true)
-        }
+        val recyclerView = binding.recyclerViewTransfers
+        recyclerView.adapter = transferMenuAdapterRv
+        recyclerView.layoutManager =
+            GridLayoutManager(requireContext(), 2, GridLayoutManager.VERTICAL, false)
+        recyclerView.setHasFixedSize(true)
+
         transferMenuAdapterRv.items = menuItemList
     }
 
     private fun setDataOperationRv(menuItemList: List<DisplayableItem>) {
-        with(binding.recyclerViewOperations) {
-            adapter = operationMenuAdapterRv
-            layoutManager = LinearLayoutManager(requireContext())
-            setHasFixedSize(true)
-        }
+        val recyclerView = binding.recyclerViewOperations
+        recyclerView.adapter = operationMenuAdapterRv
+        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        recyclerView.setHasFixedSize(true)
+
         operationMenuAdapterRv.items =
             if (menuItemList.isEmpty()) listOf(LoaderUiRv()) else menuItemList
     }

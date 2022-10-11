@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="80dp"
-        android:src="@drawable/ic_elipse_complete" />
+        android:src="@drawable/ic_ellipse_complete" />
 
     <TextView
         android:id="@+id/textViewBalanceMessage"
@@ -21,7 +21,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="16dp"
-        tools:text="$200.00 Transfered!" />
+        tools:text="$200.00 Transferred!" />
 
     <TextView
         android:id="@+id/textViewInfoMessage"
@@ -29,7 +29,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:gravity="center"
-        tools:text="You have successfully transfered\n money to Angela S." />
+        tools:text="You have successfully transferred\n money to Angela S." />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

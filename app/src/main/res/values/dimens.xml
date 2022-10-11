@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="cornerRadius50dp">50dp</dimen>
-    <dimen name="cornerRadius25dp">25dp</dimen>
     <dimen name="cornerRadius15dp">15dp</dimen>
-
-    <dimen name="size_header_22sp">22sp</dimen>
 
     <dimen name="paddingIconItemRecyclerView">8dp</dimen>
 

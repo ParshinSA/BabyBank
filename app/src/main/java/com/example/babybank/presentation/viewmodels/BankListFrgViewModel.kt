@@ -1,7 +1,6 @@
 package com.example.babybank.presentation.viewmodels
 
 import android.content.Intent
-import android.util.Log
 import android.webkit.MimeTypeMap
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

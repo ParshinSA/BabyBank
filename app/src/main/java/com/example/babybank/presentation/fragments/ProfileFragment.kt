@@ -10,10 +10,10 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
-import com.example.babybank.presentation.adapters.FactoryDelegationAdapterDisplayableItem
 import com.example.babybank.R
 import com.example.babybank.databinding.FragmentProfileBinding
 import com.example.babybank.presentation.AppApplication
+import com.example.babybank.presentation.adapters.FactoryDelegationAdapterDisplayableItem
 import com.example.babybank.presentation.adapters.LoaderUiDelegateAdapterRv
 import com.example.babybank.presentation.adapters.MenuItemTitleIconUiAdapterDelegateRv
 import com.example.babybank.presentation.adapters.MenuTitleUiAdapterDelegateRv
@@ -22,6 +22,7 @@ import com.example.babybank.presentation.models.LoaderUiRv
 import com.example.babybank.presentation.models.PersonalInfoProfileFrgUi
 import com.example.babybank.presentation.viewmodels.ProfileFrgViewModel
 import com.example.babybank.presentation.viewmodels.ViewModelFactory
+import com.google.android.material.appbar.AppBarLayout
 import com.hannesdorfmann.adapterdelegates4.AdapterDelegatesManager
 import javax.inject.Inject
 
@@ -54,6 +55,7 @@ class ProfileFragment : BaseFragment() {
 
     private fun action() {
         observeData()
+        changeTitleCollapsingToolbar()
         selectedImageFromGalleryInAvatar()
     }
 
@@ -70,6 +72,20 @@ class ProfileFragment : BaseFragment() {
             setImageInAvatar(uriString)
         }
     }
+
+    private fun changeTitleCollapsingToolbar() {
+        binding.appBarLayout.addOnOffsetChangedListener(
+            AppBarLayout.OnOffsetChangedListener { appBarLayout, verticalOffset ->
+                Log.d(
+                    "MyTAG", "changeTitleCollapsingToolbar:" +
+                            "\n minimumHeight ${appBarLayout.minimumHeightForVisibleOverlappingContent}" +
+                            "\n verticalOffset $verticalOffset"
+                )
+            }
+        )
+
+    }
+
 
     private fun checkUri(uri: Uri?) {
         uri?.let {
@@ -110,24 +126,16 @@ class ProfileFragment : BaseFragment() {
         binding.textViewUsername.text = name
     }
 
-    private fun setAvatar(avatarLink: String) {
-        Glide.with(requireContext())
-            .load(avatarLink)
-            .placeholder(R.drawable.ic_load_image)
-            .error(R.drawable.ic_error_load_image)
-            .into(binding.shapeImageViewAvatarProfile)
-    }
-
     private fun setPhoneNumber(phoneNumber: String) {
         binding.textViewUserPhoneNumber.text = phoneNumber
     }
 
     private fun setupSettingsMenu(menuItemList: List<DisplayableItem>) {
-        with(binding.recyclerViewProfileInfo) {
-            adapter = adapterRv
-            layoutManager = LinearLayoutManager(requireContext())
-            setHasFixedSize(true)
-        }
+        val recyclerView = binding.recyclerViewProfileInfo
+        recyclerView.adapter = adapterRv
+        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        recyclerView.setHasFixedSize(true)
+
         adapterRv.items = if (menuItemList.isEmpty()) listOf(LoaderUiRv()) else menuItemList
     }
 

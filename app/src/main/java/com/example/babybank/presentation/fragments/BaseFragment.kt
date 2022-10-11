@@ -27,7 +27,7 @@ abstract class BaseFragment : Fragment(), ItemClick {
 
     fun showErrorDialog(errorMessage: Int) {
         errorDialog = AlertDialog.Builder(requireContext())
-            .setTitle(resources.getString(R.string.titleErrorDialog))
+            .setTitle(resources.getString(R.string.textTitleErrorDialog))
             .setMessage(resources.getString(errorMessage))
             .create()
         errorDialog?.show()

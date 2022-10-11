@@ -2,7 +2,6 @@ package com.example.babybank.presentation.fragments
 
 import android.content.ActivityNotFoundException
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -60,11 +59,10 @@ class BankListFragment : BaseFragment(), BackButtonListener {
     }
 
     private fun initFileListRecyclerView() {
-        with(binding.recyclerViewFileList) {
-            adapter = adapterRv
-            layoutManager = LinearLayoutManager(requireContext())
-            setHasFixedSize(true)
-        }
+        val recyclerView = binding.recyclerViewFileList
+        recyclerView.adapter = adapterRv
+        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        recyclerView.setHasFixedSize(true)
     }
 
     private fun loadFileViaListener() {

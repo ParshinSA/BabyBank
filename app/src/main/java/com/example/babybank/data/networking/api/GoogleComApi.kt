@@ -7,6 +7,6 @@ import retrofit2.http.Url
 
 interface GoogleComApi {
 
-    @GET()
+    @GET
     fun downloadFile(@Url url: String): Call<ResponseBody>
 }

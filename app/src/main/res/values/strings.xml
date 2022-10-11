@@ -7,13 +7,6 @@
     <string name="balanceTitleInBottomNavigationMenu">Charts</string>
     <string name="profileTitleInBottomNavigationMenu">Profile</string>
 
-    <!--    title operations -->
-    <string name="titleAskForATransfer">Ask for a transfer</string>
-    <string name="titleSwiftTransfer">"SWIFT transfer "</string>
-    <string name="titleTransferByRequisites">Transfer by requisites</string>
-    <string name="titlePaymentsByQrCode">Payment by QR code</string>
-    <string name="titleCurrencyExchange">Currency exchanger</string>
-
     <!--    dialog strings -->
     <string name="errorMessage">Something went wrong, please try again later</string>
 
@@ -21,39 +14,19 @@
     <string name="requiredToFill">Required to fill</string>
     <string name="incorrectFormatCardNumber">Incorrect format card number</string>
 
-    <!--    title transfers -->
-    <string name="titleErrorDialog">Sorry :(</string>
-    <string name="titleToACard">To a card</string>
-    <string name="titleByPhone">By phone</string>
-    <string name="titleInsideTheBank">Inside the bank</string>
-    <string name="titleToAnotherBank">To another bank</string>
-
-    <!--    title settings -->
-    <string name="titleThemeOfTheApp">Theme of the app</string>
-    <string name="titleChangePassword">Change password</string>
-    <string name="titleDocuments">Documents</string>
-    <string name="titleSecurity">Security</string>
-    <string name="titleCOVID19QRCode">COVID-19 QR code</string>
-
-    <!--    title action -->
-    <string name="titleSaveAReceipt">Save a receipt</string>
-    <string name="titleCreateATemplate">Create a template</string>
     <string name="textDone">Done</string>
 
+    <string name="textTitleErrorDialog">Sorry :(</string>
     <string name="textTransfers">Transfers</string>
     <string name="textOperations">Operations</string>
     <string name="textSettings">Settings</string>
     <string name="textAccounts">Accounts</string>
     <string name="textActions">Actions</string>
     <string name="textCards">Cards</string>
-    <string name="textAddMoney">Add money</string>
-    <string name="textExchange">Exchange</string>
     <string name="textExitDialogMessage">"Для выхода нажмите дважды кнопку \"назад\""</string>
     <string name="textTotalMoney">Total money</string>
     <string name="textSwiftTransfer">SWIFT transfer</string>
     <string name="textEnterCardNumber">Enter card number</string>
-    <string name="textToABankCard">To a bank card</string>
-    <string name="textAmountMoney">Amount money</string>
     <string name="textEnterAmountMoney">Enter amount money</string>
     <string name="textTransfer">transfer</string>
     <string name="textToACard">To a card</string>
@@ -68,5 +41,6 @@
     <string name="textOpenFileVia">Open file via:</string>
     <string name="textCurrentApplication">Current application</string>
     <string name="textThirdPartyApplication">Third party application</string>
+    <string name="textBalance">BALANCE</string>
 
 </resources>

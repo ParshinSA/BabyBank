@@ -3,7 +3,6 @@ package com.example.babybank.data.data_source.remote
 import android.app.DownloadManager
 import android.content.Context
 import android.net.Uri
-import android.util.Log
 import com.example.babybank.R
 import com.example.babybank.data.common.utils.AppDownloadManager
 import com.example.babybank.data.common.utils.ExternalDownloadFolder

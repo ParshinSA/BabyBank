@@ -1,3 +1,5 @@
+@file:Suppress("FunctionName")
+
 package com.example.babybank.presentation
 
 import com.example.babybank.presentation.fragments.*

@@ -38,7 +38,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="40dp"
-        android:src="@drawable/moneyverse_credit_card"
+        android:src="@drawable/money_credit_card"
         app:layout_constraintEnd_toEndOf="@+id/imageViewIcStuckAtHomeSittingOnFlop"
         app:layout_constraintTop_toTopOf="@+id/imageViewIcStuckAtHomeSittingOnFlop" />
 

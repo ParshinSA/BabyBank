@@ -18,8 +18,9 @@ class UserInfoSharedPrefsDataSourceImpl @Inject constructor(
     override fun getCustomAvatarLink(): Single<String?> {
         return Single.create { emitter ->
             try {
-                val avatarLink = mPreferences.getString(KEY_AVATAR_LINK, null).toString()
-                emitter.onSuccess(avatarLink)
+                val avatarLink = mPreferences.getString(KEY_AVATAR_LINK, "")
+                if (avatarLink != null) emitter.onSuccess(avatarLink)
+                else emitter.onError(IOException("Not found $KEY_AVATAR_LINK"))
             } catch (t: Throwable) {
                 emitter.onError(IOException("Failed get $KEY_AVATAR_LINK"))
             }

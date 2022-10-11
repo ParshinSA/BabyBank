@@ -93,11 +93,11 @@ class DetailsTransitionFragment : BaseFragment(), BackButtonListener {
     }
 
     private fun setupActionMenu(menuItemList: List<DisplayableItem>) {
-        with(binding.recyclerViewActions) {
-            adapter = adapterRv
-            layoutManager = LinearLayoutManager(requireContext())
-            setHasFixedSize(true)
-        }
+        val recyclerView = binding.recyclerViewActions
+        recyclerView.adapter = adapterRv
+        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        recyclerView.setHasFixedSize(true)
+
         adapterRv.items = if (menuItemList.isEmpty()) listOf(LoaderUiRv()) else menuItemList
     }
 
