@@ -34,7 +34,7 @@ class DownloadManagerDownloadDataSourceImpl @Inject constructor(
 
             val request = DownloadManager.Request(Uri.parse(url))
                 .setDescription(nameFile)
-                .setTitle("${context.getString(R.string.textDownload)}: $nameFile")
+                .setTitle("${context.getString(R.string.download)}: $nameFile")
                 .setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
                 .setDestinationInExternalFilesDir(context, downloadFolder?.name, nameFile)
 

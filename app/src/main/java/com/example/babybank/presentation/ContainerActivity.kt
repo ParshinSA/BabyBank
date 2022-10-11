@@ -66,7 +66,7 @@ class ContainerActivity : AppCompatActivity(R.layout.activity_app) {
 
     private fun showExitDialog() {
         exitDialog = AlertDialog.Builder(this)
-            .setMessage(resources.getString(R.string.textExitDialogMessage))
+            .setMessage(resources.getString(R.string.exitDialogMessage))
             .create()
     }
 

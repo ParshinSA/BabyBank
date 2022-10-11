@@ -49,7 +49,7 @@ class ProfileFrgViewModel(
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({ menuItemTitleIconList ->
                 menuItemMutLiveData.value =
-                    listOf(MenuTitleUi(R.string.textSettings)) + menuItemTitleIconList
+                    listOf(MenuTitleUi(R.string.settings)) + menuItemTitleIconList
             }, { error ->
                 error.printStackTrace()
                 showErrorMessage()

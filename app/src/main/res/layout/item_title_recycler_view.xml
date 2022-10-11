@@ -3,4 +3,4 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/textViewMenuTitle"
     style="@style/StyleTitleAccountsAndCardsListHomeFrg"
-    tools:text="@string/textCards" />
+    tools:text="Text" />

@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/liteBlue"
-        app:title="@string/textSwiftTransfer" />
+        app:title="@string/swiftTransfer" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -30,7 +30,7 @@
                 style="@style/MyTextStyle14spBoldBack"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/textDownloadVia"
+                android:text="@string/downloadVia"
                 android:textColor="@color/blackText" />
 
             <LinearLayout
@@ -44,7 +44,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="3"
-                    android:text="@string/textDownloadManager"
+                    android:text="@string/downloadManager"
                     android:textColor="@color/blackText" />
 
                 <androidx.appcompat.widget.SwitchCompat
@@ -66,7 +66,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="3"
-                    android:text="@string/textGetResponse"
+                    android:text="@string/getResponse"
                     android:textColor="@color/blackText" />
 
                 <androidx.appcompat.widget.SwitchCompat
@@ -88,7 +88,7 @@
                 style="@style/MyTextStyle14spBoldBack"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/textOpenFileVia"
+                android:text="@string/openFileVia"
                 android:textColor="@color/blackText" />
 
             <LinearLayout
@@ -102,7 +102,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="3"
-                    android:text="@string/textCurrentApplication"
+                    android:text="@string/currentApplication"
                     android:textColor="@color/blackText" />
 
                 <androidx.appcompat.widget.SwitchCompat
@@ -124,7 +124,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="3"
-                    android:text="@string/textThirdPartyApplication"
+                    android:text="@string/thirdPartyApplication"
                     android:textColor="@color/blackText" />
 
                 <androidx.appcompat.widget.SwitchCompat
@@ -149,7 +149,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="2.5"
                 android:gravity="center"
-                android:text="@string/textDownloadBankList" />
+                android:text="@string/downloadBankList" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/appCompatButtonLoadFile"
@@ -158,7 +158,7 @@
                 android:layout_gravity="end"
                 android:layout_weight="0.5"
                 android:background="@drawable/bg_ripple_btn_load_bank_list_fragment"
-                android:text="@string/textLoad" />
+                android:text="@string/load" />
 
         </LinearLayout>
 

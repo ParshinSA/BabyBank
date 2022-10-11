@@ -90,7 +90,7 @@ class HomeFragment : BaseFragment() {
 
     private fun setupHelloUsername(personalInfo: PersonalInfoHomeFrgUi) {
         binding.textViewHelloUsername.text =
-            resources.getString(R.string.HelloPlusUsername, personalInfo.name)
+            resources.getString(R.string.helloPlusUsername, personalInfo.name)
     }
 
     private fun setDataAccountsCardsInRecyclerView(dataList: List<DisplayableItem>) {

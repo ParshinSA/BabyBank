@@ -1,47 +1,63 @@
 <resources>
-    <string name="app_name">BabyBank</string>
 
-    <!--    title bottom nav menu -->
+    <!--    COMMON TEXT     -->
+    <string name="app_name">BabyBank</string>
+    <string name="errorMessage">Something went wrong, please try again later</string>
+    <string name="titleErrorDialog">Sorry :(</string>
+    <string name="exitDialogMessage">"Для выхода нажмите дважды кнопку \"назад\""</string>
+    <!--*************************************-->
+
+    <!--    Bottom sheet to a card fragment   -->
+    <string name="requiredToFill">Required to fill</string>
+    <string name="incorrectFormatCardNumber">Incorrect format card number</string>
+    <!--*************************************-->
+
+    <!--    Wallet fragment     -->
+    <string name="operations">Operations</string>
+    <!--*************************************-->
+
+    <!--    Profile fragment    -->
+    <string name="settings">Settings</string>
+    <!--*************************************-->
+
+    <!--    Home fragment   -->
+    <string name="accounts">Accounts</string>
+    <string name="helloPlusUsername">Hi, %1$s!</string>
+    <string name="cards">Cards</string>
+    <!--*************************************-->
+
+    <!--    Details transition fragment     -->
+    <string name="actions">Actions</string>
+    <!--*************************************-->
+
+    <!--    XML strings     -->
+    <string name="transfers">Transfers</string>
+    <string name="totalMoney">Total money</string>
+    <string name="toACard">To a card</string>
+    <string name="enterAmountMoney">Enter amount money</string>
+    <string name="enterCardNumber">Enter card number</string>
+    <string name="textTransfer">transfer</string>
+    <string name="swiftTransfer">SWIFT transfer</string>
+    <string name="getResponse">GET/Response</string>
+    <string name="open">open</string>
+    <string name="downloadVia">Download via:</string>
+    <string name="downloadManager">Download manager</string>
+    <string name="downloadBankList">Download bank list</string>
+    <string name="load">load</string>
+    <string name="openFileVia">Open file via:</string>
+    <string name="currentApplication">Current application</string>
+    <string name="thirdPartyApplication">Third party application</string>
+    <string name="balance">BALANCE</string>
+    <string name="done">Done</string>
     <string name="homeTitleInBottomNavigationMenu">Home</string>
     <string name="walletTitleInBottomNavigationMenu">Wallet</string>
     <string name="balanceTitleInBottomNavigationMenu">Charts</string>
     <string name="profileTitleInBottomNavigationMenu">Profile</string>
+    <!--*************************************-->
 
-    <!--    dialog strings -->
-    <string name="errorMessage">Something went wrong, please try again later</string>
+    <!--    Download manager    -->
+    <string name="download">Download</string>
+    <!--*************************************-->
 
-    <!--    bottom sheet fragment -->
-    <string name="requiredToFill">Required to fill</string>
-    <string name="incorrectFormatCardNumber">Incorrect format card number</string>
-
-    <string name="textDone">Done</string>
-
-    <string name="textTitleErrorDialog">Sorry :(</string>
-    <string name="textTransfers">Transfers</string>
-    <string name="textOperations">Operations</string>
-    <string name="textSettings">Settings</string>
-    <string name="textAccounts">Accounts</string>
-    <string name="textActions">Actions</string>
-    <string name="textCards">Cards</string>
-    <string name="textExitDialogMessage">"Для выхода нажмите дважды кнопку \"назад\""</string>
-    <string name="textTotalMoney">Total money</string>
-    <string name="textSwiftTransfer">SWIFT transfer</string>
-    <string name="textEnterCardNumber">Enter card number</string>
-    <string name="textEnterAmountMoney">Enter amount money</string>
-    <string name="textTransfer">transfer</string>
-    <string name="textToACard">To a card</string>
-    <string name="textDownload">Download</string>
-    <string name="textGetResponse">GET/Response</string>
-    <string name="textNameFile">Name file</string>
-    <string name="textOpen">open</string>
-    <string name="textDownloadVia">Download via:</string>
-    <string name="textDownloadManager">Download manager</string>
-    <string name="textDownloadBankList">Download bank list</string>
-    <string name="textLoad">load</string>
-    <string name="textOpenFileVia">Open file via:</string>
-    <string name="textCurrentApplication">Current application</string>
-    <string name="textThirdPartyApplication">Third party application</string>
-    <string name="textBalance">BALANCE</string>
-    <string name="HelloPlusUsername">Hi, %1$s!</string>
-
+    <!--    NEW TEXT    -->
 </resources>

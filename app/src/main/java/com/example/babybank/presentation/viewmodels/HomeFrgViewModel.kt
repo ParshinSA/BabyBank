@@ -66,9 +66,9 @@ class HomeFrgViewModel @Inject constructor(
 
     private fun convertAndSetData(dataList: List<AccountInfoDomain>) {
         dataAccountsCardsMutLiveData.value = (
-                listOf(MenuTitleUi(R.string.textAccounts))/* Данные размещенны согласно порядку установки в recyclerView HomeFrg */
+                listOf(MenuTitleUi(R.string.accounts))/* Данные размещенны согласно порядку установки в recyclerView HomeFrg */
                         + converters.toAccountIconUiList(dataList)
-                        + listOf(MenuTitleUi(R.string.textCards))
+                        + listOf(MenuTitleUi(R.string.cards))
                         + converters.toCardUiList(dataList)
                 )
     }

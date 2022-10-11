@@ -41,7 +41,7 @@ class DetailsTransitionFrgViewModel @Inject constructor(
             }
             .subscribe({ menuItemTitleIconUiList ->
                 menuItemMutLiveData.value =
-                    listOf(MenuTitleUi(R.string.textActions)) + menuItemTitleIconUiList
+                    listOf(MenuTitleUi(R.string.actions)) + menuItemTitleIconUiList
             }, { error ->
                 error.printStackTrace()
                 showErrorMessage()

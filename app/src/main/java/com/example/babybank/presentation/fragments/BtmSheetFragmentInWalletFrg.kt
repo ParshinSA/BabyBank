@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import com.example.babybank.R
-import com.example.babybank.databinding.FragmentBtmSheetInWalletFragmentBinding
+import com.example.babybank.databinding.FragmentBtmSheetToACardBinding
 import com.example.babybank.presentation.AppApplication
 import com.example.babybank.presentation.common.FourDigitCardFormatWatcher
 import com.example.babybank.presentation.common.FourDigitCardFormatWatcher.Companion.MAX_NUMBER_DIGITS
@@ -20,7 +20,7 @@ import javax.inject.Inject
 
 class BtmSheetFragmentInWalletFrg : BottomSheetDialogFragment() {
 
-    private var _binding: FragmentBtmSheetInWalletFragmentBinding? = null
+    private var _binding: FragmentBtmSheetToACardBinding? = null
     private val binding get() = checkNotNull(_binding)
 
     @Inject
@@ -46,8 +46,8 @@ class BtmSheetFragmentInWalletFrg : BottomSheetDialogFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentBtmSheetInWalletFragmentBinding
-            .inflate(layoutInflater, container, false)
+        _binding =
+            FragmentBtmSheetToACardBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
 

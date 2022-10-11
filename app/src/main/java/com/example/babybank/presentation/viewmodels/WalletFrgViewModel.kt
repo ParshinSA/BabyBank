@@ -42,7 +42,7 @@ class WalletFrgViewModel @Inject constructor(
                 { menuItemList ->
                     when (request.menuType) {
                         OPERATIONS_MENU -> operationsMutLiveDta.value =
-                            listOf(MenuTitleUi(R.string.textOperations)) + menuItemList
+                            listOf(MenuTitleUi(R.string.operations)) + menuItemList
                         TRANSFERS_MENU -> transfersMutLiveDta.value = menuItemList
                         else -> error("Incorrect menu type ")
                     }

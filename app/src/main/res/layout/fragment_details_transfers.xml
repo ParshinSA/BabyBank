@@ -56,7 +56,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:background="@drawable/bg_long_bottom_button"
-            android:text="@string/textDone"
+            android:text="@string/done"
             android:textColor="@color/whiteText"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
