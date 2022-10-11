@@ -42,5 +42,6 @@
     <string name="textCurrentApplication">Current application</string>
     <string name="textThirdPartyApplication">Third party application</string>
     <string name="textBalance">BALANCE</string>
+    <string name="HelloPlusUsername">Hi, %1$s!</string>
 
 </resources>

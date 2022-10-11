@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.babybank.R
 import com.example.babybank.databinding.FragmentHomeBinding
 import com.example.babybank.presentation.AppApplication
 import com.example.babybank.presentation.adapters.*
@@ -84,11 +85,12 @@ class HomeFragment : BaseFragment() {
     }
 
     private fun setTotalMoney(totalMoney: TotalMoneyUi) {
-        binding.textViewTotalMoney.text = totalMoney.money
+        binding.collapsingToolbarLayout.title = totalMoney.money
     }
 
     private fun setupHelloUsername(personalInfo: PersonalInfoHomeFrgUi) {
-        binding.textViewHelloUsername.text = personalInfo.name
+        binding.textViewHelloUsername.text =
+            resources.getString(R.string.HelloPlusUsername, personalInfo.name)
     }
 
     private fun setDataAccountsCardsInRecyclerView(dataList: List<DisplayableItem>) {
