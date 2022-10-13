@@ -2,13 +2,15 @@ package com.example.babybank.presentation.viewmodels
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.example.babybank.data.common.utils.ExternalDownloadFolder
+import com.example.babybank.data.common.utils.AppExternalStorage
 import com.github.terrakok.cicerone.Router
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 import java.io.File
 import javax.inject.Inject
 
 class PdfViewerFrgViewModel @Inject constructor(
-    private var externalDownloadFolder: ExternalDownloadFolder,
+    private var appExternalStorage: AppExternalStorage,
     private val parentRouter: Router
 ) : BaseViewModel() {
 
@@ -28,8 +30,12 @@ class PdfViewerFrgViewModel @Inject constructor(
     }
 
     private fun defineFile(fileName: String, directory: String) {
-        val file = externalDownloadFolder.getFileExternalFolder(directory)?.get(0)
-        file?.let { openPdfMutLiveData.value = it }
+        appExternalStorage.getFileFromExternalFolder(fileName, directory)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({ file: File ->
+                openPdfMutLiveData.value = file
+            }, { it.printStackTrace() }).autoClear()
     }
 
     fun backPressed(): Boolean {

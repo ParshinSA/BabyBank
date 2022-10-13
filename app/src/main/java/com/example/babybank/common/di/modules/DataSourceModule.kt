@@ -9,8 +9,8 @@ import com.example.babybank.data.data_source.remote.CurrencyRateDataSourceImpl
 import com.example.babybank.data.data_source.remote.GoogleComDataSourceImpl
 import com.example.babybank.data.data_source.remote.MockDataSourceImpl
 import com.example.babybank.data.networking.api.CurrencyRateApi
-import com.example.babybank.data.networking.api.FirebaseApi
 import com.example.babybank.data.networking.api.GoogleComApi
+import com.example.firebase_api.api.FirebaseApi
 import dagger.Module
 import dagger.Provides
 

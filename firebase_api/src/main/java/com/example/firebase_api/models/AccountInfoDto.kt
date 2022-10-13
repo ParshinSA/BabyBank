@@ -1,6 +1,6 @@
-package com.example.babybank.data.models
+package com.example.firebase_api.models
 
-import com.example.babybank.data.models.nested.CardDto
+import com.example.firebase_api.models.nested.CardDto
 import com.google.gson.annotations.SerializedName
 
 data class AccountInfoDto(

@@ -2,7 +2,6 @@ package com.example.babybank.presentation.fragments
 
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -22,7 +21,6 @@ import com.example.babybank.presentation.models.LoaderUiRv
 import com.example.babybank.presentation.models.PersonalInfoProfileFrgUi
 import com.example.babybank.presentation.viewmodels.ProfileFrgViewModel
 import com.example.babybank.presentation.viewmodels.ViewModelFactory
-import com.google.android.material.appbar.AppBarLayout
 import com.hannesdorfmann.adapterdelegates4.AdapterDelegatesManager
 import javax.inject.Inject
 
@@ -39,7 +37,10 @@ class ProfileFragment : BaseFragment() {
     lateinit var factoryAdapter: FactoryDelegationAdapterDisplayableItem
 
     private val getContent =
-        registerForActivityResult(ActivityResultContracts.GetContent(), this::checkUri)
+        registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
+            viewModel.saveCustomAvatarLink(uri)
+            viewModel.setCustomAvatar(uri.toString())
+        }
 
     private val adapterRv by lazy { factoryAdapter.createAdapter(createDelegatesManager()) }
 
@@ -55,7 +56,6 @@ class ProfileFragment : BaseFragment() {
 
     private fun action() {
         observeData()
-        changeTitleCollapsingToolbar()
         selectedImageFromGalleryInAvatar()
     }
 
@@ -70,27 +70,6 @@ class ProfileFragment : BaseFragment() {
 
         viewModel.customAvatarLinkLiveData.observe(viewLifecycleOwner) { uriString: String? ->
             setImageInAvatar(uriString)
-        }
-    }
-
-    private fun changeTitleCollapsingToolbar() {
-        binding.appBarLayout.addOnOffsetChangedListener(
-            AppBarLayout.OnOffsetChangedListener { appBarLayout, verticalOffset ->
-                Log.d(
-                    "MyTAG", "changeTitleCollapsingToolbar:" +
-                            "\n minimumHeight ${appBarLayout.minimumHeightForVisibleOverlappingContent}" +
-                            "\n verticalOffset $verticalOffset"
-                )
-            }
-        )
-
-    }
-
-
-    private fun checkUri(uri: Uri?) {
-        uri?.let {
-            setImageInAvatar(uri.toString())
-            viewModel.saveCustomAvatarLink(uri)
         }
     }
 
@@ -109,8 +88,7 @@ class ProfileFragment : BaseFragment() {
     }
 
     private fun setImageInAvatar(uriString: String?) {
-        Glide.with(requireContext())
-            .load(uriString)
+        Glide.with(requireContext()).load(uriString)
             .optionalCenterCrop()
             .placeholder(R.drawable.ic_load_image)
             .error(R.drawable.ic_face)

@@ -2,13 +2,13 @@ package com.example.babybank.common.di
 
 import android.content.Context
 import com.example.babybank.common.di.modules.*
+import com.example.babybank.common.di.scope.AppScope
 import com.example.babybank.presentation.ContainerActivity
 import com.example.babybank.presentation.fragments.*
 import dagger.BindsInstance
 import dagger.Component
-import javax.inject.Singleton
 
-@Singleton
+@AppScope
 @Component(
     modules = [
         InteractorModule::class,

@@ -1,9 +1,9 @@
-package com.example.babybank.data.networking.api
+package com.example.firebase_api.api
 
-import com.example.babybank.data.models.AccountInfoDto
-import com.example.babybank.data.models.MenuItemDto
-import com.example.babybank.data.models.PdfLinkDto
-import com.example.babybank.data.models.PersonalInfoDto
+import com.example.firebase_api.models.AccountInfoDto
+import com.example.firebase_api.models.MenuItemDto
+import com.example.firebase_api.models.PdfLinkDto
+import com.example.firebase_api.models.PersonalInfoDto
 import io.reactivex.Single
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -11,9 +11,7 @@ import retrofit2.http.Path
 interface FirebaseApi {
 
     @GET("menu/{nameMenu}.json")
-    fun getMenu(
-        @Path("nameMenu") nameMenu: String
-    ): Single<List<MenuItemDto>>
+    fun getMenu(@Path("nameMenu") nameMenu: String): Single<List<MenuItemDto>>
 
     @GET("accounts.json")
     fun getAccountsInformation(): Single<List<AccountInfoDto>>
@@ -23,4 +21,5 @@ interface FirebaseApi {
 
     @GET("pdfLink.json")
     fun getPdfLink(): Single<PdfLinkDto>
+
 }

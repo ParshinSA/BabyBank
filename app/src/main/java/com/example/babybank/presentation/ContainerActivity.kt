@@ -13,7 +13,6 @@ import com.github.terrakok.cicerone.NavigatorHolder
 import com.github.terrakok.cicerone.androidx.AppNavigator
 import javax.inject.Inject
 
-
 class ContainerActivity : AppCompatActivity(R.layout.activity_app) {
 
     @IdRes

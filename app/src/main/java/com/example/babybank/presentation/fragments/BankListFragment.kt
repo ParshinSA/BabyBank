@@ -1,6 +1,7 @@
 package com.example.babybank.presentation.fragments
 
 import android.content.ActivityNotFoundException
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -119,6 +120,10 @@ class BankListFragment : BaseFragment(), BackButtonListener {
         viewModel.uploadedFilesLiveData.observe(viewLifecycleOwner) { uploadedFiles ->
             updateRv(uploadedFiles)
         }
+
+        viewModel.intentForThirdPartyApplicationLiveData.observe(viewLifecycleOwner) { intent ->
+            intent?.let { openFileThirdPartyApplication(it) }
+        }
     }
 
     private fun updateRv(uploadedFiles: List<UploadedFileUi>) {
@@ -137,24 +142,17 @@ class BankListFragment : BaseFragment(), BackButtonListener {
 
     private fun openFile(fileName: String) {
         when (checkNotNull(viewModel.openVia)) {
-            THIRD_PARTY_APPLICATION -> openFileThirdPartyApplication(fileName)
-            CURRENT_APPLICATION -> openViaCurrentApplication(fileName)
+            THIRD_PARTY_APPLICATION -> viewModel.openFileThirdPartyApplication(fileName)
+            CURRENT_APPLICATION -> viewModel.openPdfViewerFrg(fileName)
         }
     }
 
-    private fun openFileThirdPartyApplication(fileName: String) {
-        val file = viewModel.getFile(fileName) ?: return
-        val intent = viewModel.getIntentActionView(file)
-
+    private fun openFileThirdPartyApplication(intent: Intent) {
         try {
             startActivity(intent)
         } catch (e: ActivityNotFoundException) {
             viewModel.showErrorMessage()
         }
-    }
-
-    private fun openViaCurrentApplication(fileName: String) {
-        viewModel.openPdfViewerFrg(fileName)
     }
 
     override fun inject() {

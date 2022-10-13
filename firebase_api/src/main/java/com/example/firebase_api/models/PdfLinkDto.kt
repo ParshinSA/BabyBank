@@ -1,4 +1,4 @@
-package com.example.babybank.data.models
+package com.example.firebase_api.models
 
 import com.google.gson.annotations.SerializedName
 

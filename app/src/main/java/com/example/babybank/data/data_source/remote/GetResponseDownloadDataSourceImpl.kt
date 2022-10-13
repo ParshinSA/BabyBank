@@ -1,24 +1,24 @@
 package com.example.babybank.data.data_source.remote
 
-import com.example.babybank.data.common.utils.ExternalDownloadFolder
+import com.example.babybank.common.di.scope.AppScope
+import com.example.babybank.data.common.utils.AppExternalStorage
 import com.example.babybank.data.common.utils.FileNameHandler
 import com.example.babybank.data.data_source.interf.DownloadDataSource
 import com.example.babybank.data.data_source.interf.GoogleComDataSource
 import io.reactivex.Completable
 import java.io.File
 import javax.inject.Inject
-import javax.inject.Singleton
 
-@Singleton
+@AppScope
 class GetResponseDownloadDataSourceImpl @Inject constructor(
-    private val externalDownloadFolder: ExternalDownloadFolder,
+    private val appExternalStorage: AppExternalStorage,
     private val googleComDataSource: GoogleComDataSource,
     private val fileNameHandler: FileNameHandler,
 ) : DownloadDataSource {
 
 
     override fun download(url: String, directory: String): Completable {
-        val downloadFolder = externalDownloadFolder.getExternalFolder(directory)
+        val downloadFolder = appExternalStorage.getExternalFolder(directory)
         return Completable.create { subscription ->
             if (subscription.isDisposed) return@create
 

@@ -4,8 +4,8 @@ import android.content.Intent
 import android.webkit.MimeTypeMap
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.example.babybank.data.common.utils.ExternalDownloadFolder
-import com.example.babybank.data.common.utils.ExternalDownloadFolder.Companion.FOLDER_BANK_LIST
+import com.example.babybank.data.common.utils.AppExternalStorage
+import com.example.babybank.data.common.utils.AppExternalStorage.Companion.FOLDER_BANK_LIST
 import com.example.babybank.domain.interactors.BankListFrgInteractor
 import com.example.babybank.presentation.Screens
 import com.example.babybank.presentation.common.FileUriProvider
@@ -19,7 +19,7 @@ import java.io.File
 import javax.inject.Inject
 
 class BankListFrgViewModel @Inject constructor(
-    private var externalDownloadFolder: ExternalDownloadFolder,
+    private var appExternalStorage: AppExternalStorage,
     private val interactor: BankListFrgInteractor,
     private val fileUriProvider: FileUriProvider,
     private val parentRouter: Router,
@@ -37,6 +37,9 @@ class BankListFrgViewModel @Inject constructor(
 
     private val uploadedFilesMutLiveData = MutableLiveData<List<UploadedFileUi>>(emptyList())
     val uploadedFilesLiveData: LiveData<List<UploadedFileUi>> get() = uploadedFilesMutLiveData
+
+    private val intentForThirdPartyApplicationMutLiveData = MutableLiveData<Intent>()
+    val intentForThirdPartyApplicationLiveData: LiveData<Intent> get() = intentForThirdPartyApplicationMutLiveData
 
     // Start update uploaded file
     init {
@@ -59,14 +62,14 @@ class BankListFrgViewModel @Inject constructor(
     }
 
     private fun updateUploadedFileList() {
-        val fileList = getFileList() ?: return
-        uploadedFilesMutLiveData.value = fileList.map { file: File ->
-            UploadedFileUi(file.name)
-        }
-    }
-
-    private fun getFileList(): Array<out File>? {
-        return externalDownloadFolder.getFileExternalFolder(downloadFolder)
+        appExternalStorage.getListOfFilesFromExternalFolder(downloadFolder)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({ fileList ->
+                uploadedFilesMutLiveData.value = fileList.map { file: File ->
+                    UploadedFileUi(file.name)
+                }
+            }, { it.printStackTrace() }).autoClear()
     }
 
     fun changeDownloadFileVia(via: DownloadVia) {
@@ -81,16 +84,12 @@ class BankListFrgViewModel @Inject constructor(
         parentRouter.exit()
     }
 
-    fun getFile(fileName: String): File? {
-        return getFileList()?.filter { file -> file.name == fileName }?.get(0)
-    }
-
     fun openPdfViewerFrg(fileName: String) {
         parentRouter.navigateTo(Screens.PDFViewerFrg(fileName, downloadFolder))
     }
 
 
-    fun getIntentActionView(file: File): Intent {
+    private fun getIntentActionView(file: File): Intent {
         val uri = fileUriProvider.getUri(file)
         val mimetype = MimeTypeMap.getSingleton().getMimeTypeFromExtension(file.extension)
 
@@ -101,5 +100,15 @@ class BankListFrgViewModel @Inject constructor(
         target.setDataAndType(uri, mimetype)
 
         return Intent.createChooser(target, "Open File")
+    }
+
+    fun openFileThirdPartyApplication(fileName: String) {
+        appExternalStorage.getFileFromExternalFolder(fileName, downloadFolder)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({ file ->
+                val intent = getIntentActionView(file)
+                intentForThirdPartyApplicationMutLiveData.value = intent
+            }, { it.printStackTrace() }).autoClear()
     }
 }

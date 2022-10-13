@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.babybank.common.di.modules.NavigationModule.Companion.ACTIVITY_CONTAINER_ROUTER
 import com.example.babybank.common.di.modules.NavigationModule.Companion.FRAGMENT_ROUTER
-import com.example.babybank.data.common.utils.ExternalDownloadFolder
+import com.example.babybank.data.common.utils.AppExternalStorage
 import com.example.babybank.domain.interactors.*
 import com.example.babybank.presentation.common.FileUriProvider
 import com.example.babybank.presentation.common.MoneyFormatter
@@ -15,7 +15,7 @@ import javax.inject.Named
 
 class ViewModelFactory @Inject constructor(
     private val detailsTransitionFrgInteractor: DetailsTransitionFrgInteractor,
-    private val externalDownloadFolder: ExternalDownloadFolder,
+    private val appExternalStorage: AppExternalStorage,
     private val bankListFrgInteractor: BankListFrgInteractor,
     private val profileFrgInteractor: ProfileFrgInteractor,
     private val walletFrgInteractor: WalletFrgInteractor,
@@ -80,7 +80,7 @@ class ViewModelFactory @Inject constructor(
 
             modelClass.isAssignableFrom(BankListFrgViewModel::class.java) ->
                 BankListFrgViewModel(
-                    externalDownloadFolder = externalDownloadFolder,
+                    appExternalStorage = appExternalStorage,
                     interactor = bankListFrgInteractor,
                     fileUriProvider = fileUriProvider,
                     parentRouter = fragmentRouter,
@@ -88,7 +88,7 @@ class ViewModelFactory @Inject constructor(
 
             modelClass.isAssignableFrom(PdfViewerFrgViewModel::class.java) ->
                 PdfViewerFrgViewModel(
-                    externalDownloadFolder = externalDownloadFolder,
+                    appExternalStorage = appExternalStorage,
                     parentRouter = fragmentRouter,
                 ) as T
 

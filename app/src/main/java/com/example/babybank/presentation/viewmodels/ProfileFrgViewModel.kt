@@ -58,17 +58,23 @@ class ProfileFrgViewModel(
         interactor.checkCustomAvatarLink()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({
-                customAvatarLinkMutLiveData.value = it
+            .subscribe({ uriString: String? ->
+                setCustomAvatar(uriString)
             }, {
                 customAvatarLinkMutLiveData.value = null
                 it.printStackTrace()
             }).autoClear()
     }
 
-    fun saveCustomAvatarLink(uri: Uri) {
-        interactor.saveCustomAvatarLink(uri)
-            .subscribeOn(Schedulers.io())
-            .subscribe().autoClear()
+    fun saveCustomAvatarLink(uri: Uri?) {
+        if (uri != null) {
+            interactor.saveCustomAvatarLink(uri)
+                .subscribeOn(Schedulers.io())
+                .subscribe().autoClear()
+        }
+    }
+
+    fun setCustomAvatar(uriString: String?) {
+        uriString?.let { customAvatarLinkMutLiveData.value = it }
     }
 }

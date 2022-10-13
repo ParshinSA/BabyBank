@@ -8,3 +8,5 @@ dependencyResolutionManagement {
 }
 rootProject.name = "BabyBank"
 include ':app'
+include ':profile'
+include ':firebase_api'

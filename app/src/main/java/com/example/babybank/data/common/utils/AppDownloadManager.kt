@@ -3,10 +3,10 @@ package com.example.babybank.data.common.utils
 import android.app.DownloadManager
 import android.content.Context
 import androidx.core.content.getSystemService
+import com.example.babybank.common.di.scope.AppScope
 import javax.inject.Inject
-import javax.inject.Singleton
 
-@Singleton
+@AppScope
 class AppDownloadManager @Inject constructor(
     context: Context
 ) {

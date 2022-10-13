@@ -1,10 +1,10 @@
 package com.example.babybank.data
 
-import com.example.babybank.data.models.AccountInfoDto
 import com.example.babybank.data.models.CurrencyRateDto
-import com.example.babybank.data.models.MenuItemDto
-import com.example.babybank.data.models.PersonalInfoDto
 import com.example.babybank.domain.models.*
+import com.example.firebase_api.models.AccountInfoDto
+import com.example.firebase_api.models.MenuItemDto
+import com.example.firebase_api.models.PersonalInfoDto
 
 fun MenuItemDto.toMenuItemDomain(): MenuItemDomain {
     return MenuItemDomain(

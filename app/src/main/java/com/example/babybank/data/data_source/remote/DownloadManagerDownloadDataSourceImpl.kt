@@ -4,19 +4,19 @@ import android.app.DownloadManager
 import android.content.Context
 import android.net.Uri
 import com.example.babybank.R
+import com.example.babybank.common.di.scope.AppScope
 import com.example.babybank.data.common.utils.AppDownloadManager
-import com.example.babybank.data.common.utils.ExternalDownloadFolder
+import com.example.babybank.data.common.utils.AppExternalStorage
 import com.example.babybank.data.common.utils.FileNameHandler
 import com.example.babybank.data.data_source.interf.DownloadDataSource
 import io.reactivex.Completable
 import java.io.File
 import java.io.IOException
 import javax.inject.Inject
-import javax.inject.Singleton
 
-@Singleton
+@AppScope
 class DownloadManagerDownloadDataSourceImpl @Inject constructor(
-    private val externalDownloadFolder: ExternalDownloadFolder,
+    private val appExternalStorage: AppExternalStorage,
     private val fileNameHandler: FileNameHandler,
     downloadManager: AppDownloadManager,
     private val context: Context,
@@ -25,7 +25,7 @@ class DownloadManagerDownloadDataSourceImpl @Inject constructor(
     private val manager = downloadManager.manager()
 
     override fun download(url: String, directory: String): Completable {
-        val downloadFolder = externalDownloadFolder.getExternalFolder(directory)
+        val downloadFolder = appExternalStorage.getExternalFolder(directory)
         return Completable.create { subscription ->
             if (subscription.isDisposed) return@create
 
