@@ -1,6 +1,6 @@
-package com.example.babybank.presentation.models
+package com.example.profile.presentation.models
 
-import com.example.babybank.presentation.common.DisplayableItem
+import com.example.profile.presentation.intefaces.DisplayableItem
 
 data class PersonalInfoProfileFrgUi(
     val name: String,

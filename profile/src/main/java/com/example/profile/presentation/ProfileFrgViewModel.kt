@@ -1,23 +1,30 @@
-package com.example.babybank.presentation.viewmodels
+package com.example.profile.presentation
 
 import android.net.Uri
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.example.babybank.R
-import com.example.babybank.domain.interactors.ProfileFrgInteractor
-import com.example.babybank.domain.models.MenuTypeDomain
-import com.example.babybank.domain.models.RequestMenu
-import com.example.babybank.presentation.common.DisplayableItem
-import com.example.babybank.presentation.models.ConvertersDomainToUi
-import com.example.babybank.presentation.models.MenuTitleUi
-import com.example.babybank.presentation.models.PersonalInfoProfileFrgUi
+import androidx.lifecycle.ViewModel
+import com.example.profile.R
+import com.example.profile.domain.interactor.ProfileFrgInteractor
+import com.example.profile.domain.models.MenuTypeDomain
+import com.example.profile.presentation.intefaces.DisplayableItem
+import com.example.profile.presentation.models.ConvertersDomainToUi
+import com.example.profile.presentation.models.MenuTitleUi
+import com.example.profile.presentation.models.PersonalInfoProfileFrgUi
+import com.example.profile.presentation.models.RequestMenu
 import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 
 class ProfileFrgViewModel(
     private val interactor: ProfileFrgInteractor,
     private val converters: ConvertersDomainToUi,
-) : BaseViewModel() {
+) : ViewModel() {
+    private val compositeDisposable = CompositeDisposable()
+
+    private val errorMessageMutLiveData = MutableLiveData<Int>()
+    val errorMessageLiveData: LiveData<Int> get() = errorMessageMutLiveData
 
     private val customAvatarLinkMutLiveData = MutableLiveData<String?>()
     val customAvatarLinkLiveData: LiveData<String?> get() = customAvatarLinkMutLiveData
@@ -76,5 +83,13 @@ class ProfileFrgViewModel(
 
     fun setCustomAvatar(uriString: String?) {
         uriString?.let { customAvatarLinkMutLiveData.value = it }
+    }
+
+    private fun showErrorMessage() {
+        errorMessageMutLiveData.value = R.string.errorMessage
+    }
+
+    private fun Disposable.autoClear() {
+        compositeDisposable.add(this)
     }
 }

@@ -8,6 +8,7 @@ import com.example.babybank.domain.models.CurrencyTypeDomain.USD
 import com.example.babybank.domain.models.MenuItemDomain
 import com.example.babybank.domain.models.PersonalInfoDomain
 import com.example.babybank.presentation.common.MoneyFormatter
+import com.example.profile.presentation.models.PersonalInfoProfileFrgUi
 import javax.inject.Inject
 
 class ConvertersDomainToUi @Inject constructor(
@@ -74,12 +75,6 @@ class ConvertersDomainToUi @Inject constructor(
                 "By phone" -> R.drawable.ic_by_phone
                 "Inside the bank" -> R.drawable.ic_inside_the_bank
                 "To another bank" -> R.drawable.ic_to_another_bank
-
-                "Theme of the app" -> R.drawable.ic_theme_of_the_app
-                "Change password" -> R.drawable.ic_change_password
-                "Documents" -> R.drawable.ic_documents
-                "Security" -> R.drawable.ic_security
-                "COVID-19 QR code" -> R.drawable.ic_covid_19_qr_code
 
                 "Save a receipt" -> R.drawable.ic_save_a_receipt
                 "Create a template" -> R.drawable.ic_create_a_template

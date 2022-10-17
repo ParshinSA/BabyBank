@@ -1,4 +1,4 @@
-package com.example.profile.di
+package com.example.profile.common.di.settings
 
 import javax.inject.Scope
 

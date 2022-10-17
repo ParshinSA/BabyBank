@@ -17,7 +17,6 @@ class ViewModelFactory @Inject constructor(
     private val detailsTransitionFrgInteractor: DetailsTransitionFrgInteractor,
     private val appExternalStorage: AppExternalStorage,
     private val bankListFrgInteractor: BankListFrgInteractor,
-    private val profileFrgInteractor: ProfileFrgInteractor,
     private val walletFrgInteractor: WalletFrgInteractor,
     private val homeFrgInteractor: HomeFrgInteractor,
     private val converters: ConvertersDomainToUi,
@@ -40,12 +39,6 @@ class ViewModelFactory @Inject constructor(
             modelClass.isAssignableFrom(ContainerActivityViewModel::class.java) ->
                 ContainerActivityViewModel(
                     router = activityRouter
-                ) as T
-
-            modelClass.isAssignableFrom(ProfileFrgViewModel::class.java) ->
-                ProfileFrgViewModel(
-                    interactor = profileFrgInteractor,
-                    converters = converters
                 ) as T
 
             modelClass.isAssignableFrom(WalletFrgViewModel::class.java) ->

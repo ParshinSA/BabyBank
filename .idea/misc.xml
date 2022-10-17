@@ -10,17 +10,27 @@
         <entry key="..\:/Users/PARSHIN/Desktop/Repositories/BabyBank/app/src/main/res/drawable/bg_and_ripple_long_item_recycler_view_profile.xml" value="0.1265625" />
         <entry key="..\:/Users/PARSHIN/Desktop/Repositories/BabyBank/app/src/main/res/drawable/bg_bottom_button_details_fragment.xml" value="0.2890625" />
         <entry key="..\:/Users/PARSHIN/Desktop/Repositories/BabyBank/app/src/main/res/drawable/bg_bottom_sheet_handle.xml" value="0.2890625" />
+        <entry key="..\:/Users/PARSHIN/Desktop/Repositories/BabyBank/app/src/main/res/drawable/bg_icon_item_recycler_view.xml" value="0.2942708333333333" />
         <entry key="..\:/Users/PARSHIN/Desktop/Repositories/BabyBank/app/src/main/res/drawable/bg_info_top_home_fragment.xml" value="0.1" />
         <entry key="..\:/Users/PARSHIN/Desktop/Repositories/BabyBank/app/src/main/res/drawable/bg_long_bottom_button.xml" value="0.1265625" />
         <entry key="..\:/Users/PARSHIN/Desktop/Repositories/BabyBank/app/src/main/res/drawable/bg_profile.xml" value="0.15364583333333334" />
+        <entry key="..\:/Users/PARSHIN/Desktop/Repositories/BabyBank/app/src/main/res/drawable/bg_recycler_view_white_corners_top_50dp.xml" value="0.2942708333333333" />
         <entry key="..\:/Users/PARSHIN/Desktop/Repositories/BabyBank/app/src/main/res/drawable/bg_ripple_btn_load_banck_list_fragment.xml" value="0.2890625" />
         <entry key="..\:/Users/PARSHIN/Desktop/Repositories/BabyBank/app/src/main/res/drawable/bg_ripple_btn_load_bank_list_fragment.xml" value="0.2890625" />
         <entry key="..\:/Users/PARSHIN/Desktop/Repositories/BabyBank/app/src/main/res/drawable/bg_ripple_btn_open_file.xml" value="0.2890625" />
         <entry key="..\:/Users/PARSHIN/Desktop/Repositories/BabyBank/app/src/main/res/drawable/decoration_item_recycler_view.xml" value="0.2890625" />
+        <entry key="..\:/Users/PARSHIN/Desktop/Repositories/BabyBank/app/src/main/res/drawable/ic_change_password.xml" value="0.18425925925925926" />
+        <entry key="..\:/Users/PARSHIN/Desktop/Repositories/BabyBank/app/src/main/res/drawable/ic_change_photo.xml" value="0.2942708333333333" />
+        <entry key="..\:/Users/PARSHIN/Desktop/Repositories/BabyBank/app/src/main/res/drawable/ic_covid_19_qr_code.xml" value="0.18425925925925926" />
+        <entry key="..\:/Users/PARSHIN/Desktop/Repositories/BabyBank/app/src/main/res/drawable/ic_documents.xml" value="0.18425925925925926" />
         <entry key="..\:/Users/PARSHIN/Desktop/Repositories/BabyBank/app/src/main/res/drawable/ic_elipse_complete.xml" value="0.1" />
+        <entry key="..\:/Users/PARSHIN/Desktop/Repositories/BabyBank/app/src/main/res/drawable/ic_error_load_image.xml" value="0.18425925925925926" />
         <entry key="..\:/Users/PARSHIN/Desktop/Repositories/BabyBank/app/src/main/res/drawable/ic_face.xml" value="0.16197916666666667" />
         <entry key="..\:/Users/PARSHIN/Desktop/Repositories/BabyBank/app/src/main/res/drawable/ic_load_image.xml" value="0.16197916666666667" />
+        <entry key="..\:/Users/PARSHIN/Desktop/Repositories/BabyBank/app/src/main/res/drawable/ic_security.xml" value="0.18425925925925926" />
         <entry key="..\:/Users/PARSHIN/Desktop/Repositories/BabyBank/app/src/main/res/drawable/ic_short_arrow_back.xml" value="0.15364583333333334" />
+        <entry key="..\:/Users/PARSHIN/Desktop/Repositories/BabyBank/app/src/main/res/drawable/ic_short_arrow_next.xml" value="0.2942708333333333" />
+        <entry key="..\:/Users/PARSHIN/Desktop/Repositories/BabyBank/app/src/main/res/drawable/ic_theme_of_the_app.xml" value="0.18425925925925926" />
         <entry key="..\:/Users/PARSHIN/Desktop/Repositories/BabyBank/app/src/main/res/layout/bottom_sheet.xml" value="0.27291666666666664" />
         <entry key="..\:/Users/PARSHIN/Desktop/Repositories/BabyBank/app/src/main/res/layout/fragment_balance.xml" value="0.19722222222222222" />
         <entry key="..\:/Users/PARSHIN/Desktop/Repositories/BabyBank/app/src/main/res/layout/fragment_bank_list.xml" value="0.33" />
@@ -36,13 +46,38 @@
         <entry key="..\:/Users/PARSHIN/Desktop/Repositories/BabyBank/app/src/main/res/layout/fragment_pdf_viewer.xml" value="0.27291666666666664" />
         <entry key="..\:/Users/PARSHIN/Desktop/Repositories/BabyBank/app/src/main/res/layout/fragment_profile.xml" value="0.27291666666666664" />
         <entry key="..\:/Users/PARSHIN/Desktop/Repositories/BabyBank/app/src/main/res/layout/fragment_wallet.xml" value="0.27291666666666664" />
-        <entry key="..\:/Users/PARSHIN/Desktop/Repositories/BabyBank/app/src/main/res/layout/item_account_icon_recycler_view.xml" value="0.1375" />
+        <entry key="..\:/Users/PARSHIN/Desktop/Repositories/BabyBank/app/src/main/res/layout/item_account_icon_recycler_view.xml" value="0.33" />
         <entry key="..\:/Users/PARSHIN/Desktop/Repositories/BabyBank/app/src/main/res/layout/item_action_recycler_view.xml" value="0.1375" />
         <entry key="..\:/Users/PARSHIN/Desktop/Repositories/BabyBank/app/src/main/res/layout/item_file_rv.xml" value="0.27291666666666664" />
+        <entry key="..\:/Users/PARSHIN/Desktop/Repositories/BabyBank/app/src/main/res/layout/item_item_menu_title_icon.xml" value="0.278125" />
+        <entry key="..\:/Users/PARSHIN/Desktop/Repositories/BabyBank/app/src/main/res/layout/item_loader.xml" value="0.262037037037037" />
         <entry key="..\:/Users/PARSHIN/Desktop/Repositories/BabyBank/app/src/main/res/layout/item_title_recycler_view.xml" value="0.14635416666666667" />
         <entry key="..\:/Users/PARSHIN/Desktop/Repositories/BabyBank/app/src/main/res/xml/files_path.xml" value="0.27291666666666664" />
+        <entry key="..\:/Users/PARSHIN/Desktop/Repositories/BabyBank/common/src/main/res/drawable/bg_and_ripple_long_item_recycler_view.xml" value="0.2942708333333333" />
+        <entry key="..\:/Users/PARSHIN/Desktop/Repositories/BabyBank/common/src/main/res/drawable/decoration_item_recycler_view.xml" value="0.28974358974358977" />
+        <entry key="..\:/Users/PARSHIN/Desktop/Repositories/BabyBank/common/src/main/res/drawable/ic_load_image.xml" value="0.2942708333333333" />
+        <entry key="..\:/Users/PARSHIN/Desktop/Repositories/BabyBank/common/src/main/res/drawable/ic_short_arrow_next.xml" value="0.2942708333333333" />
+        <entry key="..\:/Users/PARSHIN/Desktop/Repositories/BabyBank/common/src/main/res/layout/item_item_menu_title_icon.xml" value="0.14635416666666667" />
+        <entry key="..\:/Users/PARSHIN/Desktop/Repositories/BabyBank/common/src/main/res/layout/item_loader.xml" value="0.278125" />
+        <entry key="..\:/Users/PARSHIN/Desktop/Repositories/BabyBank/common/src/main/res/layout/item_title_recycler_view.xml" value="0.278125" />
+        <entry key="..\:/Users/PARSHIN/Desktop/Repositories/BabyBank/profile/src/main/res/drawable/bg_and_ripple_ic_change_photo.xml" value="0.2942708333333333" />
+        <entry key="..\:/Users/PARSHIN/Desktop/Repositories/BabyBank/profile/src/main/res/drawable/bg_and_ripple_long_item_recycler_view.xml" value="0.2942708333333333" />
+        <entry key="..\:/Users/PARSHIN/Desktop/Repositories/BabyBank/profile/src/main/res/drawable/bg_recycler_view_white_corners_top_50dp.xml" value="0.2942708333333333" />
+        <entry key="..\:/Users/PARSHIN/Desktop/Repositories/BabyBank/profile/src/main/res/drawable/decoration_item_recycler_view.xml" value="0.2942708333333333" />
+        <entry key="..\:/Users/PARSHIN/Desktop/Repositories/BabyBank/profile/src/main/res/drawable/ic_change_photo.xml" value="0.2942708333333333" />
+        <entry key="..\:/Users/PARSHIN/Desktop/Repositories/BabyBank/profile/src/main/res/drawable/ic_covid_19_qr_code.xml" value="0.18425925925925926" />
+        <entry key="..\:/Users/PARSHIN/Desktop/Repositories/BabyBank/profile/src/main/res/drawable/ic_error_load_image.xml" value="0.18425925925925926" />
+        <entry key="..\:/Users/PARSHIN/Desktop/Repositories/BabyBank/profile/src/main/res/drawable/ic_face.xml" value="0.2942708333333333" />
+        <entry key="..\:/Users/PARSHIN/Desktop/Repositories/BabyBank/profile/src/main/res/drawable/ic_load_image.xml" value="0.2942708333333333" />
+        <entry key="..\:/Users/PARSHIN/Desktop/Repositories/BabyBank/profile/src/main/res/drawable/ic_short_arrow_next.xml" value="0.2942708333333333" />
         <entry key="..\:/Users/PARSHIN/Desktop/Repositories/BabyBank/profile/src/main/res/layout/fragment_item.xml" value="0.278125" />
         <entry key="..\:/Users/PARSHIN/Desktop/Repositories/BabyBank/profile/src/main/res/layout/fragment_item_list.xml" value="0.2640625" />
+        <entry key="..\:/Users/PARSHIN/Desktop/Repositories/BabyBank/profile/src/main/res/layout/fragment_profile.xml" value="0.278125" />
+        <entry key="..\:/Users/PARSHIN/Desktop/Repositories/BabyBank/profile/src/main/res/layout/ic_error_load_image.xml" value="0.278125" />
+        <entry key="..\:/Users/PARSHIN/Desktop/Repositories/BabyBank/profile/src/main/res/layout/item_item_menu_title_icon.xml" value="0.278125" />
+        <entry key="..\:/Users/PARSHIN/Desktop/Repositories/BabyBank/profile/src/main/res/layout/item_loader.xml" value="0.278125" />
+        <entry key="..\:/Users/PARSHIN/Desktop/Repositories/BabyBank/profile/src/main/res/layout/item_title_recycler_view.xml" value="0.278125" />
+        <entry key="..\:/Users/PARSHIN/Desktop/Repositories/BabyBank/profile/src/main/res/layout/test.xml" value="0.278125" />
         <entry key="..\:/Users/PARSHIN/Desktop/Repositories/BabyBank2/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/Users/PARSHIN/Desktop/Repositories/BabyBank2/app/src/main/res/menu/menu_bottom_navigation_container_frg.xml" value="0.1" />
       </map>

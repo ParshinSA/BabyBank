@@ -1,40 +1,48 @@
-package com.example.babybank.presentation.fragments
+package com.example.profile.presentation
 
+import android.content.Context
 import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
-import com.example.babybank.R
-import com.example.babybank.databinding.FragmentProfileBinding
-import com.example.babybank.presentation.AppApplication
-import com.example.babybank.presentation.adapters.FactoryDelegationAdapterDisplayableItem
-import com.example.babybank.presentation.adapters.LoaderUiDelegateAdapterRv
-import com.example.babybank.presentation.adapters.MenuItemTitleIconUiAdapterDelegateRv
-import com.example.babybank.presentation.adapters.MenuTitleUiAdapterDelegateRv
-import com.example.babybank.presentation.common.DisplayableItem
-import com.example.babybank.presentation.models.LoaderUiRv
-import com.example.babybank.presentation.models.PersonalInfoProfileFrgUi
-import com.example.babybank.presentation.viewmodels.ProfileFrgViewModel
-import com.example.babybank.presentation.viewmodels.ViewModelFactory
+import com.example.profile.R
+import com.example.profile.common.di.ProfileComponentViewModel
+import com.example.profile.databinding.FragmentProfileBinding
+import com.example.profile.presentation.adapters.LoaderUiDelegateAdapterRv
+import com.example.profile.presentation.adapters.MenuItemTitleIconUiAdapterDelegateRv
+import com.example.profile.presentation.adapters.MenuTitleUiAdapterDelegateRv
+import com.example.profile.presentation.adapters.RecyclerViewAdapter
+import com.example.profile.presentation.intefaces.DisplayableItem
+import com.example.profile.presentation.models.LoaderUiRv
+import com.example.profile.presentation.models.PersonalInfoProfileFrgUi
 import com.hannesdorfmann.adapterdelegates4.AdapterDelegatesManager
+import com.hannesdorfmann.adapterdelegates4.AsyncListDifferDelegationAdapter
 import javax.inject.Inject
 
-class ProfileFragment : BaseFragment() {
+class ProfileFragment : Fragment() {
+
+    private val component: ProfileComponentViewModel by viewModels()
+
+    private var toast: Toast? = null
 
     private var _binding: FragmentProfileBinding? = null
     private val binding get() = checkNotNull(_binding)
 
-    @Inject
-    lateinit var viewModelFactory: ViewModelFactory
-    private val viewModel: ProfileFrgViewModel by viewModels { viewModelFactory }
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        inject()
+    }
 
     @Inject
-    lateinit var factoryAdapter: FactoryDelegationAdapterDisplayableItem
+    internal lateinit var viewModelFactory: ViewModelFactory
+    private val viewModel: ProfileFrgViewModel by viewModels { viewModelFactory }
 
     private val getContent =
         registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
@@ -42,7 +50,10 @@ class ProfileFragment : BaseFragment() {
             viewModel.setCustomAvatar(uri.toString())
         }
 
-    private val adapterRv by lazy { factoryAdapter.createAdapter(createDelegatesManager()) }
+    private val adapterRv = AsyncListDifferDelegationAdapter(
+        RecyclerViewAdapter.DiffUtilItemCallback(),
+        createDelegatesManager()
+    )
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -87,6 +98,12 @@ class ProfileFragment : BaseFragment() {
         )
     }
 
+    private fun click(itemId: Int) {
+        toast?.cancel()
+        toast = Toast.makeText(requireContext(), "Click $itemId", Toast.LENGTH_SHORT)
+        toast?.show()
+    }
+
     private fun setImageInAvatar(uriString: String?) {
         Glide.with(requireContext()).load(uriString)
             .optionalCenterCrop()
@@ -119,15 +136,15 @@ class ProfileFragment : BaseFragment() {
 
     override fun onDestroy() {
         _binding = null
+        toast = null
         super.onDestroy()
     }
 
-    override fun inject() {
-        (requireContext().applicationContext as AppApplication).appComponent.inject(this)
+    private fun inject() {
+        component.component.inject(this)
     }
 
     companion object {
-
         fun newInstance() = ProfileFragment()
     }
 }

@@ -3,6 +3,7 @@
 package com.example.babybank.presentation
 
 import com.example.babybank.presentation.fragments.*
+import com.example.profile.presentation.ProfileFragment
 import com.github.terrakok.cicerone.androidx.FragmentScreen
 
 object Screens {

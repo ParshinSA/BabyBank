@@ -5,6 +5,7 @@ import android.os.StrictMode
 import com.example.babybank.BuildConfig
 import com.example.babybank.common.di.AppComponent
 import com.example.babybank.common.di.DaggerAppComponent
+import com.example.profile.common.di.settings.ProfileDependenciesProvider
 
 class AppApplication : Application() {
 
@@ -18,6 +19,11 @@ class AppApplication : Application() {
     override fun onCreate() {
         super.onCreate()
         threadPolicy()
+        dependenciesProviders()
+    }
+
+    private fun dependenciesProviders() {
+        ProfileDependenciesProvider.dependencies = appComponent.profileDependencies
     }
 
     private fun threadPolicy() {

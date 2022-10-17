@@ -1,9 +1,8 @@
-package com.example.babybank.data.data_source.local
+package com.example.profile.data.data_source
 
 import android.content.Context
 import android.content.SharedPreferences
 import android.net.Uri
-import com.example.babybank.data.data_source.interf.UserInfoSharedPrefsDataSource
 import io.reactivex.Completable
 import io.reactivex.Single
 import java.io.IOException
@@ -15,7 +14,10 @@ class UserInfoSharedPrefsDataSourceImpl @Inject constructor(
 
     private val mPreferences: SharedPreferences
         get() {
-            return context.getSharedPreferences(SHARED_PREF_USER_INFO, Context.MODE_PRIVATE)
+            return context.getSharedPreferences(
+                SHARED_PREF_USER_INFO,
+                Context.MODE_PRIVATE
+            )
         }
 
     override fun getCustomAvatarLink(): Single<String?> {

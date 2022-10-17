@@ -29,17 +29,6 @@ class InteractorModule {
     }
 
     @Provides
-    fun provideProfileFrgInteractorImplToInterface(
-        personalInfoRepository: PersonalInfoRepository,
-        menuItemRepository: MenuItemRepository
-    ): ProfileFrgInteractor {
-        return ProfileFrgInteractorIml(
-            personalInfoRepository = personalInfoRepository,
-            menuItemRepository = menuItemRepository
-        )
-    }
-
-    @Provides
     fun provideDetailsTransitionFrgInteractorImplToInterface(
         menuItemRepository: MenuItemRepository
     ): DetailsTransitionFrgInteractor {

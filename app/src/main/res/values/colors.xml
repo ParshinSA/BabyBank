@@ -5,11 +5,10 @@
     <color name="purple_700">#FF3700B3</color>
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
 
     <!--    my palette-->
-    <color name="myWhite">@color/white</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
     <color name="whiteGray">#F6F7FA</color>
     <color name="gray">#ADADAD</color>
     <color name="darkGray">#757575</color>
@@ -18,7 +17,7 @@
     <!--    background color -->
     <color name="bgOnboardingFrg">@color/liteBlue</color>
     <color name="bgIconItemOperationMenuWalletFrg">@color/whiteGray</color>
-    <color name="colorBackgroundItemRecyclerView">@color/myWhite</color>
+    <color name="colorBackgroundItemRecyclerView">@color/white</color>
     <color name="bgButtonDefault">@color/liteBlue</color>
     <color name="bgRippleDefault">@color/gray</color>
 
@@ -29,11 +28,9 @@
     <!--    color text-->
     <color name="blackText">@color/black</color>
     <color name="grayText">@color/gray</color>
-    <color name="whiteText">@color/myWhite</color>
+    <color name="whiteText">@color/white</color>
 
     <!--    icon color-->
     <color name="iconColor">@color/liteBlue</color>
-
-    <color name="progressLoading">#7458B7FF</color>
 
 </resources>

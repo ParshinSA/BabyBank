@@ -1,9 +1,9 @@
-package com.example.babybank.domain.interactors
+package com.example.profile.domain.interactor
 
 import android.net.Uri
-import com.example.babybank.domain.models.MenuItemDomain
-import com.example.babybank.domain.models.PersonalInfoDomain
-import com.example.babybank.domain.models.RequestMenu
+import com.example.profile.domain.models.MenuItemDomain
+import com.example.profile.domain.models.PersonalInfoDomain
+import com.example.profile.presentation.models.RequestMenu
 import io.reactivex.Completable
 import io.reactivex.Single
 
