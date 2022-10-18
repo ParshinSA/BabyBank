@@ -3,7 +3,7 @@ package com.example.babybank.presentation.viewmodels
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.babybank.R
-import com.example.babybank.common.di.modules.NavigationModule.Companion.FRAGMENT_ROUTER
+import com.example.babybank.common.cicerone_router.FragmentRouter
 import com.example.babybank.domain.interactors.WalletFrgInteractor
 import com.example.babybank.domain.models.MenuTypeDomain.OPERATIONS_MENU
 import com.example.babybank.domain.models.MenuTypeDomain.TRANSFERS_MENU
@@ -12,18 +12,16 @@ import com.example.babybank.presentation.Screens
 import com.example.babybank.presentation.common.DisplayableItem
 import com.example.babybank.presentation.models.ConvertersDomainToUi
 import com.example.babybank.presentation.models.MenuTitleUi
-import com.github.terrakok.cicerone.Router
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
-import javax.inject.Named
 
 class WalletFrgViewModel @Inject constructor(
     private val interactor: WalletFrgInteractor,
-    @Named(FRAGMENT_ROUTER)
-    private val parentRouter: Router,
-    private val converters: ConvertersDomainToUi
+    private val converters: ConvertersDomainToUi,
+    routerProvider: FragmentRouter,
 ) : BaseViewModel() {
+    private val router = routerProvider.router
 
     private val operationsMutLiveDta = MutableLiveData<List<DisplayableItem>>(emptyList())
     val operationsLiveDta: LiveData<List<DisplayableItem>> get() = operationsMutLiveDta
@@ -53,11 +51,11 @@ class WalletFrgViewModel @Inject constructor(
     }
 
     fun openDetailsFrg(itemId: Int) {
-        parentRouter.navigateTo(Screens.DetailsTransferFrg("$itemId", "test"))
+        router.navigateTo(Screens.DetailsTransferFrg("$itemId", "test"))
     }
 
     fun openBankListFragment() {
-        parentRouter.navigateTo(Screens.BankListFrg())
+        router.navigateTo(Screens.BankListFrg())
     }
 
     init {

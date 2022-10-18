@@ -4,6 +4,7 @@ import android.content.Intent
 import android.webkit.MimeTypeMap
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.example.babybank.common.cicerone_router.FragmentRouter
 import com.example.babybank.data.common.utils.AppExternalStorage
 import com.example.babybank.data.common.utils.AppExternalStorage.Companion.FOLDER_BANK_LIST
 import com.example.babybank.domain.interactors.BankListFrgInteractor
@@ -22,8 +23,9 @@ class BankListFrgViewModel @Inject constructor(
     private var appExternalStorage: AppExternalStorage,
     private val interactor: BankListFrgInteractor,
     private val fileUriProvider: FileUriProvider,
-    private val parentRouter: Router,
+    routerProvider: FragmentRouter,
 ) : BaseViewModel() {
+    private val router = routerProvider.router
 
     private val downloadFolder = FOLDER_BANK_LIST
 
@@ -81,11 +83,11 @@ class BankListFrgViewModel @Inject constructor(
     }
 
     fun onBackPressed() {
-        parentRouter.exit()
+        router.exit()
     }
 
     fun openPdfViewerFrg(fileName: String) {
-        parentRouter.navigateTo(Screens.PDFViewerFrg(fileName, downloadFolder))
+        router.navigateTo(Screens.PDFViewerFrg(fileName, downloadFolder))
     }
 
 

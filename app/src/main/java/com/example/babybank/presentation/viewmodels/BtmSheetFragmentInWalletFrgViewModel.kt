@@ -2,16 +2,17 @@ package com.example.babybank.presentation.viewmodels
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.example.babybank.common.cicerone_router.FragmentRouter
 import com.example.babybank.presentation.Screens
-import com.github.terrakok.cicerone.Router
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 class BtmSheetFragmentInWalletFrgViewModel @Inject constructor(
-    private val parentRouter: Router
+    routerProvider: FragmentRouter,
 ) : BaseViewModel() {
+    private val router = routerProvider.router
 
     private val cardNumberMutLiveData = MutableLiveData("")
     val cardNumberLiveData: LiveData<String> get() = cardNumberMutLiveData
@@ -43,7 +44,7 @@ class BtmSheetFragmentInWalletFrgViewModel @Inject constructor(
         val balanceTransfer = checkNotNull(moneyLiveData.value)
         val infoMessage = checkNotNull(cardNumberLiveData.value)
 
-        parentRouter.navigateTo(Screens.DetailsTransferFrg(balanceTransfer, infoMessage), false)
+        router.navigateTo(Screens.DetailsTransferFrg(balanceTransfer, infoMessage), false)
     }
 
 }

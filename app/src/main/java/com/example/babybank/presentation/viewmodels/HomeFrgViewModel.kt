@@ -3,6 +3,7 @@ package com.example.babybank.presentation.viewmodels
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.babybank.R
+import com.example.babybank.common.cicerone_router.FragmentRouter
 import com.example.babybank.domain.interactors.HomeFrgInteractor
 import com.example.babybank.domain.models.AccountInfoDomain
 import com.example.babybank.domain.models.CurrencyTypeDomain
@@ -20,8 +21,9 @@ class HomeFrgViewModel @Inject constructor(
     private val converters: ConvertersDomainToUi,
     private val moneyFormatter: MoneyFormatter,
     private val interactor: HomeFrgInteractor,
-    private val parentRouter: Router
+    routerProvider: FragmentRouter,
 ) : BaseViewModel() {
+    private val router = routerProvider.router
 
     private val personalInfoMutLiveData = MutableLiveData<PersonalInfoHomeFrgUi>()
     val personalInfoLiveData: LiveData<PersonalInfoHomeFrgUi> get() = personalInfoMutLiveData
@@ -102,7 +104,7 @@ class HomeFrgViewModel @Inject constructor(
         val selectedButton =
             dataAccountsCardsLiveData.value?.first { it.idItem == itemId } ?: return
 
-        parentRouter.navigateTo(Screens.DetailsTransferFrg(createBalanceString(selectedButton)))
+        router.navigateTo(Screens.DetailsTransferFrg(createBalanceString(selectedButton)))
     }
 
     private fun createBalanceString(item: DisplayableItem): String {

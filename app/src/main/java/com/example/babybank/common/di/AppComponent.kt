@@ -13,6 +13,7 @@ import dagger.Component
 @Component(
     modules = [
         DependenciesProviderModule::class,
+        ViewModelModuleIntoMap::class,
         InteractorModule::class,
         RepositoryModule::class,
         DataSourceModule::class,

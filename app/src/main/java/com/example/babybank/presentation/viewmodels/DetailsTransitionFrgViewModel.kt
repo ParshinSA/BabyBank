@@ -3,25 +3,23 @@ package com.example.babybank.presentation.viewmodels
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.babybank.R
-import com.example.babybank.common.di.modules.NavigationModule.Companion.FRAGMENT_ROUTER
+import com.example.babybank.common.cicerone_router.FragmentRouter
 import com.example.babybank.domain.interactors.DetailsTransitionFrgInteractor
 import com.example.babybank.domain.models.MenuTypeDomain
 import com.example.babybank.domain.models.RequestMenu
 import com.example.babybank.presentation.common.DisplayableItem
 import com.example.babybank.presentation.models.ConvertersDomainToUi
 import com.example.babybank.presentation.models.MenuTitleUi
-import com.github.terrakok.cicerone.Router
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
-import javax.inject.Named
 
 class DetailsTransitionFrgViewModel @Inject constructor(
     private val converters: ConvertersDomainToUi,
     interactor: DetailsTransitionFrgInteractor,
-    @Named(FRAGMENT_ROUTER)
-    private val parentRouter: Router,
+    routerProvider: FragmentRouter,
 ) : BaseViewModel() {
+    private val router = routerProvider.router
 
     private val menuItemMutLiveData = MutableLiveData<List<DisplayableItem>>(emptyList())
     val menuItemLiveDta: LiveData<List<DisplayableItem>> get() = menuItemMutLiveData
@@ -53,7 +51,7 @@ class DetailsTransitionFrgViewModel @Inject constructor(
     }
 
     fun onBackPressed() {
-        parentRouter.exit()
+        router.exit()
     }
 
     fun setMessage(message: String) {

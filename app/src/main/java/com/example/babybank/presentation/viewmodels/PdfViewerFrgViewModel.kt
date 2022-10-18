@@ -2,6 +2,7 @@ package com.example.babybank.presentation.viewmodels
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.example.babybank.common.cicerone_router.FragmentRouter
 import com.example.babybank.data.common.utils.AppExternalStorage
 import com.github.terrakok.cicerone.Router
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -11,8 +12,9 @@ import javax.inject.Inject
 
 class PdfViewerFrgViewModel @Inject constructor(
     private var appExternalStorage: AppExternalStorage,
-    private val parentRouter: Router
+    routerProvider: FragmentRouter,
 ) : BaseViewModel() {
+    private val router = routerProvider.router
 
     private val toolbarTitleMutLiveData = MutableLiveData<String>()
     val toolbarTitleLiveData: LiveData<String> get() = toolbarTitleMutLiveData
@@ -39,7 +41,7 @@ class PdfViewerFrgViewModel @Inject constructor(
     }
 
     fun backPressed(): Boolean {
-        parentRouter.exit()
+        router.exit()
         return true
     }
 
