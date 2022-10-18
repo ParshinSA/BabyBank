@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/liteBlue">
+    android:background="@color/liteBlue"
+    android:orientation="vertical">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout"
@@ -33,13 +34,14 @@
 
                     <com.google.android.material.imageview.ShapeableImageView
                         android:id="@+id/shapeImageViewAvatarProfile"
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
+                        android:layout_width="200dp"
+                        android:layout_height="200dp"
                         android:layout_marginTop="42dp"
                         android:layout_marginBottom="16dp"
                         android:padding="2dp"
-                        app:layout_behavior=""
                         android:scaleType="centerCrop"
+                        android:src="@drawable/ic_face"
+                        app:layout_behavior=""
                         app:shapeAppearanceOverlay="@style/MyStyleShapeAppearance"
                         app:strokeColor="@color/gray"
                         app:strokeWidth="6dp" />
@@ -87,6 +89,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
+        android:layout_gravity="bottom"
+        android:gravity="bottom"
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
         <androidx.recyclerview.widget.RecyclerView
@@ -94,7 +98,7 @@
             android:layout_width="match_parent"
             android:layout_height="fill_parent"
             android:background="@drawable/bg_recycler_view_white_corners_top_50dp"
-            android:padding="4dp"
+            android:paddingTop="30dp"
             tools:itemCount="5"
             tools:listitem="@layout/item_item_menu_title_icon" />
 

@@ -20,7 +20,6 @@ import com.example.profile.presentation.adapters.MenuItemTitleIconUiAdapterDeleg
 import com.example.profile.presentation.adapters.MenuTitleUiAdapterDelegateRv
 import com.example.profile.presentation.adapters.RecyclerViewAdapter
 import com.example.profile.presentation.intefaces.DisplayableItem
-import com.example.profile.presentation.models.LoaderUiRv
 import com.example.profile.presentation.models.PersonalInfoProfileFrgUi
 import com.hannesdorfmann.adapterdelegates4.AdapterDelegatesManager
 import com.hannesdorfmann.adapterdelegates4.AsyncListDifferDelegationAdapter
@@ -105,6 +104,8 @@ class ProfileFragment : Fragment() {
     }
 
     private fun setImageInAvatar(uriString: String?) {
+        if (uriString == null) return
+
         Glide.with(requireContext()).load(uriString)
             .optionalCenterCrop()
             .placeholder(R.drawable.ic_load_image)
@@ -129,9 +130,8 @@ class ProfileFragment : Fragment() {
         val recyclerView = binding.recyclerViewProfileInfo
         recyclerView.adapter = adapterRv
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        recyclerView.setHasFixedSize(true)
 
-        adapterRv.items = if (menuItemList.isEmpty()) listOf(LoaderUiRv()) else menuItemList
+        adapterRv.items = menuItemList + menuItemList
     }
 
     override fun onDestroy() {

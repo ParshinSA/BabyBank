@@ -82,7 +82,8 @@ class ProfileFrgViewModel(
     }
 
     fun setCustomAvatar(uriString: String?) {
-        uriString?.let { customAvatarLinkMutLiveData.value = it }
+        if (uriString == null || uriString == "null") return
+        customAvatarLinkMutLiveData.value = uriString
     }
 
     private fun showErrorMessage() {
