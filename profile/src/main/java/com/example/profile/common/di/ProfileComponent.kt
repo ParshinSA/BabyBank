@@ -21,10 +21,9 @@ internal interface ProfileComponent {
 
     fun inject(fragment: ProfileFragment)
 
-    @Component.Builder
-    interface Builder {
+    @Component.Factory
+    interface Factory {
 
-        fun dependencies(dependencies: ProfileDependencies): Builder
-        fun build(): ProfileComponent
+        fun create(dependencies: ProfileDependencies): ProfileComponent
     }
 }

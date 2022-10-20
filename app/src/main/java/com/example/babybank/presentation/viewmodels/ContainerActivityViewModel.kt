@@ -10,7 +10,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class ContainerActivityViewModel @Inject constructor(
-    private val routerProvider: ActivityRouter
+    routerProvider: ActivityRouter
 ) : BaseViewModel() {
     private val router = routerProvider.router
 

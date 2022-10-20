@@ -6,8 +6,7 @@ import com.example.profile.common.di.settings.ProfileDependenciesProvider
 
 class ProfileComponentViewModel(application: Application) : AndroidViewModel(application) {
 
-    internal val component = DaggerProfileComponent.builder()
-        .dependencies(ProfileDependenciesProvider.dependencies)
-        .build()
-
+    internal val component = DaggerProfileComponent.factory()
+        .create(ProfileDependenciesProvider.dependencies)
+        
 }
