@@ -13,7 +13,6 @@ import com.example.babybank.presentation.common.FileUriProvider
 import com.example.babybank.presentation.models.DownloadVia
 import com.example.babybank.presentation.models.OpenVia
 import com.example.babybank.presentation.models.UploadedFileUi
-import com.github.terrakok.cicerone.Router
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import java.io.File
@@ -49,16 +48,18 @@ class BankListFrgViewModel @Inject constructor(
     }
 
     fun downloadBankList() {
-        isLoadingMutLiveData.value = true
-
         interactor.downloadFileVia(loadVia, downloadFolder)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
+            .doOnSubscribe {
+                isLoadingMutLiveData.value = true
+            }
+            .doFinally {
+                isLoadingMutLiveData.value = false
+            }
             .subscribe({
                 updateUploadedFileList()
-                isLoadingMutLiveData.value = false
             }, {
-                isLoadingMutLiveData.value = false
                 it.printStackTrace()
             }).autoClear()
     }
