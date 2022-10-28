@@ -3,8 +3,16 @@ package com.example.babybank.data.common.utils
 import java.io.File
 import javax.inject.Inject
 
+/**
+ * author: ParshinSA
+ * email: ParshinSA@msk.bcs.ru
+ * specification: Класс, для проверки наличия имени файла в указанной дериктории и
+ * и при необходимости создания нового имени файла
+ * по принципу File, File(1), File(2) ... File(n)
+ **/
 class FileNameHandler @Inject constructor() {
 
+    // проверить, есть ли файл с полученным именем в указанной дерикториии
     fun checkNameFile(nameFile: String, folder: File?): String {
         var newNameFile = nameFile
         if (folder == null || !folder.isDirectory) return newNameFile
@@ -14,6 +22,7 @@ class FileNameHandler @Inject constructor() {
         val rightPath =
             newNameFile.substring(newNameFile.indexOfLast { it == '.' }, newNameFile.length)
 
+        // еслм файл с таким именем @nameFile уже существует, то генерируем новое и проверяем заного
         while (File(folder.absolutePath + '/' + newNameFile).exists()) {
             val mid = "(${++counter})"
             newNameFile = leftPath + mid + rightPath
@@ -22,7 +31,8 @@ class FileNameHandler @Inject constructor() {
         return newNameFile
     }
 
-    fun urlToName(url: String): String {
-        return url.substring(url.lastIndexOf('/') + 1, url.length)
+    // получаем имя файла из полученного URI
+    fun urlToName(uri: String): String {
+        return uri.substring(uri.lastIndexOf('/') + 1, uri.length)
     }
 }
