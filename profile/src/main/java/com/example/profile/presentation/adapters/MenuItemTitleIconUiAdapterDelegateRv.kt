@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.profile.R
 import com.example.profile.common.extensions.inflate
-import com.example.profile.databinding.ItemItemMenuTitleIconBinding
+import com.example.profile.databinding.ItemProfileMenuBinding
 import com.example.profile.presentation.intefaces.DisplayableItem
 import com.example.profile.presentation.intefaces.ItemClick
 import com.example.profile.presentation.models.MenuItemTitleIconUi
@@ -21,7 +21,7 @@ class MenuItemTitleIconUiAdapterDelegateRv(
     ) = item is MenuItemTitleIconUi
 
     override fun onCreateViewHolder(parent: ViewGroup) =
-        MenuItemTitleIconHolder(parent.inflate(R.layout.item_item_menu_title_icon), itemClick)
+        MenuItemTitleIconHolder(parent.inflate(R.layout.item_profile_menu), itemClick)
 
     override fun onBindViewHolder(
         item: MenuItemTitleIconUi, holder: MenuItemTitleIconHolder, payloads: MutableList<Any>
@@ -34,7 +34,7 @@ class MenuItemTitleIconUiAdapterDelegateRv(
         private val itemClick: ItemClick
     ) : RecyclerView.ViewHolder(view) {
 
-        private val binding = ItemItemMenuTitleIconBinding.bind(view)
+        private val binding = ItemProfileMenuBinding.bind(view)
 
         fun bind(item: MenuItemTitleIconUi) {
             binding.textViewTitle.text = item.title

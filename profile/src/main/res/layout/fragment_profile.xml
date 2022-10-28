@@ -100,7 +100,7 @@
             android:background="@drawable/bg_recycler_view_white_corners_top_50dp"
             android:paddingTop="30dp"
             tools:itemCount="5"
-            tools:listitem="@layout/item_item_menu_title_icon" />
+            tools:listitem="@layout/item_profile_menu" />
 
     </LinearLayout>
 

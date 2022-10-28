@@ -48,7 +48,7 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:itemCount="2"
             tools:layout_editor_absoluteX="8dp"
-            tools:listitem="@layout/item_item_menu_title_icon" />
+            tools:listitem="@layout/item_app_menu" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/appCompatButtonDone"
