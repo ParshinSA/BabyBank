@@ -3,13 +3,6 @@ package com.example.babybank.data.common.utils
 import java.io.File
 import javax.inject.Inject
 
-/**
- * author: ParshinSA
- * email: ParshinSA@msk.bcs.ru
- * specification: Класс, для проверки наличия имени файла в указанной дериктории и
- * и при необходимости создания нового имени файла
- * по принципу File, File(1), File(2) ... File(n)
- **/
 class FileNameHandler @Inject constructor() {
 
     // проверить, есть ли файл с полученным именем в указанной дерикториии

@@ -7,11 +7,6 @@ import java.io.File
 import java.io.IOException
 import javax.inject.Inject
 
-/**
- * author: ParshinSA
- * email: ParshinSA@msk.bcs.ru
- * specification: Класс, для доступа к указанной дериктории в внешней памяти
- **/
 class AppExternalStorage @Inject constructor(
     private val context: Context
 ) {
